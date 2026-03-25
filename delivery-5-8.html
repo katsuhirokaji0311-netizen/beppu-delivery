@@ -1,0 +1,1728 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>納品伝票</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="納品伝票">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#0f1117">
+<link rel="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjogIue0jeWTgeS8neelqCIsICJzaG9ydF9uYW1lIjogIue0jeWTgeS8neelqCIsICJkZXNjcmlwdGlvbiI6ICLliKXlupzpiYTovKrjgrPjg7zjgrnntI3lk4HkvJ3npajjgqLjg5fjg6oiLCAic3RhcnRfdXJsIjogIi4iLCAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwgImJhY2tncm91bmRfY29sb3IiOiAiIzBmMTExNyIsICJ0aGVtZV9jb2xvciI6ICIjMGYxMTE3IiwgIm9yaWVudGF0aW9uIjogInBvcnRyYWl0IiwgImljb25zIjogW3sic3JjIjogImRhdGE6aW1hZ2Uvc3ZnK3htbDtiYXNlNjQsUEhOMlp5QjRiV3h1Y3owaWFIUjBjRG92TDNkM2R5NTNNeTV2Y21jdk1qQXdNQzl6ZG1jaUlIWnBaWGRDYjNnOUlqQWdNQ0ExTVRJZ05URXlJajRLSUNBOFpHVm1jejRLSUNBZ0lEeHNhVzVsWVhKSGNtRmthV1Z1ZENCcFpEMGlZbWNpSUhneFBTSXdKU0lnZVRFOUlqQWxJaUI0TWowaU1UQXdKU0lnZVRJOUlqRXdNQ1VpUGdvZ0lDQWdJQ0E4YzNSdmNDQnZabVp6WlhROUlqQWxJaUJ6ZEc5d0xXTnZiRzl5UFNJak1XRXhaREkzSWk4K0NpQWdJQ0FnSUR4emRHOXdJRzltWm5ObGREMGlNVEF3SlNJZ2MzUnZjQzFqYjJ4dmNqMGlJekJtTVRFeE55SXZQZ29nSUNBZ1BDOXNhVzVsWVhKSGNtRmthV1Z1ZEQ0S0lDQWdJRHhzYVc1bFlYSkhjbUZrYVdWdWRDQnBaRDBpWVdOalpXNTBJaUI0TVQwaU1DVWlJSGt4UFNJd0pTSWdlREk5SWpFd01DVWlJSGt5UFNJeE1EQWxJajRLSUNBZ0lDQWdQSE4wYjNBZ2IyWm1jMlYwUFNJd0pTSWdjM1J2Y0MxamIyeHZjajBpSXpSbU9HVm1OeUl2UGdvZ0lDQWdJQ0E4YzNSdmNDQnZabVp6WlhROUlqRXdNQ1VpSUhOMGIzQXRZMjlzYjNJOUlpTTNZek5oWldRaUx6NEtJQ0FnSUR3dmJHbHVaV0Z5UjNKaFpHbGxiblErQ2lBZ0lDQThiR2x1WldGeVIzSmhaR2xsYm5RZ2FXUTlJbUZqWTJWdWRESWlJSGd4UFNJd0pTSWdlVEU5SWpBbElpQjRNajBpTVRBd0pTSWdlVEk5SWpFd01DVWlQZ29nSUNBZ0lDQThjM1J2Y0NCdlptWnpaWFE5SWpBbElpQnpkRzl3TFdOdmJHOXlQU0lqTkdZNFpXWTNJaTgrQ2lBZ0lDQWdJRHh6ZEc5d0lHOW1abk5sZEQwaU1UQXdKU0lnYzNSdmNDMWpiMnh2Y2owaUl6ZGpNMkZsWkNJdlBnb2dJQ0FnUEM5c2FXNWxZWEpIY21Ga2FXVnVkRDRLSUNBOEwyUmxabk0rQ2lBZ1BDRXRMU0RvZzR6bW1hOGdMUzArQ2lBZ1BISmxZM1FnZDJsa2RHZzlJalV4TWlJZ2FHVnBaMmgwUFNJMU1USWlJSEo0UFNJeE1EQWlJR1pwYkd3OUluVnliQ2dqWW1jcElpOCtDaUFnUENFdExTRGt2SjNucGFqamdhN250SmtnTFMwK0NpQWdQSEpsWTNRZ2VEMGlNVEl3SWlCNVBTSTRNQ0lnZDJsa2RHZzlJakkzTWlJZ2FHVnBaMmgwUFNJek5EQWlJSEo0UFNJeE9DSWdabWxzYkQwaUl6RmxNakl6TlNJZ2MzUnliMnRsUFNKMWNtd29JMkZqWTJWdWRDa2lJSE4wY205clpTMTNhV1IwYUQwaU5pSXZQZ29nSUR3aExTMGc0NE9ZNDRPRDQ0T0E0NE84NWJpdklDMHRQZ29nSUR4eVpXTjBJSGc5SWpFeU1DSWdlVDBpT0RBaUlIZHBaSFJvUFNJeU56SWlJR2hsYVdkb2REMGlOekFpSUhKNFBTSXhPQ0lnWm1sc2JEMGlkWEpzS0NOaFkyTmxiblFwSWk4K0NpQWdQSEpsWTNRZ2VEMGlNVEl3SWlCNVBTSXhNakFpSUhkcFpIUm9QU0l5TnpJaUlHaGxhV2RvZEQwaU16QWlJR1pwYkd3OUluVnliQ2dqWVdOalpXNTBLU0l2UGdvZ0lEd2hMUzBnNDRLLzQ0S2s0NE9JNDRPcjVwYUg1YTJYNDRLbzQ0T3E0NEtpSUMwdFBnb2dJRHh5WldOMElIZzlJakUwT0NJZ2VUMGlPVFVpSUhkcFpIUm9QU0l5TVRZaUlHaGxhV2RvZEQwaU5EQWlJSEo0UFNJNElpQm1hV3hzUFNKeVoySmhLREkxTlN3eU5UVXNNalUxTERBdU1UVXBJaTgrQ2lBZ1BDRXRMU0RqZzZuamdxVGpnN1BudnFRZ0xTMCtDaUFnUEhKbFkzUWdlRDBpTVRRNElpQjVQU0l4TnpnaUlIZHBaSFJvUFNJeU1UWWlJR2hsYVdkb2REMGlNVElpSUhKNFBTSTJJaUJtYVd4c1BTSjFjbXdvSTJGalkyVnVkQ2tpSUc5d1lXTnBkSGs5SWpBdU9TSXZQZ29nSUR4eVpXTjBJSGc5SWpFME9DSWdlVDBpTWpFd0lpQjNhV1IwYUQwaU1UWXdJaUJvWldsbmFIUTlJakV3SWlCeWVEMGlOU0lnWm1sc2JEMGlJelJtT0dWbU55SWdiM0JoWTJsMGVUMGlNQzQxSWk4K0NpQWdQSEpsWTNRZ2VEMGlNekU0SWlCNVBTSXlNVEFpSUhkcFpIUm9QU0kwTmlJZ2FHVnBaMmgwUFNJeE1DSWdjbmc5SWpVaUlHWnBiR3c5SWlNMFpqaGxaamNpSUc5d1lXTnBkSGs5SWpBdU9DSXZQZ29nSUR4eVpXTjBJSGc5SWpFME9DSWdlVDBpTWpNMklpQjNhV1IwYUQwaU1UWXdJaUJvWldsbmFIUTlJakV3SWlCeWVEMGlOU0lnWm1sc2JEMGlJelJtT0dWbU55SWdiM0JoWTJsMGVUMGlNQzQxSWk4K0NpQWdQSEpsWTNRZ2VEMGlNekU0SWlCNVBTSXlNellpSUhkcFpIUm9QU0kwTmlJZ2FHVnBaMmgwUFNJeE1DSWdjbmc5SWpVaUlHWnBiR3c5SWlNMFpqaGxaamNpSUc5d1lXTnBkSGs5SWpBdU9DSXZQZ29nSUR4eVpXTjBJSGc5SWpFME9DSWdlVDBpTWpZeUlpQjNhV1IwYUQwaU1UWXdJaUJvWldsbmFIUTlJakV3SWlCeWVEMGlOU0lnWm1sc2JEMGlJelJtT0dWbU55SWdiM0JoWTJsMGVUMGlNQzQxSWk4K0NpQWdQSEpsWTNRZ2VEMGlNekU0SWlCNVBTSXlOaklpSUhkcFpIUm9QU0kwTmlJZ2FHVnBaMmgwUFNJeE1DSWdjbmc5SWpVaUlHWnBiR3c5SWlNMFpqaGxaamNpSUc5d1lXTnBkSGs5SWpBdU9DSXZQZ29nSUR4eVpXTjBJSGc5SWpFME9DSWdlVDBpTWpnNElpQjNhV1IwYUQwaU1UWXdJaUJvWldsbmFIUTlJakV3SWlCeWVEMGlOU0lnWm1sc2JEMGlJelJtT0dWbU55SWdiM0JoWTJsMGVUMGlNQzQxSWk4K0NpQWdQSEpsWTNRZ2VEMGlNekU0SWlCNVBTSXlPRGdpSUhkcFpIUm9QU0kwTmlJZ2FHVnBaMmgwUFNJeE1DSWdjbmc5SWpVaUlHWnBiR3c5SWlNM1l6TmhaV1FpSUc5d1lXTnBkSGs5SWpBdU9DSXZQZ29nSUR4eVpXTjBJSGc5SWpFME9DSWdlVDBpTXpFMElpQjNhV1IwYUQwaU1qRTJJaUJvWldsbmFIUTlJak1pSUhKNFBTSXlJaUJtYVd4c1BTSnlaMkpoS0RJMU5Td3lOVFVzTWpVMUxEQXVNVFVwSWk4K0NpQWdQSEpsWTNRZ2VEMGlNVFE0SWlCNVBTSXpNekFpSUhkcFpIUm9QU0l4TXpBaUlHaGxhV2RvZEQwaU1UQWlJSEo0UFNJMUlpQm1hV3hzUFNJak5HWTRaV1kzSWlCdmNHRmphWFI1UFNJd0xqUWlMejRLSUNBOGNtVmpkQ0I0UFNJek1UZ2lJSGs5SWpNek1DSWdkMmxrZEdnOUlqUTJJaUJvWldsbmFIUTlJakV3SWlCeWVEMGlOU0lnWm1sc2JEMGlJekl5WXpVMVpTSWdiM0JoWTJsMGVUMGlNQzQ1SWk4K0NpQWdQQ0V0TFNEamc0SGpncWZqZzRQamdxL2pnNTdqZzd6amdxOGdMUzArQ2lBZ1BHTnBjbU5zWlNCamVEMGlNemt3SWlCamVUMGlNemt3SWlCeVBTSTNNaUlnWm1sc2JEMGlkWEpzS0NOaFkyTmxiblFwSWk4K0NpQWdQSEJ2Ykhsc2FXNWxJSEJ2YVc1MGN6MGlNelU0TERNNU1DQXpPREFzTkRFMUlEUXlNaXd6TmpnaUlHWnBiR3c5SW01dmJtVWlJSE4wY205clpUMGlkMmhwZEdVaUlITjBjbTlyWlMxM2FXUjBhRDBpTVRnaUlITjBjbTlyWlMxc2FXNWxZMkZ3UFNKeWIzVnVaQ0lnYzNSeWIydGxMV3hwYm1WcWIybHVQU0p5YjNWdVpDSXZQZ284TDNOMlp6ND0iLCAic2l6ZXMiOiAiNTEyeDUxMiIsICJ0eXBlIjogImltYWdlL3N2Zyt4bWwiLCAicHVycG9zZSI6ICJhbnkgbWFza2FibGUifV19">
+<link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMWExZDI3Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBmMTExNyIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iYWNjZW50IiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzRmOGVmNyIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM3YzNhZWQiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImFjY2VudDIiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjNGY4ZWY3Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzdjM2FlZCIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CiAgPCEtLSDog4zmma8gLS0+CiAgPHJlY3Qgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHJ4PSIxMDAiIGZpbGw9InVybCgjYmcpIi8+CiAgPCEtLSDkvJ3npajjga7ntJkgLS0+CiAgPHJlY3QgeD0iMTIwIiB5PSI4MCIgd2lkdGg9IjI3MiIgaGVpZ2h0PSIzNDAiIHJ4PSIxOCIgZmlsbD0iIzFlMjIzNSIgc3Ryb2tlPSJ1cmwoI2FjY2VudCkiIHN0cm9rZS13aWR0aD0iNiIvPgogIDwhLS0g44OY44OD44OA44O85bivIC0tPgogIDxyZWN0IHg9IjEyMCIgeT0iODAiIHdpZHRoPSIyNzIiIGhlaWdodD0iNzAiIHJ4PSIxOCIgZmlsbD0idXJsKCNhY2NlbnQpIi8+CiAgPHJlY3QgeD0iMTIwIiB5PSIxMjAiIHdpZHRoPSIyNzIiIGhlaWdodD0iMzAiIGZpbGw9InVybCgjYWNjZW50KSIvPgogIDwhLS0g44K/44Kk44OI44Or5paH5a2X44Ko44Oq44KiIC0tPgogIDxyZWN0IHg9IjE0OCIgeT0iOTUiIHdpZHRoPSIyMTYiIGhlaWdodD0iNDAiIHJ4PSI4IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTUpIi8+CiAgPCEtLSDjg6njgqTjg7PnvqQgLS0+CiAgPHJlY3QgeD0iMTQ4IiB5PSIxNzgiIHdpZHRoPSIyMTYiIGhlaWdodD0iMTIiIHJ4PSI2IiBmaWxsPSJ1cmwoI2FjY2VudCkiIG9wYWNpdHk9IjAuOSIvPgogIDxyZWN0IHg9IjE0OCIgeT0iMjEwIiB3aWR0aD0iMTYwIiBoZWlnaHQ9IjEwIiByeD0iNSIgZmlsbD0iIzRmOGVmNyIgb3BhY2l0eT0iMC41Ii8+CiAgPHJlY3QgeD0iMzE4IiB5PSIyMTAiIHdpZHRoPSI0NiIgaGVpZ2h0PSIxMCIgcng9IjUiIGZpbGw9IiM0ZjhlZjciIG9wYWNpdHk9IjAuOCIvPgogIDxyZWN0IHg9IjE0OCIgeT0iMjM2IiB3aWR0aD0iMTYwIiBoZWlnaHQ9IjEwIiByeD0iNSIgZmlsbD0iIzRmOGVmNyIgb3BhY2l0eT0iMC41Ii8+CiAgPHJlY3QgeD0iMzE4IiB5PSIyMzYiIHdpZHRoPSI0NiIgaGVpZ2h0PSIxMCIgcng9IjUiIGZpbGw9IiM0ZjhlZjciIG9wYWNpdHk9IjAuOCIvPgogIDxyZWN0IHg9IjE0OCIgeT0iMjYyIiB3aWR0aD0iMTYwIiBoZWlnaHQ9IjEwIiByeD0iNSIgZmlsbD0iIzRmOGVmNyIgb3BhY2l0eT0iMC41Ii8+CiAgPHJlY3QgeD0iMzE4IiB5PSIyNjIiIHdpZHRoPSI0NiIgaGVpZ2h0PSIxMCIgcng9IjUiIGZpbGw9IiM0ZjhlZjciIG9wYWNpdHk9IjAuOCIvPgogIDxyZWN0IHg9IjE0OCIgeT0iMjg4IiB3aWR0aD0iMTYwIiBoZWlnaHQ9IjEwIiByeD0iNSIgZmlsbD0iIzRmOGVmNyIgb3BhY2l0eT0iMC41Ii8+CiAgPHJlY3QgeD0iMzE4IiB5PSIyODgiIHdpZHRoPSI0NiIgaGVpZ2h0PSIxMCIgcng9IjUiIGZpbGw9IiM3YzNhZWQiIG9wYWNpdHk9IjAuOCIvPgogIDxyZWN0IHg9IjE0OCIgeT0iMzE0IiB3aWR0aD0iMjE2IiBoZWlnaHQ9IjMiIHJ4PSIyIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTUpIi8+CiAgPHJlY3QgeD0iMTQ4IiB5PSIzMzAiIHdpZHRoPSIxMzAiIGhlaWdodD0iMTAiIHJ4PSI1IiBmaWxsPSIjNGY4ZWY3IiBvcGFjaXR5PSIwLjQiLz4KICA8cmVjdCB4PSIzMTgiIHk9IjMzMCIgd2lkdGg9IjQ2IiBoZWlnaHQ9IjEwIiByeD0iNSIgZmlsbD0iIzIyYzU1ZSIgb3BhY2l0eT0iMC45Ii8+CiAgPCEtLSDjg4Hjgqfjg4Pjgq/jg57jg7zjgq8gLS0+CiAgPGNpcmNsZSBjeD0iMzkwIiBjeT0iMzkwIiByPSI3MiIgZmlsbD0idXJsKCNhY2NlbnQpIi8+CiAgPHBvbHlsaW5lIHBvaW50cz0iMzU4LDM5MCAzODAsNDE1IDQyMiwzNjgiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMTgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8L3N2Zz4=">
+<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMWExZDI3Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBmMTExNyIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iYWNjZW50IiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzRmOGVmNyIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM3YzNhZWQiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImFjY2VudDIiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjNGY4ZWY3Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzdjM2FlZCIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CiAgPCEtLSDog4zmma8gLS0+CiAgPHJlY3Qgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHJ4PSIxMDAiIGZpbGw9InVybCgjYmcpIi8+CiAgPCEtLSDkvJ3npajjga7ntJkgLS0+CiAgPHJlY3QgeD0iMTIwIiB5PSI4MCIgd2lkdGg9IjI3MiIgaGVpZ2h0PSIzNDAiIHJ4PSIxOCIgZmlsbD0iIzFlMjIzNSIgc3Ryb2tlPSJ1cmwoI2FjY2VudCkiIHN0cm9rZS13aWR0aD0iNiIvPgogIDwhLS0g44OY44OD44OA44O85bivIC0tPgogIDxyZWN0IHg9IjEyMCIgeT0iODAiIHdpZHRoPSIyNzIiIGhlaWdodD0iNzAiIHJ4PSIxOCIgZmlsbD0idXJsKCNhY2NlbnQpIi8+CiAgPHJlY3QgeD0iMTIwIiB5PSIxMjAiIHdpZHRoPSIyNzIiIGhlaWdodD0iMzAiIGZpbGw9InVybCgjYWNjZW50KSIvPgogIDwhLS0g44K/44Kk44OI44Or5paH5a2X44Ko44Oq44KiIC0tPgogIDxyZWN0IHg9IjE0OCIgeT0iOTUiIHdpZHRoPSIyMTYiIGhlaWdodD0iNDAiIHJ4PSI4IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTUpIi8+CiAgPCEtLSDjg6njgqTjg7PnvqQgLS0+CiAgPHJlY3QgeD0iMTQ4IiB5PSIxNzgiIHdpZHRoPSIyMTYiIGhlaWdodD0iMTIiIHJ4PSI2IiBmaWxsPSJ1cmwoI2FjY2VudCkiIG9wYWNpdHk9IjAuOSIvPgogIDxyZWN0IHg9IjE0OCIgeT0iMjEwIiB3aWR0aD0iMTYwIiBoZWlnaHQ9IjEwIiByeD0iNSIgZmlsbD0iIzRmOGVmNyIgb3BhY2l0eT0iMC41Ii8+CiAgPHJlY3QgeD0iMzE4IiB5PSIyMTAiIHdpZHRoPSI0NiIgaGVpZ2h0PSIxMCIgcng9IjUiIGZpbGw9IiM0ZjhlZjciIG9wYWNpdHk9IjAuOCIvPgogIDxyZWN0IHg9IjE0OCIgeT0iMjM2IiB3aWR0aD0iMTYwIiBoZWlnaHQ9IjEwIiByeD0iNSIgZmlsbD0iIzRmOGVmNyIgb3BhY2l0eT0iMC41Ii8+CiAgPHJlY3QgeD0iMzE4IiB5PSIyMzYiIHdpZHRoPSI0NiIgaGVpZ2h0PSIxMCIgcng9IjUiIGZpbGw9IiM0ZjhlZjciIG9wYWNpdHk9IjAuOCIvPgogIDxyZWN0IHg9IjE0OCIgeT0iMjYyIiB3aWR0aD0iMTYwIiBoZWlnaHQ9IjEwIiByeD0iNSIgZmlsbD0iIzRmOGVmNyIgb3BhY2l0eT0iMC41Ii8+CiAgPHJlY3QgeD0iMzE4IiB5PSIyNjIiIHdpZHRoPSI0NiIgaGVpZ2h0PSIxMCIgcng9IjUiIGZpbGw9IiM0ZjhlZjciIG9wYWNpdHk9IjAuOCIvPgogIDxyZWN0IHg9IjE0OCIgeT0iMjg4IiB3aWR0aD0iMTYwIiBoZWlnaHQ9IjEwIiByeD0iNSIgZmlsbD0iIzRmOGVmNyIgb3BhY2l0eT0iMC41Ii8+CiAgPHJlY3QgeD0iMzE4IiB5PSIyODgiIHdpZHRoPSI0NiIgaGVpZ2h0PSIxMCIgcng9IjUiIGZpbGw9IiM3YzNhZWQiIG9wYWNpdHk9IjAuOCIvPgogIDxyZWN0IHg9IjE0OCIgeT0iMzE0IiB3aWR0aD0iMjE2IiBoZWlnaHQ9IjMiIHJ4PSIyIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTUpIi8+CiAgPHJlY3QgeD0iMTQ4IiB5PSIzMzAiIHdpZHRoPSIxMzAiIGhlaWdodD0iMTAiIHJ4PSI1IiBmaWxsPSIjNGY4ZWY3IiBvcGFjaXR5PSIwLjQiLz4KICA8cmVjdCB4PSIzMTgiIHk9IjMzMCIgd2lkdGg9IjQ2IiBoZWlnaHQ9IjEwIiByeD0iNSIgZmlsbD0iIzIyYzU1ZSIgb3BhY2l0eT0iMC45Ii8+CiAgPCEtLSDjg4Hjgqfjg4Pjgq/jg57jg7zjgq8gLS0+CiAgPGNpcmNsZSBjeD0iMzkwIiBjeT0iMzkwIiByPSI3MiIgZmlsbD0idXJsKCNhY2NlbnQpIi8+CiAgPHBvbHlsaW5lIHBvaW50cz0iMzU4LDM5MCAzODAsNDE1IDQyMiwzNjgiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMTgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8L3N2Zz4=">
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap');
+:root{--bg:#0f1117;--surface:#1a1d27;--surface2:#22263a;--accent:#4f8ef7;--accent2:#7c3aed;--text:#e8eaf6;--text2:#8892b0;--border:#2d3250;--green:#22c55e;--red:#ef4444;}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+body{font-family:'Noto Sans JP',-apple-system,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+
+/* HOME */
+#home{display:flex;flex-direction:column;min-height:100vh;}
+.home-header{background:linear-gradient(135deg,#1a1d27,#0f1117);padding:28px 20px 16px;text-align:center;border-bottom:1px solid var(--border);}
+.home-label{font-size:12px;font-weight:700;letter-spacing:0.3em;color:var(--accent);margin-bottom:8px;}
+.home-title{font-size:26px;font-weight:900;margin-bottom:6px;}
+.home-desc{font-size:12px;color:var(--text2);}
+.badge{display:inline-block;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;margin-top:12px;}
+.store-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:12px 10px;flex:1;}
+.store-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:10px 6px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:70px;cursor:pointer;text-align:center;gap:4px;transition:transform 0.15s;position:relative;}
+.store-card:active{transform:scale(0.95);border-color:var(--accent);}
+.store-icon{width:40px;height:40px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:26px;}
+.store-name{font-size:15px;font-weight:700;line-height:1.3;}
+.store-num{font-size:9px;color:var(--text2);}
+.has-data-dot{position:absolute;top:10px;right:10px;width:8px;height:8px;border-radius:50%;background:var(--green);}
+
+/* DETAIL */
+#detail{display:none;flex-direction:column;height:100vh;overflow:hidden;}
+#detail.active{display:flex;}
+.detail-header{background:var(--surface);border-bottom:1px solid var(--border);flex-shrink:0;}
+.detail-top{display:flex;align-items:center;padding:14px 16px 10px;gap:10px;}
+.back-btn{width:36px;height:36px;border-radius:10px;background:var(--surface2);border:1px solid var(--border);color:var(--text);font-size:18px;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+.back-btn:active{transform:scale(0.9);}
+.detail-store-name{font-size:18px;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1;}
+.print-btn{padding:7px 14px;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;color:#fff;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;}
+.print-btn:active{opacity:0.8;}
+.col-headers{display:grid;grid-template-columns:1fr 56px 56px;padding:6px 4px;gap:0px;background:var(--bg);border-top:1px solid var(--border);}
+.col-headers.floor-header{grid-template-columns:1fr 46px 46px 46px 46px;gap:0px;}
+.col-h{font-size:10px;font-weight:700;letter-spacing:0.08em;color:var(--text2);}
+.col-h.c{text-align:center;}
+.items-list{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;display:flex;flex-direction:column;}
+.item-row{display:grid;grid-template-columns:1fr 56px 56px;gap:0px;padding:5px 4px;border-bottom:1px solid rgba(45,50,80,0.4);align-items:center;}
+.item-row.floor-row{grid-template-columns:1fr 46px 46px 46px 46px;gap:0px;}
+.item-name{font-size:17px;font-weight:500;line-height:1.2;text-align:center;}
+.num-input{width:100%;text-align:center;font-size:20px;font-weight:700;border-radius:7px;border:1px solid var(--border);background:var(--surface2);color:#ffffff;padding:5px 2px;outline:none;}
+.num-input:not(.col-z){background:rgba(251,146,60,0.18);border-color:rgba(251,146,60,0.5);color:#ffffff;}
+.num-input:focus{border-color:var(--accent);background:#1a2035;}
+.num-input.has-val-d{background:rgba(251,146,60,0.25);border-color:#fb923c;color:#ffffff;}
+.num-input.has-val-z{background:var(--surface2);border-color:var(--border);color:#ffffff;}
+.num-input.col-z{background:var(--surface2);border-color:var(--border);}
+.num-input.col-z.has-val-z{background:var(--surface2);border-color:var(--border);color:#ffffff;}
+.item-row.row-has-val{background:rgba(79,142,247,0.15)!important;border-left:3px solid var(--accent);}
+.item-row:not(.has-sub) .item-name{text-align:center;}
+.item-row.has-sub{display:grid;grid-template-columns:1fr 112px;gap:0px;}
+.sub-wrap{display:flex;flex-direction:column;gap:2px;align-items:flex-end;width:112px;}
+.sub-row{display:flex;align-items:center;gap:4px;}
+.sub-label{font-size:10px;color:var(--text2);width:14px;text-align:right;}
+.sub-inp{width:52px!important;font-size:14px!important;padding:3px 2px!important;}
+.sub-total{font-size:10px;color:var(--text2);text-align:right;}
+.sub-total-val{font-weight:700;color:var(--accent);}
+.item-row.odd{background:#1a2540;}
+.item-row.even{background:#0f1117;}
+.num-input.has-val-r{background:rgba(239,68,68,0.12);border-color:rgba(239,68,68,0.4);color:var(--red);}
+.clear-btn{padding:8px 14px;background:var(--surface2);border:1px solid var(--border);color:var(--text2);border-radius:10px;font-size:12px;cursor:pointer;}
+
+/* PRINT */
+#printView{display:none;}
+@media print{
+  body>*{display:none!important;}
+  #printView{display:block!important;}
+  .no-print{display:none!important;}
+}
+.print-header-bar{background:var(--surface);padding:12px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border);}
+.print-header-bar .back-btn2{width:36px;height:36px;border-radius:10px;background:var(--surface2);border:1px solid var(--border);color:var(--text);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.print-header-bar .back-btn2:active{transform:scale(0.9);}
+.print-title{font-size:16px;font-weight:900;flex:1;}
+.do-print-btn{padding:8px 16px;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;color:#fff;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;}
+.ticket-wrap{padding:16px;background:var(--bg);min-height:100vh;}
+.ticket{background:#fff;color:#222;border-radius:12px;padding:16px;margin-bottom:16px;font-family:'Noto Sans JP',-apple-system,sans-serif;}
+.ticket-store{font-size:16px;font-weight:900;margin-bottom:4px;text-align:right;}
+.ticket-code{font-size:10px;color:#666;margin-bottom:10px;}
+.ticket-course{font-size:18px;font-weight:900;color:#222;margin-bottom:12px;border-bottom:2px solid #ddd;padding-bottom:8px;text-align:right;}
+.ticket table{width:100%;border-collapse:collapse;font-size:13px;}
+.ticket th{background:#f0f4ff;padding:5px 8px;text-align:left;font-weight:700;border:1px solid #ddd;font-size:11px;}
+.ticket th.c{text-align:center;}
+.ticket td{padding:5px 8px;border:1px solid #ddd;}
+.ticket td.c{text-align:center;}
+.ticket td.dval{text-align:center;font-weight:700;color:#16a34a;}
+.ticket td.rval{text-align:center;font-weight:700;color:#dc2626;}
+.ticket td.empty{text-align:center;color:#bbb;}
+
+/* colors */
+.c0{background:linear-gradient(135deg,#4f8ef7,#7c3aed)}.c1{background:linear-gradient(135deg,#22c55e,#16a34a)}.c2{background:linear-gradient(135deg,#f59e0b,#d97706)}.c3{background:linear-gradient(135deg,#ef4444,#dc2626)}.c4{background:linear-gradient(135deg,#06b6d4,#0891b2)}.c5{background:linear-gradient(135deg,#a855f7,#9333ea)}.c6{background:linear-gradient(135deg,#f97316,#ea580c)}.c7{background:linear-gradient(135deg,#14b8a6,#0d9488)}.c8{background:linear-gradient(135deg,#e879f9,#d946ef)}.c9{background:linear-gradient(135deg,#84cc16,#65a30d)}.c10{background:linear-gradient(135deg,#fb7185,#f43f5e)}.c11{background:linear-gradient(135deg,#38bdf8,#0284c7)}.c12{background:linear-gradient(135deg,#fbbf24,#f59e0b)}.c13{background:linear-gradient(135deg,#34d399,#10b981)}.c14{background:linear-gradient(135deg,#818cf8,#6366f1)}.c15{background:linear-gradient(135deg,#fb923c,#f97316)}
+
+</style>
+</head>
+<body>
+
+<!-- HOME -->
+<!-- 積み込み編集ダイアログ -->
+<div id="loadingEditDialog" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:9999;align-items:center;justify-content:center;">
+  <div style="background:var(--surface);border-radius:16px;padding:24px;margin:20px;width:calc(100%-40px);max-width:320px;">
+    <div id="loadingEditLabel" style="font-size:16px;font-weight:900;color:var(--text);margin-bottom:16px;text-align:center;"></div>
+    <input id="loadingEditInput" type="text" inputmode="numeric" pattern="[0-9]*" style="width:100%;text-align:center;font-size:28px;font-weight:900;border:2px solid var(--accent);border-radius:10px;padding:10px;background:var(--surface2);color:#fff;box-sizing:border-box;">
+    <div style="display:flex;gap:10px;margin-top:16px;">
+      <button onclick="closeLoadingEdit()" style="flex:1;padding:12px;border-radius:10px;background:var(--surface2);border:1px solid var(--border);color:var(--text);font-size:15px;font-weight:700;cursor:pointer;">キャンセル</button>
+      <button onclick="saveLoadingEdit()" style="flex:1;padding:12px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;color:#fff;font-size:15px;font-weight:700;cursor:pointer;">保存</button>
+    </div>
+  </div>
+</div>
+
+<div id="home">
+  <div class="home-header">
+    <div class="home-label">別府鉄輪コース</div>
+    <div class="home-title">納品伝票</div>
+    <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-top:12px;">
+      <button onclick="changeDate(-1)" style="width:36px;height:36px;border-radius:10px;background:var(--surface2);border:1px solid var(--border);color:var(--text);font-size:18px;cursor:pointer;">◀</button>
+      <div id="dateDisplay" style="font-size:26px;font-weight:900;color:var(--text);letter-spacing:0.05em;min-width:180px;text-align:center;padding:6px 16px;border-radius:12px;background:var(--surface2);border:1px solid var(--border);"></div>
+      <button onclick="changeDate(1)" style="width:36px;height:36px;border-radius:10px;background:var(--surface2);border:1px solid var(--border);color:var(--text);font-size:18px;cursor:pointer;">▶</button>
+    </div>
+    <div class="badge" id="storeBadge">13店舗</div>
+    <div id="todayCount" style="font-size:12px;color:var(--text2);margin-top:6px;"></div>
+    <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:6px;">
+      <span id="syncBadge" style="font-size:11px;color:var(--accent);transition:opacity 0.5s;opacity:0;"></span>
+      <button onclick="loadFromGAS(function(){renderHome();updateDateDisplay();})" style="font-size:11px;padding:3px 10px;border-radius:8px;border:1px solid var(--border);background:var(--surface2);color:var(--text2);cursor:pointer;">🔄 最新データを取得</button>
+    </div>
+    <div id="afternoonCount" style="margin-top:10px;display:flex;gap:16px;justify-content:center;align-items:baseline;"></div>
+  </div>
+  <div style="display:flex;gap:8px;padding:10px 16px 0;">
+    <button id="filterBtn" onclick="toggleFilter()" style="flex:1;padding:10px;border-radius:12px;border:1px solid var(--border);background:var(--surface2);color:var(--text2);font-size:13px;font-weight:700;cursor:pointer;">☑ 入力済みのみ表示</button>
+  </div>
+  <div style="display:flex;gap:8px;padding:6px 16px 0;">
+    <button onclick="openTicketMode()" style="flex:1;padding:10px;border-radius:12px;border:1px solid var(--border);background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;font-size:13px;font-weight:700;cursor:pointer;">🗒 伝票</button>
+    <button onclick="openLoading()" style="flex:1;padding:10px;border-radius:12px;border:1px solid var(--border);background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-size:13px;font-weight:700;cursor:pointer;">📋 積み込み</button>
+  </div>
+
+  <div class="store-grid" id="storeGrid"></div>
+  <div style="display:flex;gap:8px;padding:10px 16px 16px;border-top:1px solid var(--border);margin-top:8px;">
+    <button onclick="backupData()" style="flex:1;padding:10px;border-radius:12px;border:1px solid var(--border);background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;font-size:13px;font-weight:700;cursor:pointer;">💾 作業終了</button>
+    <button onclick="restoreData()" style="flex:1;padding:10px;border-radius:12px;border:1px solid var(--border);background:var(--surface2);color:var(--text2);font-size:13px;font-weight:700;cursor:pointer;">📂 データ復元</button>
+  </div>
+</div>
+
+<!-- DETAIL -->
+<div id="detail">
+  <div class="detail-header">
+    <div class="detail-top">
+      <button class="back-btn" onclick="goHome()">←</button>
+      <div class="detail-store-name" id="detailName"></div>
+      <div style="display:flex;align-items:center;gap:4px;">
+        <button id="detailPrevDay" onclick="detailChangeDate(-1)" style="padding:4px 8px;border-radius:8px;background:var(--surface2);border:1px solid var(--border);color:var(--text);font-size:13px;cursor:pointer;">◀</button>
+        <div id="detailDateLabel" style="font-size:24px;font-weight:900;color:var(--text2);min-width:80px;text-align:center;"></div>
+        <button id="detailNextDay" onclick="detailChangeDate(1)" style="padding:4px 8px;border-radius:8px;background:var(--surface2);border:1px solid var(--border);color:var(--text);font-size:13px;cursor:pointer;">▶</button>
+      </div>
+      <button class="print-btn" onclick="openPrint()">🖨 伝票</button>
+    </div>
+    <div class="col-headers" id="colHeaders">
+      <div class="col-h">商品名</div>
+      <div class="col-h c">納品数</div>
+      <div class="col-h c">納品済</div>
+    </div>
+  </div>
+  <div class="items-list" id="itemsList"></div>
+
+  <!-- フローティングボタン -->
+  <div id="floatBtns" style="position:fixed;top:50%;left:4px;transform:translateY(-50%);display:flex;flex-direction:column;gap:6px;z-index:100;touch-action:none;">
+    <button onclick="document.activeElement.blur();goHome();" style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;color:#fff;font-size:11px;font-weight:700;cursor:pointer;box-shadow:0 3px 8px rgba(0,0,0,0.4);">完了</button>
+  </div>
+</div>
+
+<!-- LOADING VIEW -->
+<div id="loadingView" style="display:none;flex-direction:column;height:100vh;background:var(--bg);">
+  <div style="background:var(--surface);border-bottom:1px solid var(--border);padding:12px 16px;display:flex;align-items:center;gap:10px;flex-shrink:0;">
+    <button onclick="closeLoading()" style="width:36px;height:36px;border-radius:10px;background:var(--surface2);border:1px solid var(--border);color:var(--text);font-size:18px;cursor:pointer;">←</button>
+    <button onclick="goHome()" style="width:36px;height:36px;border-radius:10px;background:var(--surface2);border:1px solid var(--border);color:var(--text);font-size:16px;cursor:pointer;">🏠</button>
+    <div style="flex:1;font-size:15px;font-weight:900;color:var(--text);" id="loadingTitle"></div>
+    <button onclick="printLoading()" style="padding:7px 14px;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;color:#fff;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;">🖨 印刷</button>
+  </div>
+  <div style="flex:1;overflow-y:auto;padding:12px 24px;" id="loadingContent"></div>
+  <div style="padding:12px 16px;border-top:1px solid var(--border);background:var(--surface);flex-shrink:0;">
+    <button onclick="goHome()" style="width:100%;padding:14px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;color:#fff;font-size:15px;font-weight:700;cursor:pointer;">完了</button>
+  </div>
+</div>
+
+<!-- PRINT VIEW -->
+<div id="printView" style="display:none;">
+  <div class="print-header-bar no-print">
+    <button class="back-btn2" onclick="closePrint()">←</button>
+    <div class="print-title" id="printTitle"></div>
+    <button onclick="goHome()" style="padding:7px 12px;background:var(--surface2);border:1px solid var(--border);color:var(--text);border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;">🏠</button>
+    <button class="do-print-btn" onclick="window.print()">印刷する</button>
+  </div>
+  <div id="ticketNav" class="no-print" style="display:none;justify-content:space-between;align-items:center;padding:10px 16px;border-bottom:1px solid var(--border);background:var(--surface);"></div>
+  <div class="ticket-wrap" id="ticketWrap"></div>
+</div>
+
+<script>
+
+
+const STORES = [
+  {name:"東屋", code:"006-00084-00000", icon:"♨",
+   items:[{n:"シーツ183"},{n:"包布 カラー"},{n:"包布 D"},{n:"デユベ 小"},{n:"PC"},{n:"BT"},{n:"作務衣・上"},{n:"作務衣・下"},{n:"作務衣L・上"},{n:"作務衣L・下"},{n:"子供浴衣",sub:["L","M","S"]}]},
+  {name:"彩葉", code:"006-00078-00000", icon:"🍃",
+   items:[{n:"シーツ160",floor:true},{n:"シーツ228",floor:true},{n:"包布 カラー",floor:true},{n:"包布 D",floor:true},{n:"PC",floor:true},{n:"BT",floor:true},{n:"作務衣・上",floor:true},{n:"作務衣・下",floor:true},{n:"作務衣L・上",floor:true},{n:"作務衣L・下",floor:true},{n:"子供浴衣",sub:["L","M","S"],floor:true}]},
+  {name:"夢月", code:"006-00091-00000", icon:"🌙",
+   items:[{n:"シーツ160",floor:true},{n:"シーツ203",floor:true},{n:"シーツ270",floor:true},{n:"包布 D",floor:true},{n:"包布 カラー",floor:true},{n:"PC",floor:true},{n:"BT",floor:true},{n:"作務衣・上",floor:true},{n:"作務衣・下",floor:true},{n:"作務衣L・上",floor:true},{n:"作務衣L・下",floor:true},{n:"子供浴衣",sub:["L","M","S"],floor:true}]},
+  {name:"かんなわ荘", code:"006-00083-00000", icon:"🏠",
+   items:[{n:"シーツ160"},{n:"枕カバー S"},{n:"浴衣 中"},{n:"子供浴衣 大"},{n:"子供浴衣 中"}]},
+  {name:"湯の丘", code:"006-00081-00000", icon:"⛰",
+   items:[{n:"シーツ160"},{n:"シーツ203"},{n:"包布 D"},{n:"PC"},{n:"PC(L)"},{n:"BT"},{n:"浴衣 クリーニング"},{n:"作務衣・上"},{n:"作務衣・下"},{n:"子作務衣 上"},{n:"子作務衣 下"},{n:"子供浴衣"}]},
+  {name:"別府おぐら", code:"006-00077-00000", icon:"🌸",
+   items:[{n:"シーツ160"},{n:"包布 D"},{n:"包布 S"},{n:"枕カバー S"},{n:"枕カバー M"},{n:"BT"},{n:"FT"},{n:"浴衣 クリーニング"},{n:"子供浴衣"}]},
+  {name:"九港福", code:"006-00085-00000", icon:"🍀",
+   items:[{n:"シーツ160"},{n:"シーツ183"},{n:"包布 D"},{n:"枕カバー M"},{n:"浴衣",sub:["特大","大","中","小"]},{n:"BT クリーニング"},{n:"枕カバー S"}]},
+  {name:"さくら亭", code:"006-00093-00000", icon:"🌺",
+   items:[{n:"シーツ160",floor:true},{n:"シーツ183",floor:true},{n:"シーツ203",floor:true},{n:"シーツ228",floor:true},{n:"包布 D",floor:true},{n:"デユベ 小",floor:true},{n:"PC",floor:true},{n:"BT",floor:true},{n:"作務衣・上",floor:true},{n:"作務衣・下",floor:true},{n:"作務衣L・上",floor:true},{n:"作務衣L・下",floor:true},{n:"子供浴衣",sub:["L","M","S"],floor:true}]},
+  {name:"万天の湯", code:"006-00092-00000", icon:"💧",
+   items:[{n:"シーツ160"},{n:"シーツ228"},{n:"包布 カラー"},{n:"包布 D"},{n:"枕カバー"},{n:"BT"},{n:"作務衣・上"},{n:"作務衣・下"},{n:"作務衣L・上"},{n:"作務衣L・下"},{n:"子供浴衣",sub:["L","M","S"]}]},
+  {name:"和み月", code:"006-00090-00000", icon:"🌛",
+   items:[{n:"シーツ183"},{n:"シーツ228"},{n:"デユベ 中"},{n:"デユベ 小"},{n:"枕カバー（L）"},{n:"BT"},{n:"FT"},{n:"柄浴衣",sub:["大","中","小"]},{n:"浴衣",sub:["特大","大","中","小"]}]},
+  {name:"扇山", code:"006-00082-00000", icon:"🏔",
+   items:[{n:"シーツ203",floor:true},{n:"包布 カラー",floor:true},{n:"PC",floor:true},{n:"BT",floor:true},{n:"作務衣・上",floor:true},{n:"作務衣・下",floor:true},{n:"作務衣L・上",floor:true},{n:"作務衣L・下",floor:true}]},
+  {name:"亀川マリーナテラス", code:"006-00089-00000", icon:"⚓",
+   items:[{n:"シーツ160"},{n:"デユベ 小"},{n:"PC"},{n:"BM"}]},
+  {name:"游湯", code:"006-00092-00001", icon:"🌊",
+   items:[{n:"シーツ160"},{n:"包布 D"},{n:"枕カバー"},{n:"浴衣",sub:["大","中","小"]}]},
+];
+
+// Load saved data
+function toDateKey(d){ return d.toISOString().slice(0,10); }
+
+// Google Apps Script連携
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbyN95_2Pqzcofkc6iUBf6Juj3flMmgKHA-Ygqdp133GDNISZhSZpIbUpt2ruqum3p3f3w/exec';
+var _gasSaveTimer = null;
+
+function loadAll(){
+  try{ return JSON.parse(localStorage.getItem('deliveryData2')||'{}'); }catch(e){return{};}
+}
+function saveAll(data){
+  localStorage.setItem('deliveryData2', JSON.stringify(data));
+  // GASにも遅延保存（連続入力時は最後の1回だけ送信）
+  if(_gasSaveTimer) clearTimeout(_gasSaveTimer);
+  _gasSaveTimer = setTimeout(function(){ saveToGAS(data); }, 1500);
+}
+function saveToGAS(data){
+  fetch(GAS_URL, {
+    method:'POST',
+    body: JSON.stringify(data),
+    headers:{'Content-Type':'application/json'}
+  }).then(function(r){
+    if(r.ok){ showSyncBadge('☁️ 同期完了'); }
+    else{ showSyncBadge('⚠️ 同期失敗'); }
+  }).catch(function(){ showSyncBadge('⚠️ オフライン'); });
+}
+function loadFromGAS(callback){
+  showSyncBadge('☁️ 読み込み中...');
+  fetch(GAS_URL+'?t='+Date.now())
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      if(data && typeof data === 'object' && Object.keys(data).length > 0){
+        allData = data;
+        saveAll(allData);
+        showSyncBadge('☁️ 同期完了');
+      } else {
+        showSyncBadge('☁️ データなし');
+      }
+      if(callback) callback();
+    })
+    .catch(function(){
+      showSyncBadge('⚠️ オフライン（ローカルで動作中）');
+      if(callback) callback();
+    });
+}
+function showSyncBadge(msg){
+  var el = document.getElementById('syncBadge');
+  if(!el) return;
+  el.textContent = msg;
+  el.style.opacity = '1';
+  clearTimeout(el._t);
+  el._t = setTimeout(function(){ el.style.opacity='0'; }, 3000);
+}
+function cleanOldData(){
+  const cutoff = new Date();
+  cutoff.setMonth(cutoff.getMonth() - 1);
+  cutoff.setHours(0,0,0,0);
+  const cutoffKey = toDateKey(cutoff);
+  let changed = false;
+  Object.keys(allData).forEach(function(key){
+    if(key < cutoffKey){ delete allData[key]; changed = true; }
+  });
+  if(changed) saveAll(allData);
+}
+
+let currentIdx = null;
+let allData = loadAll();
+let filterActive = false;
+let loadingFrom = 'home';
+let loadingInputs = {};
+let currentDate = new Date();
+currentDate.setHours(0,0,0,0);
+// 起動時にGASから最新データを取得
+window.addEventListener('load', function(){
+  loadFromGAS(function(){
+    updateDateDisplay();
+    renderHome();
+    cleanOldData();
+  });
+});
+
+function getDateKey(){ return toDateKey(currentDate); }
+function getStoreData(code){ return (allData[getDateKey()]||{})[code]||{}; }
+function setStoreData(code, data){
+  if(!allData[getDateKey()]) allData[getDateKey()]={};
+  allData[getDateKey()][code] = data;
+}
+function backupData(){
+  // 全データをJSONでダウンロード
+  var data = localStorage.getItem('deliveryData2') || '{}';
+  var now = new Date();
+  var pad = function(n){ return n < 10 ? '0'+n : n; };
+  var filename = '納品伝票バックアップ_'
+    + now.getFullYear()
+    + pad(now.getMonth()+1)
+    + pad(now.getDate())
+    + '_'
+    + pad(now.getHours())
+    + pad(now.getMinutes())
+    + '.json';
+
+  var blob = new Blob([data], {type: 'application/json'});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  a.click();
+  URL.revokeObjectURL(url);
+
+  // 保存完了メッセージ
+  var msg = document.createElement('div');
+  msg.textContent = '✅ バックアップ完了！Googleドライブに保存してください';
+  msg.style.cssText = 'position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#22c55e;color:#fff;padding:12px 20px;border-radius:12px;font-size:13px;font-weight:700;z-index:999;white-space:nowrap;';
+  document.body.appendChild(msg);
+  setTimeout(function(){ msg.remove(); }, 3000);
+}
+
+function restoreData(){
+  // ファイル選択ダイアログ
+  var input = document.createElement('input');
+  input.type = 'file';
+  input.accept = '.json';
+  input.onchange = function(e){
+    var file = e.target.files[0];
+    if(!file) return;
+    var reader = new FileReader();
+    reader.onload = function(ev){
+      try {
+        var data = JSON.parse(ev.target.result);
+        localStorage.setItem('deliveryData2', JSON.stringify(data));
+        allData = loadAll();
+        updateDateDisplay();
+        updateDots();
+        applyFilter();
+        var msg = document.createElement('div');
+        msg.textContent = '✅ データを復元しました！';
+        msg.style.cssText = 'position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#4f8ef7;color:#fff;padding:12px 20px;border-radius:12px;font-size:13px;font-weight:700;z-index:999;';
+        document.body.appendChild(msg);
+        setTimeout(function(){ msg.remove(); }, 3000);
+      } catch(err) {
+        alert('ファイルの読み込みに失敗しました');
+      }
+    };
+    reader.readAsText(file);
+  };
+  input.click();
+}
+
+// 積み込み表編集ダイアログ
+var _editCode = null, _editKey = null, _editLkey = null;
+
+function openLoadingEdit(code, key, label, currentVal){
+  _editCode = code;
+  _editKey = key;
+  document.getElementById('loadingEditLabel').textContent = label + ' の数を変更';
+  var inp = document.getElementById('loadingEditInput');
+  inp.value = currentVal;
+  var dlg = document.getElementById('loadingEditDialog');
+  dlg.style.display = 'flex';
+  setTimeout(function(){ inp.focus(); inp.select(); }, 100);
+}
+
+function closeLoadingEdit(){
+  document.getElementById('loadingEditDialog').style.display = 'none';
+  _editCode = null; _editKey = null;
+}
+
+function saveLoadingEdit(){
+  var newVal = parseInt(document.getElementById('loadingEditInput').value);
+  if(isNaN(newVal) || newVal < 0){ closeLoadingEdit(); return; }
+  // lkeyセル（クリーニング手入力）の場合
+  if(_editLkey){
+    loadingInputs[_editLkey] = String(newVal);
+    // lkeyMapで対応するstore/fieldに保存
+    var lkeyMap2 = {
+      'yukuC_湯の丘':    {code:'006-00081-00000', field:'浴衣 クリーニング_d'},
+      'yukuC_別府おぐら':{code:'006-00077-00000', field:'浴衣 クリーニング_d'},
+      'smC_湯の丘上':    {code:'006-00081-00000', field:'作務衣クリーニング上_d'},
+      'smC_湯の丘下':    {code:'006-00081-00000', field:'作務衣クリーニング下_d'},
+      'kosmC_湯の丘上':  {code:'006-00081-00000', field:'子作務衣クリーニング上_d'},
+      'kosmC_湯の丘下':  {code:'006-00081-00000', field:'子作務衣クリーニング下_d'},
+      'koYuC_おぐら':    {code:'006-00077-00000', field:'子供浴衣クリーニング_d'},
+      'yuC_和み月_柄大': {code:'006-00090-00000', field:'柄浴衣クリーニング大_d'},
+      'yuC_和み月_柄中': {code:'006-00090-00000', field:'柄浴衣クリーニング中_d'},
+      'yuC_和み月_柄小': {code:'006-00090-00000', field:'柄浴衣クリーニング小_d'},
+      'yuC_和み月_特大': {code:'006-00090-00000', field:'浴衣クリーニング特大_d'},
+      'yuC_和み月_大':   {code:'006-00090-00000', field:'浴衣クリーニング大_d'},
+      'yuC_和み月_中':   {code:'006-00090-00000', field:'浴衣クリーニング中_d'},
+      'yuC_和み月_小':   {code:'006-00090-00000', field:'浴衣クリーニング小_d'},
+      'yuC_游湯_大':     {code:'006-00092-00001', field:'浴衣クリーニング大_d'},
+      'yuC_游湯_中':     {code:'006-00092-00001', field:'浴衣クリーニング中_d'},
+      'yuC_游湯_小':     {code:'006-00092-00001', field:'浴衣クリーニング小_d'},
+      'yuC_かんなわ_中': {code:'006-00083-00000', field:'浴衣クリーニング中_d'},
+      'yuC_かんなわ_子大':{code:'006-00083-00000', field:'子供浴衣クリーニング大_d'},
+      'yuC_九港福_大':   {code:'006-00085-00000', field:'浴衣クリーニング大_d'},
+      'yuC_九港福_中':   {code:'006-00085-00000', field:'浴衣クリーニング中_d'},
+      'btC_九港福':      {code:'006-00085-00000', field:'BTクリーニング_d'},
+    };
+    var map = lkeyMap2[_editLkey];
+    if(map){
+      var dk2 = getDateKey();
+      if(!allData[dk2]) allData[dk2]={};
+      if(!allData[dk2][map.code]) allData[dk2][map.code]={};
+      allData[dk2][map.code][map.field] = String(newVal);
+      saveAll(allData);
+    }
+    _editLkey = null;
+    closeLoadingEdit();
+    var _t = document.createElement('div');
+    _t.textContent = '✅ 保存しました';
+    _t.style.cssText = 'position:fixed;top:70px;left:50%;transform:translateX(-50%);background:#22c55e;color:#fff;padding:10px 20px;border-radius:10px;font-size:14px;font-weight:700;z-index:9999;';
+    document.body.appendChild(_t);
+    setTimeout(function(){ _t.remove(); }, 1500);
+    document.getElementById('loadingContent').innerHTML = renderLoadingHTML(buildLoadingData());
+    setupLoadingEditEvents();
+    return;
+  }
+  var dk = getDateKey();
+  if(!allData[dk]) allData[dk]={};
+  if(!allData[dk][_editCode]) allData[dk][_editCode]={};
+  var sd = allData[dk][_editCode];
+  if(_editKey.endsWith('_floor')){
+    // floor店舗：上下合計が新しい値になるよう均等分配
+    var base = _editKey.replace('_floor','');
+    var curU = parseInt(sd[base+'_上'])||0;
+    var curD = parseInt(sd[base+'_下'])||0;
+    var curTotal = curU + curD;
+    if(curTotal === 0){
+      // 現在0なら均等に
+      sd[base+'_上'] = String(Math.ceil(newVal/2));
+      sd[base+'_下'] = String(Math.floor(newVal/2));
+    } else {
+      // 現在の比率を維持
+      sd[base+'_上'] = String(Math.round(newVal * curU / curTotal));
+      sd[base+'_下'] = String(newVal - Math.round(newVal * curU / curTotal));
+    }
+  } else if(_editKey.endsWith('_d')){
+    var baseKey = _editKey.slice(0, -2);
+    sd[baseKey+'_d'] = String(newVal);
+  } else {
+    // 大・中・小などサブキー（例：浴衣_大）はそのまま保存
+    sd[_editKey] = String(newVal);
+  }
+  saveAll(allData);
+  closeLoadingEdit();
+  // 保存完了トースト
+  var _t = document.createElement('div');
+  _t.textContent = '✅ 保存しました';
+  _t.style.cssText = 'position:fixed;top:70px;left:50%;transform:translateX(-50%);background:#22c55e;color:#fff;padding:10px 20px;border-radius:10px;font-size:14px;font-weight:700;z-index:9999;';
+  document.body.appendChild(_t);
+  setTimeout(function(){ _t.remove(); }, 1500);
+  // 積み込み表を再描画
+  document.getElementById('loadingContent').innerHTML = renderLoadingHTML(buildLoadingData());
+  // イベント再設定
+  setupLoadingEditEvents();
+  // 各店舗の個別入力欄にも反映（detailが開いていれば再描画）
+  if(currentIdx !== null && document.getElementById('detail').classList.contains('active')){
+    openStore(currentIdx);
+  }
+  // ホームのドット更新
+  updateDots();
+}
+
+function setupLoadingEditEvents(){
+  // 通常セル（data-code あり）
+  document.querySelectorAll('.loading-edit-cell[data-code]').forEach(function(td){
+    td.onclick = function(){
+      var code = td.dataset.code;
+      var key = td.dataset.key;
+      var dk = getDateKey();
+      var sd = (allData[dk] && allData[dk][code]) || {};
+      var currentVal = 0;
+      if(key.endsWith('_floor')){
+        var base = key.replace('_floor','');
+        currentVal = (parseInt(sd[base+'_上'])||0)+(parseInt(sd[base+'_下'])||0);
+      } else {
+        currentVal = parseInt(sd[key])||0;
+      }
+      var label = td.closest('tr').querySelector('td').textContent;
+      openLoadingEdit(code, key, label, currentVal);
+    };
+  });
+  // クリーニング手入力セル（data-lkey あり）
+  document.querySelectorAll('.loading-edit-cell[data-lkey]').forEach(function(td){
+    td.onclick = function(){
+      var lkey = td.dataset.lkey;
+      var currentVal = parseInt(loadingInputs[lkey])||0;
+      var label = td.closest('tr').querySelector('td').textContent;
+      _editLkey = lkey;
+      _editCode = null; _editKey = null;
+      document.getElementById('loadingEditLabel').textContent = label + ' の数を変更';
+      var inp = document.getElementById('loadingEditInput');
+      inp.value = currentVal;
+      var dlg = document.getElementById('loadingEditDialog');
+      dlg.style.display = 'flex';
+      setTimeout(function(){ inp.focus(); inp.select(); }, 100);
+    };
+  });
+}
+
+function updateAfternoonCount(){
+  var el = document.getElementById('afternoonCount');
+  if(!el) return;
+  var cSakura = '006-00093-00000';
+  var cManten = '006-00092-00000';
+
+  function getD(code, itemName){
+    var sd = getStoreData(code);
+    if(!sd) return 0;
+    var u = parseInt(sd[itemName+'_上'])||0;
+    var d2 = parseInt(sd[itemName+'_下'])||0;
+    var d = parseInt(sd[itemName+'_d'])||0;
+    return u+d2+d;
+  }
+
+  // さくら亭+万天の湯のみ（游湯006-00092-00001は除外）
+  var s160 = getD(cSakura,'シーツ160') + getD(cManten,'シーツ160');
+  var dp   = getD(cSakura,'包布 D')    + getD(cManten,'包布 D');
+  var bt   = getD(cSakura,'BT')        + getD(cManten,'BT');
+
+  if(s160===0 && dp===0 && bt===0){
+    el.innerHTML = '';
+    return;
+  }
+
+  el.innerHTML =
+    '<div style="text-align:center;">'
+    +'<div style="font-size:10px;color:var(--text2);margin-bottom:2px;">午後便（万天・さくら亭）</div>'
+    +'<div style="display:flex;gap:20px;justify-content:center;">'
+    +(s160>0?'<div><div style="font-size:10px;color:var(--text2);">160</div><div style="font-size:32px;font-weight:900;color:#4f8ef7;">'+(s160/10)+'</div></div>':'')
+    +(dp>0?'<div><div style="font-size:10px;color:var(--text2);">D包布</div><div style="font-size:32px;font-weight:900;color:#4f8ef7;">'+(dp/10)+'</div></div>':'')
+    +(bt>0?'<div><div style="font-size:10px;color:var(--text2);">BT</div><div style="font-size:32px;font-weight:900;color:#4f8ef7;">'+(bt/10)+'</div></div>':'')
+    +'</div></div>';
+}
+
+function updateDateDisplay(){
+  const d = currentDate;
+  const days = ['日','月','火','水','木','金','土'];
+  const str = (d.getMonth()+1)+'月'+d.getDate()+'日（'+days[d.getDay()]+'）';
+  const el = document.getElementById('dateDisplay');
+  if(!el) return;
+  // 曜日付きで大きく表示
+  const fullStr = (d.getMonth()+1)+'月'+d.getDate()+'日（'+days[d.getDay()]+'）';
+  el.textContent = fullStr;
+  const today = new Date(); today.setHours(0,0,0,0);
+  const diff = (currentDate - today) / 86400000;
+  if(diff === 0){
+    el.style.color = '#ffffff';
+    el.style.background = 'linear-gradient(135deg,#4f8ef7,#7c3aed)';
+    el.style.border = 'none';
+  } else if(diff < 0){
+    el.style.color = '#8892b0';
+    el.style.background = 'var(--surface2)';
+    el.style.border = '1px solid var(--border)';
+  } else {
+    el.style.color = '#ffffff';
+    el.style.background = 'linear-gradient(135deg,#22c55e,#16a34a)';
+    el.style.border = 'none';
+  }
+  // 今日の伝票枚数（入力済み店舗数）
+  const countEl = document.getElementById('todayCount');
+  if(countEl){
+    const count = STORES.filter(function(s){ return storeHasData(s); }).length;
+    countEl.textContent = count > 0 ? '📝 本日 '+count+'店舗 入力済み' : '';
+  }
+  updateAfternoonCount();
+}
+function changeDate(delta){
+  currentDate = new Date(currentDate.getTime() + delta*86400000);
+  updateDateDisplay();
+  updateDots();
+  applyFilter();
+}
+
+function storeHasData(store){
+  // 現在開いている店舗なら入力欄をリアルタイムで確認
+  if(currentIdx !== null && STORES[currentIdx].code === store.code){
+    return Array.from(document.querySelectorAll('#itemsList input')).some(function(inp){
+      return inp.value !== '';
+    });
+  }
+  const sd = getStoreData(store.code);
+  return store.items.some(function(item){
+    if(item.sub){
+      return item.sub.some(function(s){ return (sd[item.n+'_'+s]||'')!==''||(sd[item.n+'_'+s+'z']||'')!==''; });
+    } else if(item.floor){
+      return (sd[item.n+'_上']||'')!==''||(sd[item.n+'_上z']||'')!==''||(sd[item.n+'_下']||'')!==''||(sd[item.n+'_下z']||'')!=='';
+    }
+    return (sd[item.n+'_d']||'')!=='';
+  });
+}
+
+function toggleFilter(){
+  filterActive = !filterActive;
+  const btn = document.getElementById('filterBtn');
+  if(filterActive){
+    btn.style.background = 'linear-gradient(135deg,var(--accent),var(--accent2))';
+    btn.style.color = '#fff';
+    btn.style.borderColor = 'transparent';
+    btn.textContent = '✓ 入力済みのみ表示中（全表示に戻す）';
+  } else {
+    btn.style.background = 'var(--surface2)';
+    btn.style.color = 'var(--text2)';
+    btn.style.borderColor = 'var(--border)';
+    btn.textContent = '☑ 入力済みのみ表示';
+  }
+  applyFilter();
+}
+
+function applyFilter(){
+  let visible = 0;
+  STORES.forEach(function(store, i){
+    const card = document.getElementById('card_'+i);
+    if(!card) return;
+    const show = !filterActive || storeHasData(store);
+    card.style.display = show ? '' : 'none';
+    if(show) visible++;
+  });
+  document.getElementById('storeBadge').textContent = visible+'店舗';
+}
+
+// Build home grid
+const grid = document.getElementById('storeGrid');
+STORES.forEach(function(store, i){
+  const card = document.createElement('div');
+  card.className = 'store-card';
+  card.id = 'card_'+i;
+  card.innerHTML = '<div class="store-icon c'+i+'">'+store.icon+'</div>'
+    +'<div class="store-name">'+store.name+'</div>'
+    +'<div class="store-num">'+store.code.split('-')[1]+'</div>';
+  card.onclick = function(){ openStore(i); };
+  grid.appendChild(card);
+});
+cleanOldData();
+updateDateDisplay();
+updateDots();
+applyFilter();
+
+function updateDots(){
+  STORES.forEach(function(store, i){
+    const card = document.getElementById('card_'+i);
+    if(!card) return;
+    const dot = card.querySelector('.has-data-dot');
+    if(dot) dot.remove();
+    const sd = getStoreData(store.code);
+    const hasAny = Object.values(sd).some(function(v){ return v!=='' && v!==null && v!==undefined; });
+    if(hasAny){
+      const d = document.createElement('div');
+      d.className = 'has-data-dot';
+      card.appendChild(d);
+    }
+  });
+}
+
+function openStore(idx){
+  // 新しい店舗を開く時はdetailDateをcurrentDateに同期
+  if(idx !== currentIdx){ var _td = new Date(); _td.setDate(_td.getDate()+1); _td.setHours(0,0,0,0); detailDate = _td; }
+
+
+  // detailDate用のgetStoreData
+  var _getDetailData = function(code){
+    var dk = toDateKey(detailDate);
+    return (allData[dk] && allData[dk][code]) ? allData[dk][code] : {};
+  };
+  currentIdx = idx;
+  const store = STORES[idx];
+  const rawSd = _getDetailData(store.code);
+  // 0は空欄として扱う
+  const sd = {};
+  Object.keys(rawSd).forEach(function(k){ sd[k] = (rawSd[k]==='0'||rawSd[k]===0) ? '' : rawSd[k]; });
+  document.getElementById('detailName').textContent = store.name+'　様';
+  // ヘッダーを上下表示に切り替え
+  const hasFloor = store.items.some(function(it){ return it.floor; });
+  const colHeaders = document.getElementById('colHeaders');
+  if(hasFloor){
+    colHeaders.className = 'col-headers floor-header';
+    colHeaders.innerHTML = '<div class="col-h">商品名</div><div class="col-h c">上</div><div class="col-h c" style="color:#4f8ef7;">済</div><div class="col-h c">下</div><div class="col-h c" style="color:#4f8ef7;">済</div>';
+  } else {
+    colHeaders.className = 'col-headers';
+    colHeaders.innerHTML = '<div class="col-h">商品名</div><div class="col-h c">納品数</div><div class="col-h c">納品済</div>';
+  }
+  const list = document.getElementById('itemsList');
+  list.innerHTML = '';
+  store.items.forEach(function(item, i){
+    const row = document.createElement('div');
+    if(item.sub && item.floor){
+      // LMS×上下（縦並び・列幅をfloor行と同じ46px×2に揃える）
+      const hasAnyFS = item.sub.some(function(s){
+        return (sd[item.n+'_'+s+'_上']||'')!==''||(sd[item.n+'_'+s+'_下']||'')!=='';
+      });
+      row.className='item-row has-sub '+(i%2===0?'even':'odd')+(hasAnyFS?' row-has-val':'');
+      let subHtml='<div class="sub-wrap">'
+        +'<div style="display:grid;grid-template-columns:18px 46px 46px;gap:0px;font-size:10px;color:var(--text2);text-align:center;margin-bottom:2px;">'
+        +'<span></span><span style="color:#fb923c;">上</span><span style="color:#fb923c;">下</span></div>';
+      item.sub.forEach(function(s){
+        const vU=sd[item.n+'_'+s+'_上']||'', vD=sd[item.n+'_'+s+'_下']||'';
+        subHtml+='<div style="display:grid;grid-template-columns:18px 46px 46px;gap:0px;align-items:center;">'
+          +'<span class="sub-label">'+s+'</span>'
+          +'<input class="num-input'+(vU?' has-val-d':'')+'" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="" min="1" enterkeyhint="next" data-key="'+item.n+'_'+s+'_上" value="'+vU+'">'
+          +'<input class="num-input'+(vD?' has-val-d':'')+'" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="" min="1" enterkeyhint="next" data-key="'+item.n+'_'+s+'_下" value="'+vD+'">'
+          +'</div>';
+      });
+      const totalFS=item.sub.reduce(function(a,s){
+        return a+(parseInt(sd[item.n+'_'+s+'_上'])||0)+(parseInt(sd[item.n+'_'+s+'_下'])||0);
+      },0);
+      subHtml+='<div style="font-size:10px;color:var(--text2);text-align:right;margin-top:2px;">'
+        +'合計 <span class="sub-total-val" style="color:var(--accent);">'+(hasAnyFS&&totalFS>0?totalFS:'—')+'</span></div></div>';
+      row.innerHTML='<div class="item-name" style="text-align:center;">'+item.n+'</div>'+subHtml;
+    } else if(item.floor){
+      // 横並び：商品名 | 上入力 | 下入力 | ✕
+      const vU = sd[item.n+'_上']||'';
+      const vUz = sd[item.n+'_上z']||'';
+      const vD = sd[item.n+'_下']||'';
+      const vDz = sd[item.n+'_下z']||'';
+      const hasAny = vU!==''||vUz!==''||vD!==''||vDz!=='';
+      row.className = 'item-row floor-row ' + (i%2===0?'even':'odd') + (hasAny?' row-has-val':'');
+      row.innerHTML = '<div class="item-name">'+item.n+'</div>'
+        +'<input class="num-input'+(vU?' has-val-d':'')+'" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="" min="1" data-key="'+item.n+'_上" value="'+vU+'">'
+        +'<input class="num-input col-z'+(vUz?' has-val-z':'')+'" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="" min="1" data-key="'+item.n+'_上z" value="'+vUz+'">'
+        +'<input class="num-input'+(vD?' has-val-d':'')+'" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="" min="1" data-key="'+item.n+'_下" value="'+vD+'">'
+        +'<input class="num-input col-z'+(vDz?' has-val-z':'')+'" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="" min="1" data-key="'+item.n+'_下z" value="'+vDz+'">'
+        ;
+    } else if(item.sub){
+      // LMS縦並び（子供浴衣）
+      const vals = item.sub.map(function(s){ return sd[item.n+'_'+s]||''; });
+      const valsZ = item.sub.map(function(s){ return sd[item.n+'_'+s+'z']||''; });
+      const total = vals.reduce(function(a,v){ return a+(parseInt(v)||0); },0);
+      const totalZ = valsZ.reduce(function(a,v){ return a+(parseInt(v)||0); },0);
+      const hasAny = vals.some(function(v){ return v!==''; }) || valsZ.some(function(v){ return v!==''; });
+      row.className = 'item-row has-sub ' + (i%2===0?'even':'odd') + (hasAny?' row-has-val':'');
+      let subHtml = '<div class="sub-wrap"><div style="display:grid;grid-template-columns:18px 47px 47px;gap:0px;font-size:10px;color:var(--text2);text-align:center;margin-bottom:2px;">'
+        +'<span></span><span>納品</span><span style="color:#4f8ef7;">済</span></div>';
+      item.sub.forEach(function(s){
+        const v = sd[item.n+'_'+s]||'';
+        const vz = sd[item.n+'_'+s+'z']||'';
+        subHtml += '<div style="display:grid;grid-template-columns:18px 47px 47px;gap:0px;align-items:center;">'
+          +'<span class="sub-label">'+s+'</span>'
+          +'<input class="num-input sub-inp'+(v?' has-val-d':'')+'" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="" min="1" data-key="'+item.n+'_'+s+'" value="'+v+'">'
+          +'<input class="num-input sub-inp col-z'+(vz?' has-val-z':'')+'" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="" min="1" data-key="'+item.n+'_'+s+'z" value="'+vz+'">'
+          +'</div>';
+      });
+      subHtml += '<div style="font-size:10px;color:var(--text2);text-align:right;margin-top:2px;">'
+        +'合計 <span class="sub-total-val" style="color:var(--accent);">'+(hasAny&&(total+totalZ)>0?(total+totalZ):'—')+'</span></div></div>';
+      row.innerHTML = '<div class="item-name">'+item.n+'</div>'+subHtml;
+    } else {
+      const dval = sd[item.n+'_d']||'';
+      const zval = sd[item.n+'_z']||'';
+      const hasAnyN = dval!==''||zval!=='';
+      row.className = 'item-row ' + (i%2===0?'even':'odd') + (hasAnyN?' row-has-val':'');
+      row.innerHTML = '<div class="item-name">'+item.n+'</div>'
+        +'<input class="num-input'+(dval?' has-val-d':'')+'" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="" min="1" data-key="'+item.n+'_d" value="'+dval+'">'
+        +'<input class="num-input col-z'+(zval?' has-val-z':'')+'" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="" min="1" data-key="'+item.n+'_z" value="'+zval+'">';
+    }
+    list.appendChild(row);
+  });
+  // Input color update on change + リアルタイムフィルター更新
+  list.querySelectorAll('input').forEach(function(inp){
+    inp.addEventListener('focus', function(){
+
+      // タップ時に全選択→カーソルが一の位に
+      var self = this;
+      setTimeout(function(){
+        self.select();
+        if(self.setSelectionRange){
+          var len = self.value.length;
+          self.setSelectionRange(len, len);
+        }
+      }, 0);
+    });
+    inp.addEventListener('input', function(){
+      // 0以下は空欄に変換
+      if(inp.value !== '' && parseInt(inp.value) <= 0) { inp.value = ''; }
+      const key = inp.dataset.key;
+      const row = inp.closest('.item-row');
+      const isZ = inp.dataset.key ? inp.dataset.key.endsWith('z') : false;
+      if(isZ){ inp.classList.toggle('has-val-z', inp.value!==''); } else { inp.classList.toggle('has-val-d', inp.value!==''); }
+      if(row.classList.contains('floor-row')){
+        // 上下横並び
+        const allInps = row.querySelectorAll('input');
+        const hasAny = Array.from(allInps).some(function(el){ return el.value!==''; });
+        row.classList.toggle('row-has-val', hasAny);
+      } else if(row.classList.contains('has-sub')){
+        const subInps = row.querySelectorAll('.sub-inp');
+        const total = Array.from(subInps).reduce(function(a,el){ return a+(parseInt(el.value)||0); },0);
+        const hasAny = Array.from(subInps).some(function(el){ return el.value!==''; });
+        const tv = row.querySelector('.sub-total-val');
+        if(tv) tv.textContent = hasAny ? total : '—';
+        row.classList.toggle('row-has-val', hasAny);
+      } else {
+        const rowInps = row.querySelectorAll('input');
+        const hasAnyR = Array.from(rowInps).some(function(el){ return el.value!==''; });
+        row.classList.toggle('row-has-val', hasAnyR);
+      }
+      if(filterActive) applyFilter();
+      autoSave();
+    });
+    inp.setAttribute('enterkeyhint','next');
+    inp.addEventListener('keydown', function(e){
+      if(e.key==='Enter'||e.keyCode===13){
+        e.preventDefault();
+        moveToNextRow(inp);
+      }
+    });
+
+  });
+  showScreen('detail');
+  initFloatBtns();
+  updateDetailDateLabel();
+  list.scrollTop=0;
+  // 全商品が1画面に収まるよう行高さを自動調整
+  fitItems();
+}
+
+function fitItems(){
+  const list = document.getElementById('itemsList');
+  const rows = list.querySelectorAll('.item-row');
+  if(!rows.length) return;
+  const available = list.clientHeight;
+  const perRow = Math.floor(available / rows.length);
+  const pad = Math.max(1, Math.min(5, Math.floor((perRow - 24) / 2)));
+  const fontSize = Math.max(11, Math.min(16, Math.floor(perRow * 0.5)));
+  rows.forEach(function(row){
+    row.style.paddingTop = pad+'px';
+    row.style.paddingBottom = pad+'px';
+  });
+  list.querySelectorAll('.item-name').forEach(function(el){
+    el.style.fontSize = fontSize+'px';
+    el.style.display = 'flex';
+    el.style.alignItems = 'center';
+    el.style.justifyContent = 'center';
+    el.style.textAlign = 'center';
+    el.style.height = '100%';
+  });
+  list.querySelectorAll('.num-input').forEach(function(el){
+    el.style.fontSize = Math.max(11, fontSize)+'px';
+    el.style.padding = pad+'px 1px';
+  });
+  if(list.scrollHeight > list.clientHeight){
+    const ratio = list.clientHeight / list.scrollHeight;
+    const nf = Math.max(9, Math.floor(fontSize * ratio));
+    const np = Math.max(0, Math.floor(pad * ratio));
+    rows.forEach(function(row){ row.style.paddingTop=np+'px'; row.style.paddingBottom=np+'px'; });
+    list.querySelectorAll('.item-name').forEach(function(el){
+      el.style.fontSize = nf+'px';
+      el.style.display = 'flex';
+      el.style.alignItems = 'center';
+      el.style.justifyContent = 'center';
+      el.style.textAlign = 'center';
+      el.style.height = '100%';
+    });
+    list.querySelectorAll('.num-input').forEach(function(el){ el.style.fontSize=Math.max(9,nf)+'px'; el.style.padding=np+'px 1px'; });
+  }
+}
+
+function moveToNextRow(inp){
+  const allInputs = Array.from(document.querySelectorAll('#itemsList input'));
+  const idx = allInputs.indexOf(inp);
+  if(idx < 0){ inp.blur(); return; }
+
+  const key = inp.dataset.key || '';
+
+  // sub行の納品欄（sub-inpクラスかつcolzでない）→同じitem内の次のサイズへ縦移動
+  if(inp.classList.contains('sub-inp') && !inp.classList.contains('col-z')){
+    // この商品の全sub納品inputを取得
+    const itemRow = inp.closest('.item-row');
+    if(itemRow){
+      const subInputs = Array.from(itemRow.querySelectorAll('.sub-inp:not(.col-z)'));
+      const subIdx = subInputs.indexOf(inp);
+      if(subIdx >= 0 && subIdx < subInputs.length - 1){
+        subInputs[subIdx + 1].focus();
+        return;
+      }
+    }
+    // 最後のサイズ→次のitem-rowへ
+    const allRows = Array.from(document.querySelectorAll('#itemsList .item-row'));
+    const rowIdx = allRows.indexOf(inp.closest('.item-row'));
+    for(var r = rowIdx+1; r < allRows.length; r++){
+      const nextInputs = Array.from(allRows[r].querySelectorAll('input'));
+      if(nextInputs.length > 0){ nextInputs[0].focus(); return; }
+    }
+    inp.blur();
+    return;
+  }
+
+  // 通常行・floor行は同じ列位置で次の行へ
+  const curRow = inp.closest('.item-row');
+  const rowInputs = Array.from(curRow.querySelectorAll('input'));
+  const colIdx = rowInputs.indexOf(inp);
+  const allRows = Array.from(document.querySelectorAll('#itemsList .item-row'));
+  const rowIdx = allRows.indexOf(curRow);
+  for(var r = rowIdx+1; r < allRows.length; r++){
+    const nextRowInputs = Array.from(allRows[r].querySelectorAll('input'));
+    if(nextRowInputs.length > colIdx){ nextRowInputs[colIdx].focus(); return; }
+    else if(nextRowInputs.length > 0){ nextRowInputs[0].focus(); return; }
+  }
+  inp.blur();
+}
+
+function autoSave(){
+  if(currentIdx === null) return;
+  const store = STORES[currentIdx];
+  const dk = toDateKey(detailDate);
+  if(!allData[dk]) allData[dk] = {};
+  const newData = {};
+  document.querySelectorAll('#itemsList input').forEach(function(inp){
+    newData[inp.dataset.key] = (inp.value === '0') ? '' : inp.value;
+  });
+  allData[dk][store.code] = newData;
+  saveAll(allData);
+  updateDots();
+}
+
+
+
+function clearData(){
+  const store = STORES[currentIdx];
+  const dk = getDateKey();
+  if(!allData[dk]) allData[dk] = {};
+  allData[dk][store.code] = {};
+  saveAll(allData);
+  document.querySelectorAll('#itemsList input').forEach(function(inp){
+    inp.value='';
+    inp.classList.remove('has-val-d','has-val-z');
+    inp.closest('.item-row').classList.remove('row-has-val');
+  });
+  document.querySelectorAll('.sub-total-val').forEach(function(el){ el.textContent='—'; });
+  updateDots();
+  applyFilter();
+}
+
+function showScreen(name){
+  var home = document.getElementById('home');
+  var detail = document.getElementById('detail');
+  var loadingView = document.getElementById('loadingView');
+  var printView = document.getElementById('printView');
+  // まず全部非表示
+  home.style.display = 'none';
+  detail.classList.remove('active');
+  loadingView.style.display = 'none';
+  printView.style.display = 'none';
+  // 指定画面だけ表示
+  if(name==='home'){ home.style.display='flex'; updateDots(); applyFilter(); updateAfternoonCount(); }
+  else if(name==='detail'){ detail.classList.add('active'); }
+  else if(name==='loading'){ loadingView.style.display='flex'; }
+  else if(name==='print'){ printView.style.display='block'; }
+}
+
+function detailChangeDate(dir){
+  if(currentIdx === null) return;
+  var newDate = new Date(detailDate);
+  newDate.setDate(newDate.getDate() + dir);
+  newDate.setHours(0,0,0,0);
+  // detailDate更新
+  saveCurrentInputs();
+  detailDate = newDate;
+  // 明日かどうかチェック
+  var tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  tomorrow.setHours(0,0,0,0);
+  var isTomorrow = (detailDate.getTime() === tomorrow.getTime());
+  if(!isTomorrow){
+    var m = detailDate.getMonth()+1;
+    var d = detailDate.getDate();
+    var _warn = document.createElement('div');
+    _warn.textContent = '⚠️ ' + m + '月' + d + '日を表示中！明日以外です';
+    _warn.style.cssText = 'position:fixed;top:70px;left:50%;transform:translateX(-50%);background:#ef4444;color:#fff;padding:12px 20px;border-radius:12px;font-size:14px;font-weight:700;z-index:9999;white-space:nowrap;box-shadow:0 4px 12px rgba(0,0,0,0.3);';
+    document.body.appendChild(_warn);
+    setTimeout(function(){ _warn.remove(); }, 1000);
+  }
+  openStore(currentIdx);
+}
+
+function updateDetailDateLabel(){
+  var el = document.getElementById('detailDateLabel');
+  var nextBtn = document.getElementById('detailNextDay');
+  if(!el) return;
+  var today = new Date(); today.setHours(0,0,0,0);
+  var diff = Math.round((detailDate - today) / 86400000);
+  if(diff === 0){ el.textContent = '今日'; el.style.color = '#4f8ef7'; }
+  else if(diff === -1){ el.textContent = '昨日'; el.style.color = '#fb923c'; }
+  else if(diff === 1){ el.textContent = '明日'; el.style.color = '#22c55e'; }
+  else if(diff < 0){ el.textContent = (detailDate.getMonth()+1)+'/'+(detailDate.getDate()); el.style.color = 'var(--text2)'; }
+  else { el.textContent = (detailDate.getMonth()+1)+'/'+(detailDate.getDate()); el.style.color = 'var(--text2)'; }
+
+}
+
+function saveCurrentInputs(){
+  if(currentIdx === null) return;
+  var store = STORES[currentIdx];
+  var dk = toDateKey(detailDate);
+  if(!allData[dk]) allData[dk] = {};
+  var nd = {};
+  document.querySelectorAll('#itemsList input').forEach(function(inp){
+    nd[inp.dataset.key] = (inp.value === '0') ? '' : inp.value;
+  });
+  allData[dk][store.code] = nd;
+  saveAll(allData);
+}
+
+function goHome(){
+  currentIdx=null;
+  showScreen('home');
+}
+
+function openPrint(){
+  const store = STORES[currentIdx];
+  const inputs = {};
+  document.querySelectorAll('#itemsList input').forEach(function(inp){
+    inputs[inp.dataset.key] = inp.value;
+  });
+
+  const days2 = ['日','月','火','水','木','金','土'];
+  const now = currentDate;
+  const dateStr = now.getFullYear()+'年'+(now.getMonth()+1)+'月'+now.getDate()+'日（'+days2[now.getDay()]+'）';
+
+  // 店舗ごとの伝票商品リスト定義
+  const TICKET_ITEMS = {
+    '006-00084-00000': [ // 東屋
+      'シーツ183','枕カバー','作務衣・上','作務衣・下','作務衣L・上','作務衣L・下','BT','包布 カラー','包布 D','デユベ 小','子供浴衣'
+    ],
+    '006-00078-00000': [ // 彩葉
+      'シーツ160','シーツ228','枕カバー','作務衣・上','作務衣・下','作務衣L・上','作務衣L・下','BT','包布 カラー','包布 D','子供浴衣'
+    ],
+    '006-00091-00000': [ // 夢月
+      'シーツ160','シーツ203','シーツ270','枕カバー','作務衣・上','作務衣・下','作務衣L・上','作務衣L・下','BT','包布 カラー','包布 D','子供浴衣'
+    ],
+    '006-00083-00000': [ // かんなわ荘
+      'シーツ160','枕カバー S','浴衣 中','子供浴衣 大','子供浴衣 中'
+    ],
+    '006-00081-00000': [ // 湯の丘
+      'シーツ160','シーツ203','枕カバー','作務衣・上','作務衣・下','子作務衣 上','子作務衣 下','浴衣 クリーニング','BT','包布 D','子供浴衣','PC'
+    ],
+    '006-00077-00000': [ // 別府おぐら
+      'シーツ160','枕カバー S','枕カバー M','浴衣 クリーニング','BT','FT','包布 S','包布 D','子供浴衣'
+    ],
+    '006-00085-00000': [ // 九港福
+      'シーツ160','シーツ183','枕カバー S','枕カバー M','浴衣','BT クリーニング','包布 D'
+    ],
+    '006-00093-00000': [ // さくら亭
+      'シーツ160','シーツ183','シーツ203','シーツ228','枕カバー','作務衣・上','作務衣・下','作務衣L・上','作務衣L・下','BT','包布 D','デユベ 小','子供浴衣'
+    ],
+    '006-00092-00000': [ // 万天・游湯
+      'シーツ160','シーツ228','枕カバー','作務衣・上','作務衣・下','作務衣L・上','作務衣L・下','BT','包布 カラー','包布 D','子供浴衣'
+    ],
+    '006-00090-00000': [ // 和み月
+      'シーツ183','シーツ228','枕カバー（L）','BT','FT','デユベ 中','デユベ 小','浴衣'
+    ],
+    '006-00082-00000': [ // 扇山
+      'シーツ203','枕カバー','作務衣・上','作務衣・下','作務衣L・上','作務衣L・下','BT','包布 カラー'
+    ],
+    '006-00089-00000': [ // 亀川
+      'シーツ160','枕カバー','BM','デユベ 小'
+    ],
+  };
+
+  // 商品の値を取得する関数
+  function getVal(item){
+    var itemObj = store.items.find(function(it){ return it.n===item; });
+    if(!itemObj) return '';
+    var val = 0;
+    var hasAny = false;
+    if(itemObj.sub && itemObj.floor){
+      itemObj.sub.forEach(function(s){
+        val += (parseInt(inputs[item+'_'+s+'_上'])||0)+(parseInt(inputs[item+'_'+s+'_下'])||0);
+        if(inputs[item+'_'+s+'_上']||inputs[item+'_'+s+'_下']) hasAny=true;
+      });
+    } else if(itemObj.sub){
+      itemObj.sub.forEach(function(s){
+        val += (parseInt(inputs[item+'_'+s])||0)+(parseInt(inputs[item+'_'+s+'z'])||0);
+        if(inputs[item+'_'+s]||inputs[item+'_'+s+'z']) hasAny=true;
+      });
+    } else if(itemObj.floor){
+      val = (parseInt(inputs[item+'_上'])||0)+(parseInt(inputs[item+'_下'])||0)
+           +(parseInt(inputs[item+'_上z'])||0)+(parseInt(inputs[item+'_下z'])||0);
+      hasAny = !!(inputs[item+'_上']||inputs[item+'_下']||inputs[item+'_上z']||inputs[item+'_下z']);
+    } else {
+      val = (parseInt(inputs[item+'_d'])||0)+(parseInt(inputs[item+'_z'])||0);
+      hasAny = !!(inputs[item+'_d']||inputs[item+'_z']);
+    }
+    // 作務衣L合算（伝票では作務衣・上に合算）
+    if(item==='作務衣・上'||item==='作務衣・下'){
+      var lItem = item.replace('作務衣・','作務衣L・');
+      var lObj = store.items.find(function(it){ return it.n===lItem; });
+      if(lObj){
+        if(lObj.floor){
+          val += (parseInt(inputs[lItem+'_上'])||0)+(parseInt(inputs[lItem+'_下'])||0);
+        } else {
+          val += parseInt(inputs[lItem+'_d'])||0;
+        }
+      }
+    }
+    return hasAny||val>0 ? val : '';
+  }
+
+  var ticketItems = TICKET_ITEMS[store.code] || store.items.map(function(it){ return it.n; });
+
+  var rows = '';
+  ticketItems.forEach(function(itemName){
+    // 作務衣L・は作務衣・に合算済みなのでスキップ
+    if(itemName.startsWith('作務衣L・')) return;
+    var val = getVal(itemName);
+    var dcls = val ? 'dval' : 'empty';
+    rows += '<tr>'
+      +'<td style="padding:4px 8px;border:1px solid #ddd;font-size:13px;text-align:right;">'+itemName+'</td>'
+      +'<td class="'+dcls+'" style="padding:4px 8px;border:1px solid #ddd;text-align:center;font-size:14px;font-weight:700;width:60px;">'+(val||'')+'</td>'
+      +'</tr>';
+  });
+
+  document.getElementById('printTitle').textContent = store.name+'　様　伝票';
+  document.getElementById('ticketWrap').innerHTML =
+    '<div class="ticket">'
+    +'<div class="ticket-store">'+store.name+'　様</div>'
+    +'<div class="ticket-code">'+store.code+'</div>'
+    +'<div class="ticket-course" style="font-size:13px;font-weight:900;color:#222;margin-bottom:12px;border-bottom:2px solid #ddd;padding-bottom:8px;">別府鉄輪コース　　'+dateStr+'</div>'
+    +'<table style="width:100%;border-collapse:collapse;">'
+    +'<tr><th style="background:#f0f4ff;padding:5px 8px;border:1px solid #ddd;text-align:left;font-size:12px;">商品名</th>'
+    +'<th style="background:#f0f4ff;padding:5px 8px;border:1px solid #ddd;text-align:center;font-size:12px;width:60px;">納品</th></tr>'
+    +rows
+    +'<tr><td contenteditable="true" style="padding:4px 8px;border:1px solid #ddd;height:28px;min-width:100px;" placeholder=""></td><td contenteditable="true" style="padding:4px 8px;border:1px solid #ddd;text-align:center;"></td></tr>'
+    +'<tr><td contenteditable="true" style="padding:4px 8px;border:1px solid #ddd;height:28px;"></td><td contenteditable="true" style="padding:4px 8px;border:1px solid #ddd;text-align:center;"></td></tr>'
+    +'<tr><td contenteditable="true" style="padding:4px 8px;border:1px solid #ddd;height:28px;"></td><td contenteditable="true" style="padding:4px 8px;border:1px solid #ddd;text-align:center;"></td></tr>'
+    +'<tr><td contenteditable="true" style="padding:4px 8px;border:1px solid #ddd;height:28px;"></td><td contenteditable="true" style="padding:4px 8px;border:1px solid #ddd;text-align:center;"></td></tr>'
+    +'</table></div>';
+
+  showScreen('print');
+}
+
+function buildLoadingData(){
+  var C = {
+    東屋:'006-00084-00000', 彩葉:'006-00078-00000', 夢月:'006-00091-00000',
+    かんなわ荘:'006-00083-00000', 湯の丘:'006-00081-00000', 別府おぐら:'006-00077-00000',
+    九港福:'006-00085-00000', さくら亭:'006-00093-00000', 万天の湯:'006-00092-00000',
+    和み月:'006-00090-00000', 扇山:'006-00082-00000',
+    亀川:'006-00089-00000', 游湯:'006-00092-00001'
+  };
+  function d(code,n){ var sd=getStoreData(code); return parseInt(sd[n+'_d'])||0; }
+  function f(code,n){ var sd=getStoreData(code); return (parseInt(sd[n+'_上'])||0)+(parseInt(sd[n+'_下'])||0); }
+  function fs(code,item,size){ var sd=getStoreData(code); return (parseInt(sd[item+'_'+size+'_上'])||0)+(parseInt(sd[item+'_'+size+'_下'])||0); }
+  function r(code,key,n,v){ return {n:n, v:v, code:code, key:key}; }
+  function rd(code,item,n){ return r(code, item+'_d', n||item, d(code,item)); }
+  function rf(code,item,n){ return r(code, item+'_floor', n||item, f(code,item)); }
+
+  var sections = [];
+
+  // 1. BT
+  var bt=[rd(C.東屋,'BT','東屋'), rd(C.和み月,'BT','和み月'), rf(C.彩葉,'BT','彩葉')];
+  var btOther=d(C.かんなわ荘,'BT')+f(C.夢月,'BT')+d(C.湯の丘,'BT')+f(C.さくら亭,'BT')+d(C.万天の湯,'BT')+f(C.扇山,'BT')+d(C.亀川,'BM');
+  if(bt.reduce(function(a,r){return a+r.v;},0)+btOther>0) sections.push({label:'BT',rows:bt,other:btOther});
+
+  // 2. おぐらBT
+  var oBT=[rd(C.別府おぐら,'BT','別府おぐら')];
+  if(oBT[0].v>0) sections.push({label:'おぐらBT',rows:oBT,other:0});
+
+  // 3. おぐらFT
+  var obt=[rd(C.別府おぐら,'FT','別府おぐら')];
+  if(obt[0].v>0) sections.push({label:'おぐらFT',rows:obt,other:0});
+
+  // 4. 枕カバーL（PCL：湯の丘PC・PC(L)、和み月枕カバー（L））
+  var mkL=[rd(C.湯の丘,'PC','湯の丘 PC'), rd(C.湯の丘,'PC(L)','湯の丘 PC(L)'), rd(C.和み月,'枕カバー（L）','和み月')];
+  if(mkL.reduce(function(a,r){return a+r.v;},0)>0) sections.push({label:'枕カバーL(PCL)',rows:mkL,other:0,bundle:20});
+
+  // 5. シーツ160
+  var s160=[rd(C.別府おぐら,'シーツ160','別府おぐら'), rf(C.彩葉,'シーツ160','彩葉'), rd(C.かんなわ荘,'シーツ160','かんなわ荘')];
+  var s160o=d(C.湯の丘,'シーツ160')+f(C.夢月,'シーツ160')+d(C.九港福,'シーツ160')+f(C.さくら亭,'シーツ160')+d(C.万天の湯,'シーツ160')+d(C.亀川,'シーツ160')+d(C.游湯,'シーツ160');
+  if(s160.reduce(function(a,r){return a+r.v;},0)+s160o>0) sections.push({label:'シーツ160',rows:s160,other:s160o});
+
+  // 6. 枕カバーS(PCS)：別府おぐら・九港福・かんなわ荘
+  var mkS=[rd(C.別府おぐら,'枕カバー S','別府おぐら'), rd(C.九港福,'枕カバー S','九港福'), rd(C.かんなわ荘,'枕カバー S','かんなわ荘')];
+  if(mkS.reduce(function(a,r){return a+r.v;},0)>0) sections.push({label:'枕カバーS(PCS)',rows:mkS,other:0,bundle:20});
+
+  // 7. D包布
+  var dp=[rd(C.別府おぐら,'包布 D','別府おぐら'), rd(C.東屋,'包布 D','東屋'), rf(C.彩葉,'包布 D','彩葉')];
+  var dpo=d(C.湯の丘,'包布 D')+f(C.夢月,'包布 D')+d(C.九港福,'包布 D')+f(C.さくら亭,'包布 D')+d(C.万天の湯,'包布 D')+d(C.游湯,'包布 D');
+  if(dp.reduce(function(a,r){return a+r.v;},0)+dpo>0) sections.push({label:'D包布',rows:dp,other:dpo});
+
+  // 8. デュベ小
+  var dv=[rd(C.東屋,'デユベ 小','東屋'), rd(C.和み月,'デユベ 小','和み月'), rf(C.さくら亭,'デユベ 小','さくら亭')];
+  var dvo=d(C.亀川,'デユベ 小');
+  if(dv.reduce(function(a,r){return a+r.v;},0)+dvo>0) sections.push({label:'デュベ小',rows:dv,other:dvo,bundle:5});
+
+  // 9. デュベ中
+  var dvm=[rd(C.和み月,'デユベ 中','和み月')];
+  if(dvm[0].v>0) sections.push({label:'デュベ中',rows:dvm,other:0,bundle:5});
+
+  // 10. シーツ183
+  var s183=[rd(C.東屋,'シーツ183','東屋'), rf(C.さくら亭,'シーツ183','さくら亭'), rd(C.和み月,'シーツ183','和み月'), rd(C.九港福,'シーツ183','九港福')];
+  var s183o=d(C.亀川,'シーツ183');
+  if(s183.reduce(function(a,r){return a+r.v;},0)+s183o>0) sections.push({label:'シーツ183',rows:s183,other:s183o});
+
+  // 11. シーツ203
+  var s203=[rf(C.夢月,'シーツ203','夢月'), rf(C.さくら亭,'シーツ203','さくら亭'), rd(C.湯の丘,'シーツ203','湯の丘'), rf(C.扇山,'シーツ203','扇山')];
+  if(s203.reduce(function(a,r){return a+r.v;},0)>0) sections.push({label:'シーツ203',rows:s203,other:0});
+
+  // 12. シーツ228
+  var s228=[rf(C.彩葉,'シーツ228','彩葉'), rf(C.さくら亭,'シーツ228','さくら亭'), rd(C.万天の湯,'シーツ228','万天の湯'), rd(C.和み月,'シーツ228','和み月')];
+  if(s228.reduce(function(a,r){return a+r.v;},0)>0) sections.push({label:'シーツ228',rows:s228,other:0});
+
+  // 13. 枕カバー(PCM)：枕カバー・PC・PC(M)・枕カバーMはすべて同じ商品
+  var mkM=[
+    rd(C.東屋,'枕カバー','東屋'),
+    rf(C.彩葉,'枕カバー','彩葉'),
+    rf(C.彩葉,'PC','彩葉PC'),
+    rf(C.夢月,'枕カバー','夢月'),
+    rf(C.夢月,'PC','夢月PC'),
+    rf(C.扇山,'枕カバー','扇山'),
+    rf(C.扇山,'PC','扇山PC'),
+    rd(C.東屋,'PC','東屋PC'),
+    rd(C.亀川,'PC','亀川PC'),
+  ];
+  var mkMo=d(C.湯の丘,'枕カバー')+f(C.さくら亭,'枕カバー')+f(C.さくら亭,'PC')+d(C.万天の湯,'枕カバー')+d(C.亀川,'枕カバー')+d(C.亀川,'PC')+d(C.游湯,'枕カバー')+d(C.別府おぐら,'枕カバー M')+d(C.九港福,'枕カバー M');
+  // 重複除去：rowsの値が0のものは表示しない
+  var mkMFiltered = mkM.filter(function(r){ return r.v > 0; });
+  if(mkMFiltered.reduce(function(a,r){return a+r.v;},0)+mkMo>0) sections.push({label:'枕カバー(PCM)',rows:mkMFiltered,other:mkMo,bundle:20});
+
+  // 14. 包布カラー
+  var color=[rd(C.東屋,'包布 カラー','東屋'), rf(C.彩葉,'包布 カラー','彩葉'), rf(C.夢月,'包布 カラー','夢月'), rd(C.万天の湯,'包布 カラー','万天の湯'), rf(C.扇山,'包布 カラー','扇山')];
+  if(color.reduce(function(a,r){return a+r.v;},0)>0) sections.push({label:'包布カラー',rows:color,other:0,bundle:5});
+
+  // 15. 子供浴衣L・M・S
+  function koRow(code,name,size){
+    var sd=getStoreData(code);
+    var key='子供浴衣_'+size;
+    var floorKey='子供浴衣_'+size+'_floor';
+    // floor店舗か確認
+    var store=STORES.find(function(s){return s.code===code;});
+    var item=store?store.items.find(function(i){return i.n==='子供浴衣';}):null;
+    if(item&&item.floor){
+      return r(code,floorKey,name, fs(code,'子供浴衣',size));
+    }
+    return r(code,key,name, parseInt(sd['子供浴衣_'+size])||0);
+  }
+  var koL=[koRow(C.東屋,'東屋','L'),koRow(C.彩葉,'彩葉','L'),koRow(C.夢月,'夢月','L'),koRow(C.さくら亭,'さくら亭','L'),koRow(C.万天の湯,'万天の湯','L')];
+  var koM=[koRow(C.東屋,'東屋','M'),koRow(C.彩葉,'彩葉','M'),koRow(C.夢月,'夢月','M'),koRow(C.さくら亭,'さくら亭','M'),koRow(C.万天の湯,'万天の湯','M')];
+  var koS=[koRow(C.東屋,'東屋','S'),koRow(C.彩葉,'彩葉','S'),koRow(C.夢月,'夢月','S'),koRow(C.さくら亭,'さくら亭','S'),koRow(C.万天の湯,'万天の湯','S')];
+  if(koL.reduce(function(a,r){return a+r.v;},0)>0) sections.push({label:'子供浴衣L',rows:koL,other:0});
+  if(koM.reduce(function(a,r){return a+r.v;},0)>0) sections.push({label:'子供浴衣M',rows:koM,other:0});
+  if(koS.reduce(function(a,r){return a+r.v;},0)>0) sections.push({label:'子供浴衣S',rows:koS,other:0});
+
+  // 16. 浴衣（入力画面の数値を各店舗グループのrowsに格納）
+  var yukataKan = d(C.かんなわ荘,'浴衣'); // 後方互換（未使用）
+  var yukataKyu = d(C.九港福,'浴衣');     // 後方互換（未使用）
+  var yukataYuU = parseInt(getStoreData(C.游湯)['浴衣_大'])||0;
+  var yukataYuC = parseInt(getStoreData(C.游湯)['浴衣_中'])||0;
+  var yukataYuS = parseInt(getStoreData(C.游湯)['浴衣_小'])||0;
+  var wYukataRows=[
+    r(C.和み月,'柄浴衣_大','柄浴衣 大', parseInt(getStoreData(C.和み月)['柄浴衣_大'])||0),
+    r(C.和み月,'柄浴衣_中','柄浴衣 中', parseInt(getStoreData(C.和み月)['柄浴衣_中'])||0),
+    r(C.和み月,'柄浴衣_小','柄浴衣 小', parseInt(getStoreData(C.和み月)['柄浴衣_小'])||0),
+    r(C.和み月,'浴衣_特大','浴衣 特大', parseInt(getStoreData(C.和み月)['浴衣_特大'])||0),
+    r(C.和み月,'浴衣_大','浴衣 大',     parseInt(getStoreData(C.和み月)['浴衣_大'])||0),
+    r(C.和み月,'浴衣_中','浴衣 中',     parseInt(getStoreData(C.和み月)['浴衣_中'])||0),
+    r(C.和み月,'浴衣_小','浴衣 小',     parseInt(getStoreData(C.和み月)['浴衣_小'])||0),
+  ];
+
+  // 17. 子作務衣
+  var kosmU=[rd(C.湯の丘,'子作務衣 上','湯の丘')];
+  var kosmD=[rd(C.湯の丘,'子作務衣 下','湯の丘')];
+  if(kosmU[0].v>0) sections.push({label:'子作務衣上',rows:kosmU,other:0});
+  if(kosmD[0].v>0) sections.push({label:'子作務衣下',rows:kosmD,other:0});
+
+  // 19. クリーニング（湯の丘）
+  sections.push({label:'クリーニング（湯の丘）',rows:[],other:0,inputRows:[
+    {n:'浴衣',key:'yukuC_湯の丘'},{n:'作務衣上',key:'smC_湯の丘上'},{n:'作務衣下',key:'smC_湯の丘下'},
+    {n:'子作務衣上',key:'kosmC_湯の丘上'},{n:'子作務衣下',key:'kosmC_湯の丘下'}
+  ]});
+
+  // 20. クリーニング（別府おぐら）
+  sections.push({label:'クリーニング（別府おぐら）',rows:[],other:0,inputRows:[
+    {n:'浴衣',key:'yukuC_別府おぐら'},{n:'子供浴衣',key:'koYuC_おぐら'}
+  ]});
+
+  // 21. 浴衣（入力数値＋クリーニング手入力を店舗ごとに統合）
+  sections.push({label:'浴衣',rows:[],other:0,inputGroups:[
+    {store:'和み月', rows:wYukataRows, items:[]},
+    {store:'游湯', rows:[
+      r(C.游湯,'浴衣_大','大',yukataYuU),
+      r(C.游湯,'浴衣_中','中',yukataYuC),
+      r(C.游湯,'浴衣_小','小',yukataYuS),
+    ], items:[]},
+    {store:'かんなわ荘', rows:[
+      r(C.かんなわ荘,'浴衣 中_d','浴衣 中', parseInt(getStoreData(C.かんなわ荘)['浴衣 中_d'])||0),
+      r(C.かんなわ荘,'子供浴衣 大_d','子供浴衣 大', parseInt(getStoreData(C.かんなわ荘)['子供浴衣 大_d'])||0),
+      r(C.かんなわ荘,'子供浴衣 中_d','子供浴衣 中', parseInt(getStoreData(C.かんなわ荘)['子供浴衣 中_d'])||0),
+    ], items:[]},
+    {store:'九港福', rows:[
+      r(C.九港福,'浴衣_特大','浴衣 特大', parseInt(getStoreData(C.九港福)['浴衣_特大'])||0),
+      r(C.九港福,'浴衣_大','浴衣 大',   parseInt(getStoreData(C.九港福)['浴衣_大'])||0),
+      r(C.九港福,'浴衣_中','浴衣 中',   parseInt(getStoreData(C.九港福)['浴衣_中'])||0),
+      r(C.九港福,'浴衣_小','浴衣 小',   parseInt(getStoreData(C.九港福)['浴衣_小'])||0),
+      r(C.九港福,'BT クリーニング_d','BT クリーニング', parseInt(getStoreData(C.九港福)['BT クリーニング_d'])||0),
+    ], items:[]},
+  ]});
+
+  // 22. 作務衣（一番下）
+  var smRows=[
+    {n:'東屋', 通上:d(C.東屋,'作務衣・上'),通下:d(C.東屋,'作務衣・下'),L上:d(C.東屋,'作務衣L・上'),L下:d(C.東屋,'作務衣L・下')},
+    {n:'彩葉', 通上:f(C.彩葉,'作務衣・上'),通下:f(C.彩葉,'作務衣・下'),L上:f(C.彩葉,'作務衣L・上'),L下:f(C.彩葉,'作務衣L・下')},
+    {n:'さくら亭', 通上:f(C.さくら亭,'作務衣・上'),通下:f(C.さくら亭,'作務衣・下'),L上:f(C.さくら亭,'作務衣L・上'),L下:f(C.さくら亭,'作務衣L・下')},
+    {n:'万天の湯', 通上:d(C.万天の湯,'作務衣・上'),通下:d(C.万天の湯,'作務衣・下'),L上:d(C.万天の湯,'作務衣L・上'),L下:d(C.万天の湯,'作務衣L・下')},
+    {n:'夢月', 通上:f(C.夢月,'作務衣・上'),通下:f(C.夢月,'作務衣・下'),L上:f(C.夢月,'作務衣L・上'),L下:f(C.夢月,'作務衣L・下')},
+    {n:'扇山', 通上:f(C.扇山,'作務衣・上'),通下:f(C.扇山,'作務衣・下'),L上:f(C.扇山,'作務衣L・上'),L下:f(C.扇山,'作務衣L・下')}
+  ];
+  if(smRows.some(function(r){return r.通上||r.通下||r.L上||r.L下;})) sections.push({label:'作務衣',type:'sakumoi',rows:smRows});
+
+  return sections;
+}
+
+function renderLoadingHTML(sections){
+  const STORE_COLORS = {
+    '東屋':'#4ade80','彩葉':'#fb923c','夢月':'#4ade80',
+    'かんなわ荘':'#fff','湯の丘':'#fff','別府おぐら':'#fff',
+    '九港福':'#fff','さくら亭':'#fb923c','万天の湯':'#fb923c',
+    '和み月':'#fff','扇山':'#f87171','亀川':'#fff','游湯':'#fff',
+    '別府おぐら FT':'#fff'
+  };
+
+  let html = '';
+  sections.forEach(function(sec){
+    if(sec.type === 'sakumoi'){
+      // 作務衣専用テーブル
+      const hasAny = sec.rows.some(function(r){ return r.通上||r.通下||r.L上||r.L下; });
+      if(!hasAny) return;
+      html += '<div style="margin-bottom:12px;">';
+      html += '<div style="background:#1a1d27;padding:8px 12px;border-radius:8px 8px 0 0;font-size:13px;font-weight:900;color:#e8eaf6;">作務衣</div>';
+      html += '<table style="width:100%;border-collapse:collapse;">';
+      html += '<tr style="background:#0f1117;">'
+        +'<th style="padding:5px 8px;font-size:10px;color:#8892b0;border:1px solid #2d3250;text-align:left;">店舗</th>'
+        +'<th style="padding:5px 4px;font-size:10px;color:#fb923c;border:1px solid #2d3250;text-align:center;">通上</th>'
+        +'<th style="padding:5px 4px;font-size:10px;color:#fb923c;border:1px solid #2d3250;text-align:center;">通下</th>'
+        +'<th style="padding:5px 4px;font-size:10px;color:#4f8ef7;border:1px solid #2d3250;text-align:center;">L上</th>'
+        +'<th style="padding:5px 4px;font-size:10px;color:#4f8ef7;border:1px solid #2d3250;text-align:center;">L下</th>'
+        +'</tr>';
+      sec.rows.forEach(function(r){
+        if(!r.通上&&!r.通下&&!r.L上&&!r.L下) return;
+        const bg = STORE_COLORS[r.n]||'#fff';
+        const tc = '#111';
+        html += '<tr>'
+          +'<td style="background:'+bg+';color:'+tc+';padding:5px 8px;font-size:15px;font-weight:700;border:1px solid #ccc;">'+r.n+'</td>'
+          +'<td style="background:'+bg+';color:'+tc+';padding:5px 4px;font-size:13px;font-weight:700;border:1px solid #ccc;text-align:center;">'+(r.通上||'—')+'</td>'
+          +'<td style="background:'+bg+';color:'+tc+';padding:5px 4px;font-size:13px;font-weight:700;border:1px solid #ccc;text-align:center;">'+(r.通下||'—')+'</td>'
+          +'<td style="background:'+bg+';color:'+tc+';padding:5px 4px;font-size:13px;font-weight:700;border:1px solid #ccc;text-align:center;">'+(r.L上||'—')+'</td>'
+          +'<td style="background:'+bg+';color:'+tc+';padding:5px 4px;font-size:13px;font-weight:700;border:1px solid #ccc;text-align:center;">'+(r.L下||'—')+'</td>'
+          +'</tr>';
+      });
+      html += '</table></div>';
+      return;
+    }
+
+    // 通常セクション
+    const total = sec.rows.reduce(function(a,r){ return a+r.v; },0) + (sec.other||0);
+    if(total === 0 && !sec.inputRows && !sec.inputGroups) return;
+    html += '<div style="margin-bottom:12px;">';
+    var dispTotal = (sec.inputRows || sec.inputGroups) ? '' : (sec.bundle ? Math.round(total/sec.bundle*10)/10+'束' : total);
+    html += '<div style="background:#1a1d27;padding:8px 12px;border-radius:8px 8px 0 0;display:flex;justify-content:space-between;align-items:center;">'
+      +'<span style="font-size:16px;font-weight:900;color:#e8eaf6;flex:1;">'+sec.label+'</span>'
+      +(dispTotal!==''?'<span style="font-size:22px;font-weight:900;color:#ffffff;min-width:70px;text-align:right;">'+dispTotal+'</span>':'')
+      +'</div>';
+    html += '<table style="width:100%;border-collapse:collapse;">';
+    sec.rows.forEach(function(r){
+      var dispV = sec.bundle ? (r.v ? Math.round(r.v/sec.bundle*10)/10+'束' : '') : (r.v||'');
+      var editAttr = r.code && r.key ? ' data-code="'+r.code+'" data-key="'+r.key+'" data-bundle="'+(sec.bundle||1)+'" style="background:#fff;color:#111;padding:6px 8px;font-size:18px;font-weight:900;border:1px solid #ccc;text-align:right;width:70px;white-space:nowrap;cursor:pointer;text-decoration:underline dotted #4f8ef7;"' : ' style="background:#fff;color:#111;padding:6px 8px;font-size:18px;font-weight:900;border:1px solid #ccc;text-align:right;width:70px;white-space:nowrap;"';
+      html += '<tr>'
+        +'<td style="background:#fff;color:#111;padding:6px 12px;font-size:16px;font-weight:700;border:1px solid #ccc;text-align:center;">'+r.n+'</td>'
+        +'<td class="loading-edit-cell"'+editAttr+'>'+dispV+'</td>'
+        +'</tr>';
+    });
+    if(sec.other > 0){
+      html += '<tr><td style="background:#f5f5f5;color:#666;padding:5px 12px;font-size:12px;border:1px solid #ccc;">残り後積み</td>'
+        +'<td style="background:#f5f5f5;color:#666;padding:5px 8px;font-size:12px;border:1px solid #ccc;text-align:center;"></td></tr>';
+    }
+    // クリーニング入力（inputRows）：タップで編集ダイアログを開く
+    if(sec.inputRows){
+      sec.inputRows.forEach(function(ir){
+        var saved = loadingInputs[ir.key] || '';
+        html += '<tr>'
+          +'<td style="background:#fff;color:#111;padding:6px 12px;font-size:13px;font-weight:700;border:1px solid #ccc;text-align:center;">'+ir.n+'</td>'
+          +'<td class="loading-edit-cell" data-lkey="'+ir.key+'" style="background:#fff;color:#111;padding:6px 8px;font-size:18px;font-weight:900;border:1px solid #ccc;text-align:right;width:70px;white-space:nowrap;cursor:pointer;text-decoration:underline dotted #4f8ef7;">'+saved+'</td>'
+          +'</tr>';
+      });
+    }
+    html += '</table></div>';
+    // 店舗グループ形式（inputGroups）：店舗ごとに独立したボックスで描画
+    if(sec.inputGroups){
+      sec.inputGroups.forEach(function(grp){
+        html += '<div style="margin-bottom:12px;">';
+        html += '<div style="background:#1a1d27;padding:8px 12px;border-radius:8px 8px 0 0;font-size:16px;font-weight:900;color:#e8eaf6;">'+grp.store+'</div>';
+        html += '<table style="width:100%;border-collapse:collapse;">';
+        // 入力画面の数値を先に表示（編集可能）
+        if(grp.rows){
+          grp.rows.forEach(function(row){
+            var eAttr = row.code && row.key
+              ? ' data-code="'+row.code+'" data-key="'+row.key+'" data-bundle="1" style="background:#fff;color:#111;padding:6px 8px;font-size:18px;font-weight:900;border:1px solid #ccc;text-align:right;width:70px;white-space:nowrap;cursor:pointer;text-decoration:underline dotted #4f8ef7;"'
+              : ' style="background:#fff;color:#111;padding:6px 8px;font-size:18px;font-weight:900;border:1px solid #ccc;text-align:right;width:70px;"';
+            html += '<tr>'
+              +'<td style="background:#fff;color:#111;padding:6px 12px;font-size:13px;font-weight:700;border:1px solid #ccc;text-align:center;">'+row.n+'</td>'
+              +'<td class="loading-edit-cell"'+eAttr+'>'+(row.v||'')+'</td>'
+              +'</tr>';
+          });
+        }
+        grp.items.forEach(function(ir){
+          var saved = loadingInputs[ir.key] || '';
+          var label = ir.groupLabel ? '<span style="font-size:11px;color:#888;margin-right:4px;">'+ir.groupLabel+'</span>'+ir.n : ir.n;
+          html += '<tr>'
+            +'<td style="background:#fff;color:#111;padding:6px 12px;font-size:13px;font-weight:700;border:1px solid #ccc;text-align:center;">'+label+'</td>'
+            +'<td class="loading-edit-cell" data-lkey="'+ir.key+'" style="background:#fff;color:#111;padding:6px 8px;font-size:18px;font-weight:900;border:1px solid #ccc;text-align:right;width:70px;white-space:nowrap;cursor:pointer;text-decoration:underline dotted #4f8ef7;">'+saved+'</td>'
+            +'</tr>';
+        });
+        html += '</table></div>';
+      });
+    }
+  });
+
+  if(!html) html = '<div style="text-align:center;color:#8892b0;margin-top:40px;font-size:14px;">入力データがありません</div>';
+  return html;
+}
+
+function openLoading(){
+  // 現在の店舗データを保存
+  if(currentIdx !== null){
+    const store = STORES[currentIdx];
+    const dk = getDateKey();
+    if(!allData[dk]) allData[dk]={};
+    const nd={};
+    document.querySelectorAll('#itemsList input').forEach(function(inp){
+      nd[inp.dataset.key]=(inp.value==='0')?'':inp.value;
+    });
+    allData[dk][store.code]=nd;
+    saveAll(allData);
+  }
+  loadingFrom = document.getElementById('detail').classList.contains('active')?'detail':'home';
+  const days2=['日','月','火','水','木','金','土'];
+  const d=currentDate;
+  // 浴衣クリーニングの保存値を復元
+  loadingInputs['yukuC_湯の丘'] = (getStoreData('006-00081-00000')['浴衣 クリーニング_d']||'');
+  loadingInputs['yukuC_別府おぐら'] = (getStoreData('006-00077-00000')['浴衣 クリーニング_d']||'');
+  loadingInputs['smC_湯の丘上'] = (getStoreData('006-00081-00000')['作務衣クリーニング上_d']||'');
+  loadingInputs['smC_湯の丘下'] = (getStoreData('006-00081-00000')['作務衣クリーニング下_d']||'');
+  loadingInputs['kosmC_湯の丘上'] = (getStoreData('006-00081-00000')['子作務衣クリーニング上_d']||'');
+  loadingInputs['kosmC_湯の丘下'] = (getStoreData('006-00081-00000')['子作務衣クリーニング下_d']||'');
+  loadingInputs['koYuC_おぐら'] = (getStoreData('006-00077-00000')['子供浴衣クリーニング_d']||'');
+  loadingInputs['yuC_和み月_柄大']  = (getStoreData('006-00090-00000')['柄浴衣クリーニング大_d']||'');
+  loadingInputs['yuC_和み月_柄中']  = (getStoreData('006-00090-00000')['柄浴衣クリーニング中_d']||'');
+  loadingInputs['yuC_和み月_柄小']  = (getStoreData('006-00090-00000')['柄浴衣クリーニング小_d']||'');
+  loadingInputs['yuC_和み月_特大']  = (getStoreData('006-00090-00000')['浴衣クリーニング特大_d']||'');
+  loadingInputs['yuC_和み月_大']    = (getStoreData('006-00090-00000')['浴衣クリーニング大_d']||'');
+  loadingInputs['yuC_和み月_中']    = (getStoreData('006-00090-00000')['浴衣クリーニング中_d']||'');
+  loadingInputs['yuC_和み月_小']    = (getStoreData('006-00090-00000')['浴衣クリーニング小_d']||'');
+  loadingInputs['yuC_游湯_大']      = (getStoreData('006-00092-00001')['浴衣クリーニング大_d']||'');
+  loadingInputs['yuC_游湯_中']      = (getStoreData('006-00092-00001')['浴衣クリーニング中_d']||'');
+  loadingInputs['yuC_游湯_小']      = (getStoreData('006-00092-00001')['浴衣クリーニング小_d']||'');
+  loadingInputs['yuC_かんなわ_中']  = (getStoreData('006-00083-00000')['浴衣クリーニング中_d']||'');
+  loadingInputs['yuC_かんなわ_子大']= (getStoreData('006-00083-00000')['子供浴衣クリーニング大_d']||'');
+  loadingInputs['yuC_九港福_大']    = (getStoreData('006-00085-00000')['浴衣クリーニング大_d']||'');
+  loadingInputs['yuC_九港福_中']    = (getStoreData('006-00085-00000')['浴衣クリーニング中_d']||'');
+  loadingInputs['btC_九港福']       = (getStoreData('006-00085-00000')['BTクリーニング_d']||'');
+  document.getElementById('loadingTitle').textContent=(d.getMonth()+1)+'月'+d.getDate()+'日（'+days2[d.getDay()]+'）積み込み表';
+  try {
+    document.getElementById('loadingContent').innerHTML = renderLoadingHTML(buildLoadingData());
+  } catch(e) {
+    document.getElementById('loadingContent').innerHTML = '<div style="color:red;padding:20px;">エラー: '+e.message+'</div>';
+    console.error(e);
+  }
+  // 浴衣クリーニング入力欄のイベント設定
+  var lkeyMap = {
+    'yukuC_湯の丘':    {code:'006-00081-00000', field:'浴衣 クリーニング_d'},
+    'yukuC_別府おぐら':{code:'006-00077-00000', field:'浴衣 クリーニング_d'},
+    'smC_湯の丘上':    {code:'006-00081-00000', field:'作務衣クリーニング上_d'},
+    'smC_湯の丘下':    {code:'006-00081-00000', field:'作務衣クリーニング下_d'},
+    'kosmC_湯の丘上':  {code:'006-00081-00000', field:'子作務衣クリーニング上_d'},
+    'kosmC_湯の丘下':  {code:'006-00081-00000', field:'子作務衣クリーニング下_d'},
+    'koYuC_おぐら':    {code:'006-00077-00000', field:'子供浴衣クリーニング_d'},
+    'yuC_和み月_柄大': {code:'006-00090-00000', field:'柄浴衣クリーニング大_d'},
+    'yuC_和み月_柄中': {code:'006-00090-00000', field:'柄浴衣クリーニング中_d'},
+    'yuC_和み月_柄小': {code:'006-00090-00000', field:'柄浴衣クリーニング小_d'},
+    'yuC_和み月_特大': {code:'006-00090-00000', field:'浴衣クリーニング特大_d'},
+    'yuC_和み月_大':   {code:'006-00090-00000', field:'浴衣クリーニング大_d'},
+    'yuC_和み月_中':   {code:'006-00090-00000', field:'浴衣クリーニング中_d'},
+    'yuC_和み月_小':   {code:'006-00090-00000', field:'浴衣クリーニング小_d'},
+    'yuC_游湯_大':     {code:'006-00092-00001', field:'浴衣クリーニング大_d'},
+    'yuC_游湯_中':     {code:'006-00092-00001', field:'浴衣クリーニング中_d'},
+    'yuC_游湯_小':     {code:'006-00092-00001', field:'浴衣クリーニング小_d'},
+    'yuC_かんなわ_中': {code:'006-00083-00000', field:'浴衣クリーニング中_d'},
+    'yuC_かんなわ_子大':{code:'006-00083-00000', field:'子供浴衣クリーニング大_d'},
+    'yuC_九港福_大':   {code:'006-00085-00000', field:'浴衣クリーニング大_d'},
+    'yuC_九港福_中':   {code:'006-00085-00000', field:'浴衣クリーニング中_d'},
+    'btC_九港福':      {code:'006-00085-00000', field:'BTクリーニング_d'},
+  };
+  setupLoadingEditEvents();
+
+  document.querySelectorAll('[data-lkey]').forEach(function(inp){
+    inp.addEventListener('input', function(){
+      loadingInputs[inp.dataset.lkey] = inp.value;
+      var map = lkeyMap[inp.dataset.lkey];
+      if(map){
+        var dk = getDateKey();
+        if(!allData[dk]) allData[dk]={};
+        if(!allData[dk][map.code]) allData[dk][map.code]={};
+        allData[dk][map.code][map.field] = inp.value;
+        saveAll(allData);
+      }
+    });
+  });
+  showScreen('loading');
+}
+
+function closeLoading(){
+  if(loadingFrom==='detail'){ showScreen('detail'); }
+  else { showScreen('home'); }
+}
+
+
+function printLoading(){
+  const html = document.getElementById('loadingContent').innerHTML;
+  const days2=['日','月','火','水','木','金','土'];
+  const d=currentDate;
+  const dateStr=d.getFullYear()+'年'+(d.getMonth()+1)+'月'+d.getDate()+'日（'+days2[d.getDay()]+'）';
+  document.getElementById('printTitle').textContent='積み込み表　'+dateStr;
+  document.getElementById('ticketWrap').innerHTML='<div class="ticket"><div class="ticket-store">積み込み表</div><div class="ticket-course">'+dateStr+'　別府鉄輪コース</div>'+html+'</div>';
+  showScreen('print');
+}
+
+// フローティングボタンのドラッグ機能
+function initFloatBtns(){
+  const el = document.getElementById('floatBtns');
+  if(!el) return;
+  let startX, startY, initX, initY;
+  el.addEventListener('touchstart', function(e){
+    if(e.target.tagName === 'BUTTON') return;
+    const t = e.touches[0];
+    startX = t.clientX; startY = t.clientY;
+    const rect = el.getBoundingClientRect();
+    initX = rect.left; initY = rect.top;
+    e.preventDefault();
+  }, {passive:false});
+  el.addEventListener('touchmove', function(e){
+    if(e.target.tagName === 'BUTTON') return;
+    const t = e.touches[0];
+    const dx = t.clientX - startX;
+    const dy = t.clientY - startY;
+    const newX = initX + dx;
+    const newY = initY + dy;
+    el.style.left = newX + 'px';
+    el.style.top = newY + 'px';
+    el.style.right = 'auto';
+    el.style.bottom = 'auto';
+    e.preventDefault();
+  }, {passive:false});
+}
+
+// 伝票モード
+var ticketStores = [];
+var ticketIdx = 0;
+
+function openTicketMode(){
+  // 伝票の順番
+  var TICKET_ORDER = ['東屋','彩葉','かんなわ荘','九港福','別府おぐら','湯の丘','夢月','扇山','さくら亭','万天の湯','和み月','游湯'];
+  ticketStores = [];
+  TICKET_ORDER.forEach(function(name){
+    var store = STORES.find(function(s){ return s.name===name; });
+    if(store && storeHasData(store)) ticketStores.push(store);
+  });
+  if(ticketStores.length === 0){
+    alert('入力済みの店舗がありません');
+    return;
+  }
+  ticketIdx = 0;
+  showTicket();
+}
+
+function showTicket(){
+  var store = ticketStores[ticketIdx];
+  // 該当店舗のinputsを取得
+  var sd = getStoreData(store.code);
+  var inputs = {};
+  // sdのキーをそのままinputsに
+  Object.keys(sd).forEach(function(k){ inputs[k] = sd[k]; });
+
+  var days2 = ['日','月','火','水','木','金','土'];
+  var now = currentDate;
+  var dateStr = now.getFullYear()+'年'+(now.getMonth()+1)+'月'+now.getDate()+'日（'+days2[now.getDay()]+'）';
+
+  // 伝票内容生成（openPrintと同じロジック）
+  var TICKET_ITEMS = {
+    '006-00084-00000': ['シーツ183','枕カバー','作務衣・上','作務衣・下','作務衣L・上','作務衣L・下','BT','包布 カラー','包布 D','デユベ 小','子供浴衣'],
+    '006-00078-00000': ['シーツ160','シーツ228','枕カバー','作務衣・上','作務衣・下','作務衣L・上','作務衣L・下','BT','包布 カラー','包布 D','子供浴衣'],
+    '006-00091-00000': ['シーツ160','シーツ203','シーツ270','枕カバー','作務衣・上','作務衣・下','作務衣L・上','作務衣L・下','BT','包布 カラー','包布 D','子供浴衣'],
+    '006-00083-00000': ['シーツ160','枕カバー S','浴衣','子供浴衣'],
+    '006-00081-00000': ['シーツ160','シーツ203','枕カバー','作務衣・上','作務衣・下','子作務衣 上','子作務衣 下','浴衣 クリーニング','BT','包布 D','子供浴衣','PC'],
+    '006-00077-00000': ['シーツ160','枕カバー S','枕カバー M','浴衣 クリーニング','BT','FT','包布 S','包布 D','子供浴衣'],
+    '006-00085-00000': ['シーツ160','シーツ183','枕カバー S','枕カバー M','浴衣','BT クリーニング','包布 D'],
+    '006-00093-00000': ['シーツ160','シーツ183','シーツ203','シーツ228','枕カバー','作務衣・上','作務衣・下','作務衣L・上','作務衣L・下','BT','包布 D','デユベ 小','子供浴衣'],
+    '006-00092-00000': ['シーツ160','シーツ228','枕カバー','作務衣・上','作務衣・下','作務衣L・上','作務衣L・下','BT','包布 カラー','包布 D','子供浴衣'],
+    '006-00090-00000': ['シーツ183','シーツ228','枕カバー（L）','BT','FT','デユベ 中','デユベ 小','浴衣'],
+    '006-00082-00000': ['シーツ203','枕カバー','作務衣・上','作務衣・下','作務衣L・上','作務衣L・下','BT','包布 カラー'],
+    '006-00089-00000': ['シーツ160','枕カバー','BM','デユベ 小'],
+  };
+
+  function getVal(itemName){
+    var itemObj = store.items.find(function(it){ return it.n===itemName; });
+    if(!itemObj) return '';
+    var val = 0, hasAny = false;
+    if(itemObj.sub && itemObj.floor){
+      itemObj.sub.forEach(function(s){
+        val += (parseInt(sd[itemName+'_'+s+'_上'])||0)+(parseInt(sd[itemName+'_'+s+'_下'])||0);
+        if(sd[itemName+'_'+s+'_上']||sd[itemName+'_'+s+'_下']) hasAny=true;
+      });
+    } else if(itemObj.sub){
+      itemObj.sub.forEach(function(s){
+        val += (parseInt(sd[itemName+'_'+s])||0)+(parseInt(sd[itemName+'_'+s+'z'])||0);
+        if(sd[itemName+'_'+s]||sd[itemName+'_'+s+'z']) hasAny=true;
+      });
+    } else if(itemObj.floor){
+      val = (parseInt(sd[itemName+'_上'])||0)+(parseInt(sd[itemName+'_下'])||0)
+           +(parseInt(sd[itemName+'_上z'])||0)+(parseInt(sd[itemName+'_下z'])||0);
+      hasAny = !!(sd[itemName+'_上']||sd[itemName+'_下']||sd[itemName+'_上z']||sd[itemName+'_下z']);
+    } else {
+      val = (parseInt(sd[itemName+'_d'])||0)+(parseInt(sd[itemName+'_z'])||0);
+      hasAny = !!(sd[itemName+'_d']||sd[itemName+'_z']);
+    }
+    if(itemName==='作務衣・上'||itemName==='作務衣・下'){
+      var lItem = itemName.replace('作務衣・','作務衣L・');
+      var lObj = store.items.find(function(it){ return it.n===lItem; });
+      if(lObj){
+        if(lObj.floor){ val+=(parseInt(sd[lItem+'_上'])||0)+(parseInt(sd[lItem+'_下'])||0); }
+        else { val+=parseInt(sd[lItem+'_d'])||0; }
+      }
+    }
+    return hasAny||val>0 ? val : '';
+  }
+
+  var ticketItemList = TICKET_ITEMS[store.code] || store.items.map(function(it){ return it.n; });
+  var rows = '';
+  ticketItemList.forEach(function(itemName){
+    if(itemName.startsWith('作務衣L・')) return;
+    var val = getVal(itemName);
+    var dcls = val ? 'dval' : 'empty';
+    rows += '<tr>'
+      +'<td style="padding:4px 8px;border:1px solid #ddd;font-size:13px;text-align:right;">'+itemName+'</td>'
+      +'<td class="'+dcls+'" style="padding:4px 8px;border:1px solid #ddd;text-align:center;font-size:14px;font-weight:700;width:60px;">'+(val||'')+'</td>'
+      +'</tr>';
+  });
+  // 手書き空欄4行
+  for(var i=0;i<4;i++){
+    rows += '<tr><td contenteditable="true" style="padding:4px 8px;border:1px solid #ddd;height:28px;"></td><td contenteditable="true" style="padding:4px 8px;border:1px solid #ddd;text-align:center;"></td></tr>';
+  }
+
+  var prevBtn = ticketIdx > 0
+    ? '<button onclick="ticketIdx--;showTicket();" style="padding:7px 14px;background:var(--surface2);border:1px solid var(--border);color:var(--text);border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;">◀ 前</button>'
+    : '<div style="width:70px;"></div>';
+  var nextBtn = ticketIdx < ticketStores.length-1
+    ? '<button onclick="ticketIdx++;showTicket();" style="padding:7px 14px;background:linear-gradient(135deg,#22c55e,#16a34a);border:none;color:#fff;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;">次へ ▶</button>'
+    : '<button onclick="goHome();" style="padding:7px 14px;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;color:#fff;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;">完了 🏠</button>';
+
+  document.getElementById('printTitle').textContent = store.name+'　様　伝票　'+(ticketIdx+1)+'/'+ticketStores.length;
+
+  // ナビゲーションをヘッダー下に表示
+  var navEl = document.getElementById('ticketNav');
+  navEl.style.display = 'flex';
+  navEl.innerHTML = prevBtn
+    +'<span style="color:var(--text2);font-size:13px;">'+(ticketIdx+1)+' / '+ticketStores.length+'</span>'
+    +nextBtn;
+
+  document.getElementById('ticketWrap').innerHTML =
+    '<div class="ticket">'
+    +'<div class="ticket-store">'+store.name+'　様</div>'
+    +'<div class="ticket-code">'+store.code+'</div>'
+    +'<div class="ticket-course" style="font-size:13px;font-weight:900;color:#222;margin-bottom:12px;border-bottom:2px solid #ddd;padding-bottom:8px;">別府鉄輪コース　　'+dateStr+'</div>'
+    +'<table style="width:100%;border-collapse:collapse;">'
+    +'<tr><th style="background:#f0f4ff;padding:5px 8px;border:1px solid #ddd;text-align:left;font-size:12px;">商品名</th>'
+    +'<th style="background:#f0f4ff;padding:5px 8px;border:1px solid #ddd;text-align:center;font-size:12px;width:60px;">納品</th></tr>'
+    +rows
+    +'</table></div>';
+
+  showScreen('print');
+}
+
+function closePrint(){
+  var navEl = document.getElementById('ticketNav');
+  if(navEl) navEl.style.display='none';
+  showScreen('detail');
+  initFloatBtns();
+  updateDetailDateLabel();
+}
+
+
+
+
+</script>
+</body>
+</html>
