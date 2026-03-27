@@ -132,7 +132,7 @@ body{font-family:'Noto Sans JP',-apple-system,sans-serif;background:var(--bg);co
     <div id="todayCount" style="font-size:12px;color:var(--text2);margin-top:6px;"></div>
     <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:6px;">
       <span id="syncBadge" style="font-size:11px;color:var(--accent);transition:opacity 0.5s;opacity:0;"></span>
-      <button onclick="loadFromGAS(function(){renderHome();updateDateDisplay();})" style="font-size:11px;padding:3px 10px;border-radius:8px;border:1px solid var(--border);background:var(--surface2);color:var(--text2);cursor:pointer;">🔄 最新データを取得</button>
+      <button onclick="loadFromGAS(function(){updateDots(); applyFilter();updateDateDisplay();})" style="font-size:11px;padding:3px 10px;border-radius:8px;border:1px solid var(--border);background:var(--surface2);color:var(--text2);cursor:pointer;">🔄 最新データを取得</button>
     </div>
     <div id="afternoonCount" style="margin-top:10px;display:flex;gap:16px;justify-content:center;align-items:baseline;"></div>
   </div>
@@ -308,13 +308,30 @@ let loadingFrom = 'home';
 let loadingInputs = {};
 let currentDate = new Date();
 currentDate.setHours(0,0,0,0);
-// 起動時にGASから最新データを取得
+// 起動時：まずlocalStorageで起動し、GASにデータがあれば上書き
 window.addEventListener('load', function(){
-  loadFromGAS(function(){
-    updateDateDisplay();
-    renderHome();
-    cleanOldData();
-  });
+  updateDateDisplay();
+  updateDots(); applyFilter();
+  cleanOldData();
+  // GASからデータ取得（ローカルより新しい場合のみ上書き）
+  fetch(GAS_URL+'?t='+Date.now())
+    .then(function(r){ return r.json(); })
+    .then(function(gasData){
+      if(gasData && typeof gasData === 'object' && Object.keys(gasData).length > 0){
+        // GASにデータがある場合のみ上書き
+        allData = gasData;
+        localStorage.setItem('deliveryData2', JSON.stringify(allData));
+        showSyncBadge('☁️ 同期完了');
+        updateDateDisplay();
+        updateDots(); applyFilter();
+      } else {
+        // GASが空ならlocalStorageのデータをGASに送信
+        saveToGAS(allData);
+      }
+    })
+    .catch(function(){
+      showSyncBadge('⚠️ オフライン（ローカルで動作中）');
+    });
 });
 
 function getDateKey(){ return toDateKey(currentDate); }
