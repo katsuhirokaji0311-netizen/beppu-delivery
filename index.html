@@ -217,7 +217,7 @@ const STORES = [
   {name:"かんなわ荘", code:"006-00083-00000", icon:"🏠",
    items:[{n:"シーツ160"},{n:"枕カバー S"},{n:"浴衣 中"},{n:"子供浴衣 大"},{n:"子供浴衣 中"}]},
   {name:"湯の丘", code:"006-00081-00000", icon:"⛰",
-   items:[{n:"シーツ160"},{n:"シーツ203"},{n:"包布 D"},{n:"PC"},{n:"PC(L)"},{n:"BT"},{n:"浴衣 クリーニング"},{n:"作務衣・上"},{n:"作務衣・下"},{n:"子作務衣 上"},{n:"子作務衣 下"},{n:"子供浴衣"}]},
+   items:[{n:"シーツ160"},{n:"シーツ203"},{n:"包布 D"},{n:"PC(L)"},{n:"BT"},{n:"浴衣 クリーニング"},{n:"作務衣・上"},{n:"作務衣・下"},{n:"子作務衣 上"},{n:"子作務衣 下"},{n:"子供浴衣"}]},
   {name:"別府おぐら", code:"006-00077-00000", icon:"🌸",
    items:[{n:"シーツ160"},{n:"包布 D"},{n:"包布 S"},{n:"枕カバー S"},{n:"枕カバー M"},{n:"BT"},{n:"FT"},{n:"浴衣 クリーニング"},{n:"子供浴衣"}]},
   {name:"九港福", code:"006-00085-00000", icon:"🍀",
@@ -739,24 +739,26 @@ function openStore(idx){
   store.items.forEach(function(item, i){
     const row = document.createElement('div');
     if(item.sub && item.floor){
-      // LMS×上下（縦並び・列幅をfloor行と同じ46px×2に揃える）
+      // LMS×上下＋済（縦並び）
       const hasAnyFS = item.sub.some(function(s){
-        return (sd[item.n+'_'+s+'_上']||'')!==''||(sd[item.n+'_'+s+'_下']||'')!=='';
+        return (sd[item.n+'_'+s+'_上']||'')!==''||(sd[item.n+'_'+s+'_上済']||'')!==''||(sd[item.n+'_'+s+'_下']||'')!==''||(sd[item.n+'_'+s+'_下済']||'')!=='';
       });
       row.className='item-row has-sub '+(i%2===0?'even':'odd')+(hasAnyFS?' row-has-val':'');
       let subHtml='<div class="sub-wrap">'
-        +'<div style="display:grid;grid-template-columns:18px 46px 46px;gap:0px;font-size:10px;color:var(--text2);text-align:center;margin-bottom:2px;">'
-        +'<span></span><span style="color:#fb923c;">上</span><span style="color:#fb923c;">下</span></div>';
+        +'<div style="display:grid;grid-template-columns:18px 36px 36px 36px 36px;gap:0px;font-size:10px;color:var(--text2);text-align:center;margin-bottom:2px;">'
+        +'<span></span><span style="color:#fb923c;">上</span><span style="color:#4f8ef7;">済</span><span style="color:#fb923c;">下</span><span style="color:#4f8ef7;">済</span></div>';
       item.sub.forEach(function(s){
-        const vU=sd[item.n+'_'+s+'_上']||'', vD=sd[item.n+'_'+s+'_下']||'';
-        subHtml+='<div style="display:grid;grid-template-columns:18px 46px 46px;gap:0px;align-items:center;">'
+        const vU=sd[item.n+'_'+s+'_上']||'', vUz=sd[item.n+'_'+s+'_上済']||'', vD=sd[item.n+'_'+s+'_下']||'', vDz=sd[item.n+'_'+s+'_下済']||'';
+        subHtml+='<div style="display:grid;grid-template-columns:18px 36px 36px 36px 36px;gap:0px;align-items:center;">'
           +'<span class="sub-label">'+s+'</span>'
           +'<input class="num-input'+(vU?' has-val-d':'')+'" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="" min="1" enterkeyhint="next" data-key="'+item.n+'_'+s+'_上" value="'+vU+'">'
+          +'<input class="num-input col-z'+(vUz?' has-val-z':'')+'" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="" min="1" enterkeyhint="next" data-key="'+item.n+'_'+s+'_上済" value="'+vUz+'">'
           +'<input class="num-input'+(vD?' has-val-d':'')+'" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="" min="1" enterkeyhint="next" data-key="'+item.n+'_'+s+'_下" value="'+vD+'">'
+          +'<input class="num-input col-z'+(vDz?' has-val-z':'')+'" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="" min="1" enterkeyhint="next" data-key="'+item.n+'_'+s+'_下済" value="'+vDz+'">'
           +'</div>';
       });
       const totalFS=item.sub.reduce(function(a,s){
-        return a+(parseInt(sd[item.n+'_'+s+'_上'])||0)+(parseInt(sd[item.n+'_'+s+'_下'])||0);
+        return a+(parseInt(sd[item.n+'_'+s+'_上'])||0)+(parseInt(sd[item.n+'_'+s+'_上済'])||0)+(parseInt(sd[item.n+'_'+s+'_下'])||0)+(parseInt(sd[item.n+'_'+s+'_下済'])||0);
       },0);
       subHtml+='<div style="font-size:10px;color:var(--text2);text-align:right;margin-top:2px;">'
         +'合計 <span class="sub-total-val" style="color:var(--accent);">'+(hasAnyFS&&totalFS>0?totalFS:'—')+'</span></div></div>';
@@ -1083,7 +1085,7 @@ function openPrint(){
       'シーツ160','枕カバー S','浴衣 中','子供浴衣 大','子供浴衣 中'
     ],
     '006-00081-00000': [ // 湯の丘
-      'シーツ160','シーツ203','枕カバー','作務衣・上','作務衣・下','子作務衣 上','子作務衣 下','浴衣 クリーニング','BT','包布 D','子供浴衣','PC'
+      'シーツ160','シーツ203','枕カバー','作務衣・上','作務衣・下','子作務衣 上','子作務衣 下','浴衣 クリーニング','BT','包布 D','子供浴衣','PC(L)'
     ],
     '006-00077-00000': [ // 別府おぐら
       'シーツ160','枕カバー S','枕カバー M','浴衣 クリーニング','BT','FT','包布 S','包布 D','子供浴衣'
@@ -1116,8 +1118,8 @@ function openPrint(){
     var hasAny = false;
     if(itemObj.sub && itemObj.floor){
       itemObj.sub.forEach(function(s){
-        val += (parseInt(inputs[item+'_'+s+'_上'])||0)+(parseInt(inputs[item+'_'+s+'_下'])||0);
-        if(inputs[item+'_'+s+'_上']||inputs[item+'_'+s+'_下']) hasAny=true;
+        val += (parseInt(inputs[item+'_'+s+'_上'])||0)+(parseInt(inputs[item+'_'+s+'_上済'])||0)+(parseInt(inputs[item+'_'+s+'_下'])||0)+(parseInt(inputs[item+'_'+s+'_下済'])||0);
+        if(inputs[item+'_'+s+'_上']||inputs[item+'_'+s+'_上済']||inputs[item+'_'+s+'_下']||inputs[item+'_'+s+'_下済']) hasAny=true;
       });
     } else if(itemObj.sub){
       itemObj.sub.forEach(function(s){
@@ -1190,7 +1192,7 @@ function buildLoadingData(){
   };
   function d(code,n){ var sd=getStoreData(code); return parseInt(sd[n+'_d'])||0; }
   function f(code,n){ var sd=getStoreData(code); return (parseInt(sd[n+'_上'])||0)+(parseInt(sd[n+'_下'])||0); }
-  function fs(code,item,size){ var sd=getStoreData(code); return (parseInt(sd[item+'_'+size+'_上'])||0)+(parseInt(sd[item+'_'+size+'_下'])||0); }
+  function fs(code,item,size){ var sd=getStoreData(code); return (parseInt(sd[item+'_'+size+'_上'])||0)+(parseInt(sd[item+'_'+size+'_下'])||0); } // 済除外（積み込み用）
   function r(code,key,n,v){ return {n:n, v:v, code:code, key:key}; }
   function rd(code,item,n){ return r(code, item+'_d', n||item, d(code,item)); }
   function rf(code,item,n){ return r(code, item+'_floor', n||item, f(code,item)); }
