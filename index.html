@@ -108,13 +108,13 @@ body{font-family:'Noto Sans JP',-apple-system,sans-serif;background:var(--bg);co
 
 <!-- HOME -->
 <!-- 積み込み編集ダイアログ -->
-<div id="loadingEditDialog" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:9999;align-items:center;justify-content:center;">
+<div id="loadingEditDialog" style="display:none!important;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:9999;align-items:center;justify-content:center;">
   <div style="background:var(--surface);border-radius:16px;padding:24px;margin:20px;width:calc(100%-40px);max-width:320px;">
     <div id="loadingEditLabel" style="font-size:16px;font-weight:900;color:var(--text);margin-bottom:16px;text-align:center;"></div>
-    <input id="loadingEditInput" type="text" inputmode="numeric" pattern="[0-9]*" style="width:100%;text-align:center;font-size:28px;font-weight:900;border:2px solid var(--accent);border-radius:10px;padding:10px;background:var(--surface2);color:#fff;box-sizing:border-box;">
+    <input id="loadingEditInput" type="text" inputmode="numeric" pattern="[0-9]*" style="width:100%;text-align:center;font-size:28px;font-weight:900;border:2px solid var(--accent);border-radius:10px;padding:10px;background:var(--surface2);color:#fff;box-sizing:border-box;" onkeydown="if(event.key==='Enter'){saveLoadingEdit();}">
     <div style="display:flex;gap:10px;margin-top:16px;">
       <button onclick="closeLoadingEdit()" style="flex:1;padding:12px;border-radius:10px;background:var(--surface2);border:1px solid var(--border);color:var(--text);font-size:15px;font-weight:700;cursor:pointer;">キャンセル</button>
-      <button onclick="saveLoadingEdit()" style="flex:1;padding:12px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;color:#fff;font-size:15px;font-weight:700;cursor:pointer;">保存</button>
+      <button onclick="saveLoadingEdit()" style="flex:1;padding:12px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;color:#fff;font-size:15px;font-weight:700;cursor:pointer;">✓ 確定</button>
     </div>
   </div>
 </div>
@@ -516,40 +516,103 @@ function saveLoadingEdit(){
   updateDots();
 }
 
+function saveLoadingCell(td, newVal){
+  if(isNaN(newVal) || newVal < 0) return;
+  // lkeyセル
+  if(td.dataset.lkey){
+    var lkey = td.dataset.lkey;
+    loadingInputs[lkey] = String(newVal);
+    var lkeyMap2 = {
+      'yukuC_湯の丘':    {code:'006-00081-00000', field:'浴衣 クリーニング_d'},
+      'yukuC_別府おぐら':{code:'006-00077-00000', field:'浴衣 クリーニング_d'},
+      'smC_湯の丘上':    {code:'006-00081-00000', field:'作務衣クリーニング上_d'},
+      'smC_湯の丘下':    {code:'006-00081-00000', field:'作務衣クリーニング下_d'},
+      'kosmC_湯の丘上':  {code:'006-00081-00000', field:'子作務衣クリーニング上_d'},
+      'kosmC_湯の丘下':  {code:'006-00081-00000', field:'子作務衣クリーニング下_d'},
+      'koYuC_おぐら':    {code:'006-00077-00000', field:'子供浴衣クリーニング_d'},
+      'yuC_和み月_柄大': {code:'006-00090-00000', field:'柄浴衣クリーニング大_d'},
+      'yuC_和み月_柄中': {code:'006-00090-00000', field:'柄浴衣クリーニング中_d'},
+      'yuC_和み月_柄小': {code:'006-00090-00000', field:'柄浴衣クリーニング小_d'},
+      'yuC_和み月_特大': {code:'006-00090-00000', field:'浴衣クリーニング特大_d'},
+      'yuC_和み月_大':   {code:'006-00090-00000', field:'浴衣クリーニング大_d'},
+      'yuC_和み月_中':   {code:'006-00090-00000', field:'浴衣クリーニング中_d'},
+      'yuC_和み月_小':   {code:'006-00090-00000', field:'浴衣クリーニング小_d'},
+      'yuC_游湯_大':     {code:'006-00092-00001', field:'浴衣クリーニング大_d'},
+      'yuC_游湯_中':     {code:'006-00092-00001', field:'浴衣クリーニング中_d'},
+      'yuC_游湯_小':     {code:'006-00092-00001', field:'浴衣クリーニング小_d'},
+      'yuC_かんなわ_中': {code:'006-00083-00000', field:'浴衣クリーニング中_d'},
+      'yuC_かんなわ_子大':{code:'006-00083-00000', field:'子供浴衣クリーニング大_d'},
+      'yuC_九港福_大':   {code:'006-00085-00000', field:'浴衣クリーニング大_d'},
+      'yuC_九港福_中':   {code:'006-00085-00000', field:'浴衣クリーニング中_d'},
+      'btC_九港福':      {code:'006-00085-00000', field:'BTクリーニング_d'},
+    };
+    var map = lkeyMap2[lkey];
+    if(map){
+      var dk2 = getDateKey();
+      if(!allData[dk2]) allData[dk2]={};
+      if(!allData[dk2][map.code]) allData[dk2][map.code]={};
+      allData[dk2][map.code][map.field] = String(newVal);
+      saveAll(allData);
+    }
+    return;
+  }
+  // data-codeセル
+  var code = td.dataset.code;
+  var key = td.dataset.key;
+  if(!code || !key) return;
+  var dk = getDateKey();
+  if(!allData[dk]) allData[dk]={};
+  if(!allData[dk][code]) allData[dk][code]={};
+  var sd = allData[dk][code];
+  if(key.endsWith('_floor')){
+    var base = key.replace('_floor','');
+    var curU = parseInt(sd[base+'_上'])||0;
+    var curD = parseInt(sd[base+'_下'])||0;
+    var curTotal = curU + curD;
+    if(curTotal === 0){
+      sd[base+'_上'] = String(Math.ceil(newVal/2));
+      sd[base+'_下'] = String(Math.floor(newVal/2));
+    } else {
+      sd[base+'_上'] = String(Math.round(newVal * curU / curTotal));
+      sd[base+'_下'] = String(newVal - Math.round(newVal * curU / curTotal));
+    }
+  } else if(key.endsWith('_d')){
+    sd[key.slice(0,-2)+'_d'] = String(newVal);
+  } else {
+    sd[key] = String(newVal);
+  }
+  saveAll(allData);
+}
+
 function setupLoadingEditEvents(){
-  // 通常セル（data-code あり）
-  document.querySelectorAll('.loading-edit-cell[data-code]').forEach(function(td){
-    td.onclick = function(){
-      var code = td.dataset.code;
-      var key = td.dataset.key;
-      var dk = getDateKey();
-      var sd = (allData[dk] && allData[dk][code]) || {};
-      var currentVal = 0;
-      if(key.endsWith('_floor')){
-        var base = key.replace('_floor','');
-        currentVal = (parseInt(sd[base+'_上'])||0)+(parseInt(sd[base+'_下'])||0);
-      } else {
-        currentVal = parseInt(sd[key])||0;
+  document.querySelectorAll('.loading-edit-cell').forEach(function(td){
+    // 既にinputがあればスキップ
+    if(td.querySelector('input')) return;
+    var curVal = td.textContent.trim();
+    // tdをinputに置き換え
+    td.innerHTML = '<input type="text" inputmode="numeric" pattern="[0-9]*" '
+      + 'value="' + (curVal||'') + '" '
+      + 'style="width:100%;text-align:right;font-size:18px;font-weight:900;border:none;background:transparent;color:inherit;outline:none;padding:0;" '
+      + '>';
+    var input = td.querySelector('input');
+    input.addEventListener('focus', function(){ input.select(); });
+    input.addEventListener('blur', function(){
+      var newVal = parseInt(input.value);
+      if(isNaN(newVal) || newVal < 0){
+        input.value = '';
+        newVal = 0;
       }
-      var label = td.closest('tr').querySelector('td').textContent;
-      openLoadingEdit(code, key, label, currentVal);
-    };
-  });
-  // クリーニング手入力セル（data-lkey あり）
-  document.querySelectorAll('.loading-edit-cell[data-lkey]').forEach(function(td){
-    td.onclick = function(){
-      var lkey = td.dataset.lkey;
-      var currentVal = parseInt(loadingInputs[lkey])||0;
-      var label = td.closest('tr').querySelector('td').textContent;
-      _editLkey = lkey;
-      _editCode = null; _editKey = null;
-      document.getElementById('loadingEditLabel').textContent = label + ' の数を変更';
-      var inp = document.getElementById('loadingEditInput');
-      inp.value = currentVal;
-      var dlg = document.getElementById('loadingEditDialog');
-      dlg.style.display = 'flex';
-      setTimeout(function(){ inp.focus(); inp.select(); }, 100);
-    };
+      saveLoadingCell(td, newVal);
+      // 再描画
+      document.getElementById('loadingContent').innerHTML = renderLoadingHTML(buildLoadingData());
+      setupLoadingEditEvents();
+      updateDots(); applyFilter();
+    });
+    input.addEventListener('keydown', function(e){
+      if(e.key === 'Enter'){
+        input.blur();
+      }
+    });
   });
 }
 
@@ -1313,6 +1376,9 @@ function buildLoadingData(){
   var koL=[koRow(C.東屋,'東屋','L'),koRow(C.彩葉,'彩葉','L'),koRow(C.夢月,'夢月','L'),koRow(C.さくら亭,'さくら亭','L'),koRow(C.万天の湯,'万天の湯','L')];
   var koM=[koRow(C.東屋,'東屋','M'),koRow(C.彩葉,'彩葉','M'),koRow(C.夢月,'夢月','M'),koRow(C.さくら亭,'さくら亭','M'),koRow(C.万天の湯,'万天の湯','M')];
   var koS=[koRow(C.東屋,'東屋','S'),koRow(C.彩葉,'彩葉','S'),koRow(C.夢月,'夢月','S'),koRow(C.さくら亭,'さくら亭','S'),koRow(C.万天の湯,'万天の湯','S')];
+  // 湯の丘の子供浴衣（サイズなし）
+  var koYunoU = d(C.湯の丘,'子供浴衣');
+  if(koYunoU>0){ koL.push(r(C.湯の丘,'子供浴衣_d','湯の丘',koYunoU)); }
   if(koL.reduce(function(a,r){return a+r.v;},0)>0) sections.push({label:'子供浴衣L',rows:koL,other:0});
   if(koM.reduce(function(a,r){return a+r.v;},0)>0) sections.push({label:'子供浴衣M',rows:koM,other:0});
   if(koS.reduce(function(a,r){return a+r.v;},0)>0) sections.push({label:'子供浴衣S',rows:koS,other:0});
@@ -1376,6 +1442,7 @@ function buildLoadingData(){
   var smRows=[
     {n:'東屋', 通上:d(C.東屋,'作務衣・上'),通下:d(C.東屋,'作務衣・下'),L上:d(C.東屋,'作務衣L・上'),L下:d(C.東屋,'作務衣L・下')},
     {n:'彩葉', 通上:f(C.彩葉,'作務衣・上'),通下:f(C.彩葉,'作務衣・下'),L上:f(C.彩葉,'作務衣L・上'),L下:f(C.彩葉,'作務衣L・下')},
+    {n:'湯の丘', 通上:d(C.湯の丘,'作務衣・上'),通下:d(C.湯の丘,'作務衣・下'),L上:0,L下:0},
     {n:'さくら亭', 通上:f(C.さくら亭,'作務衣・上'),通下:f(C.さくら亭,'作務衣・下'),L上:f(C.さくら亭,'作務衣L・上'),L下:f(C.さくら亭,'作務衣L・下')},
     {n:'万天の湯', 通上:d(C.万天の湯,'作務衣・上'),通下:d(C.万天の湯,'作務衣・下'),L上:d(C.万天の湯,'作務衣L・上'),L下:d(C.万天の湯,'作務衣L・下')},
     {n:'夢月', 通上:f(C.夢月,'作務衣・上'),通下:f(C.夢月,'作務衣・下'),L上:f(C.夢月,'作務衣L・上'),L下:f(C.夢月,'作務衣L・下')},
