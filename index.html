@@ -51,16 +51,16 @@ body{font-family:'Noto Sans JP',-apple-system,sans-serif;background:var(--bg);co
 .items-list{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;display:flex;flex-direction:column;}
 .item-row{display:grid;grid-template-columns:1fr 56px 56px;gap:0px;padding:5px 4px;border-bottom:1px solid rgba(45,50,80,0.4);align-items:center;}
 .item-row.floor-row{grid-template-columns:1fr 46px 46px 46px 46px;gap:0px;}
-.item-name{font-size:17px;font-weight:500;line-height:1.2;text-align:center;}
+.item-name{font-size:17px;font-weight:500;line-height:1.2;text-align:right;}
 .num-input{width:100%;text-align:center;font-size:20px;font-weight:700;border-radius:7px;border:1px solid var(--border);background:var(--surface2);color:#ffffff;padding:5px 2px;outline:none;}
 .num-input:not(.col-z){background:rgba(251,146,60,0.18);border-color:rgba(251,146,60,0.5);color:#ffffff;}
 .num-input:focus{border-color:var(--accent);background:#1a2035;}
 .num-input.has-val-d{background:rgba(251,146,60,0.25);border-color:#fb923c;color:#ffffff;}
-.num-input.has-val-z{background:var(--surface2);border-color:var(--border);color:#ffffff;}
-.num-input.col-z{background:var(--surface2);border-color:var(--border);}
-.num-input.col-z.has-val-z{background:var(--surface2);border-color:var(--border);color:#ffffff;}
+.num-input.has-val-z{background:var(--surface2);border-color:var(--border);color:#4f8ef7;}
+.num-input.col-z{background:var(--surface2);border-color:var(--border);color:#4f8ef7;}
+.num-input.col-z.has-val-z{background:var(--surface2);border-color:var(--border);color:#4f8ef7;}
 .item-row.row-has-val{background:rgba(79,142,247,0.15)!important;border-left:3px solid var(--accent);}
-.item-row:not(.has-sub) .item-name{text-align:center;}
+.item-row:not(.has-sub) .item-name{text-align:right;}
 .item-row.has-sub{display:grid;grid-template-columns:1fr 112px;gap:0px;}
 .sub-wrap{display:flex;flex-direction:column;gap:2px;align-items:flex-end;width:112px;}
 .sub-row{display:flex;align-items:center;gap:4px;}
@@ -209,11 +209,11 @@ body{font-family:'Noto Sans JP',-apple-system,sans-serif;background:var(--bg);co
 
 const STORES = [
   {name:"東屋", code:"006-00084-00000", icon:"♨",
-   items:[{n:"シーツ183"},{n:"包布 カラー"},{n:"包布 D"},{n:"デユベ 小"},{n:"PC"},{n:"BT"},{n:"作務衣・上"},{n:"作務衣・下"},{n:"作務衣L・上"},{n:"作務衣L・下"},{n:"子供浴衣",sub:["L","M","S"]}]},
+   items:[{n:"シーツ183"},{n:"包布 カラー"},{n:"包布 D"},{n:"デユベ 小"},{n:"枕カバー"},{n:"BT"},{n:"作務衣・上"},{n:"作務衣・下"},{n:"作務衣L・上"},{n:"作務衣L・下"},{n:"子供浴衣",sub:["L","M","S"]}]},
   {name:"彩葉", code:"006-00078-00000", icon:"🍃",
-   items:[{n:"シーツ160",floor:true},{n:"シーツ228",floor:true},{n:"包布 カラー",floor:true},{n:"包布 D",floor:true},{n:"PC",floor:true},{n:"BT",floor:true},{n:"作務衣・上",floor:true},{n:"作務衣・下",floor:true},{n:"作務衣L・上",floor:true},{n:"作務衣L・下",floor:true},{n:"子供浴衣",sub:["L","M","S"],floor:true}]},
+   items:[{n:"シーツ160",floor:true},{n:"シーツ228",floor:true},{n:"包布 カラー",floor:true},{n:"包布 D",floor:true},{n:"枕カバー",floor:true},{n:"BT",floor:true},{n:"作務衣・上",floor:true},{n:"作務衣・下",floor:true},{n:"作務衣L・上",floor:true},{n:"作務衣L・下",floor:true},{n:"子供浴衣",sub:["L","M","S"],floor:true}]},
   {name:"夢月", code:"006-00091-00000", icon:"🌙",
-   items:[{n:"シーツ160",floor:true},{n:"シーツ203",floor:true},{n:"シーツ270",floor:true},{n:"包布 D",floor:true},{n:"包布 カラー",floor:true},{n:"PC",floor:true},{n:"BT",floor:true},{n:"作務衣・上",floor:true},{n:"作務衣・下",floor:true},{n:"作務衣L・上",floor:true},{n:"作務衣L・下",floor:true},{n:"子供浴衣",sub:["L","M","S"],floor:true}]},
+   items:[{n:"シーツ160",floor:true},{n:"シーツ203",floor:true},{n:"シーツ270",floor:true},{n:"包布 D",floor:true},{n:"包布 カラー",floor:true},{n:"枕カバー",floor:true},{n:"BT",floor:true},{n:"作務衣・上",floor:true},{n:"作務衣・下",floor:true},{n:"作務衣L・上",floor:true},{n:"作務衣L・下",floor:true},{n:"子供浴衣",sub:["L","M","S"],floor:true}]},
   {name:"かんなわ荘", code:"006-00083-00000", icon:"🏠",
    items:[{n:"シーツ160"},{n:"枕カバー S"},{n:"浴衣 中"},{n:"子供浴衣 大"},{n:"子供浴衣 中"}]},
   {name:"湯の丘", code:"006-00081-00000", icon:"⛰",
@@ -223,15 +223,15 @@ const STORES = [
   {name:"九港福", code:"006-00085-00000", icon:"🍀",
    items:[{n:"シーツ160"},{n:"シーツ183"},{n:"包布 D"},{n:"枕カバー M"},{n:"浴衣",sub:["特大","大","中","小"]},{n:"BT クリーニング"},{n:"枕カバー S"}]},
   {name:"さくら亭", code:"006-00093-00000", icon:"🌺",
-   items:[{n:"シーツ160",floor:true},{n:"シーツ183",floor:true},{n:"シーツ203",floor:true},{n:"シーツ228",floor:true},{n:"包布 D",floor:true},{n:"デユベ 小",floor:true},{n:"PC",floor:true},{n:"BT",floor:true},{n:"作務衣・上",floor:true},{n:"作務衣・下",floor:true},{n:"作務衣L・上",floor:true},{n:"作務衣L・下",floor:true},{n:"子供浴衣",sub:["L","M","S"],floor:true}]},
+   items:[{n:"シーツ160",floor:true},{n:"シーツ183",floor:true},{n:"シーツ203",floor:true},{n:"シーツ228",floor:true},{n:"包布 D",floor:true},{n:"デユベ 小",floor:true},{n:"枕カバー",floor:true},{n:"BT",floor:true},{n:"作務衣・上",floor:true},{n:"作務衣・下",floor:true},{n:"作務衣L・上",floor:true},{n:"作務衣L・下",floor:true},{n:"子供浴衣",sub:["L","M","S"],floor:true}]},
   {name:"万天の湯", code:"006-00092-00000", icon:"💧",
    items:[{n:"シーツ160"},{n:"シーツ228"},{n:"包布 カラー"},{n:"包布 D"},{n:"枕カバー"},{n:"BT"},{n:"作務衣・上"},{n:"作務衣・下"},{n:"作務衣L・上"},{n:"作務衣L・下"},{n:"子供浴衣",sub:["L","M","S"]}]},
   {name:"和み月", code:"006-00090-00000", icon:"🌛",
    items:[{n:"シーツ183"},{n:"シーツ228"},{n:"デユベ 中"},{n:"デユベ 小"},{n:"枕カバー（L）"},{n:"BT"},{n:"FT"},{n:"柄浴衣",sub:["大","中","小"]},{n:"浴衣",sub:["特大","大","中","小"]}]},
   {name:"扇山", code:"006-00082-00000", icon:"🏔",
-   items:[{n:"シーツ203",floor:true},{n:"包布 カラー",floor:true},{n:"PC",floor:true},{n:"BT",floor:true},{n:"作務衣・上",floor:true},{n:"作務衣・下",floor:true},{n:"作務衣L・上",floor:true},{n:"作務衣L・下",floor:true}]},
+   items:[{n:"シーツ203",floor:true},{n:"包布 カラー",floor:true},{n:"枕カバー",floor:true},{n:"BT",floor:true},{n:"作務衣・上",floor:true},{n:"作務衣・下",floor:true},{n:"作務衣L・上",floor:true},{n:"作務衣L・下",floor:true}]},
   {name:"亀川マリーナテラス", code:"006-00089-00000", icon:"⚓",
-   items:[{n:"シーツ160"},{n:"デユベ 小"},{n:"PC"},{n:"BM"}]},
+   items:[{n:"シーツ160"},{n:"デユベ 小"},{n:"枕カバー"},{n:"BM"}]},
   {name:"游湯", code:"006-00092-00001", icon:"🌊",
    items:[{n:"シーツ160"},{n:"包布 D"},{n:"枕カバー"},{n:"浴衣",sub:["大","中","小"]}]},
 ];
@@ -762,7 +762,7 @@ function openStore(idx){
       },0);
       subHtml+='<div style="font-size:10px;color:var(--text2);text-align:right;margin-top:2px;">'
         +'合計 <span class="sub-total-val" style="color:var(--accent);">'+(hasAnyFS&&totalFS>0?totalFS:'—')+'</span></div></div>';
-      row.innerHTML='<div class="item-name" style="text-align:center;">'+item.n+'</div>'+subHtml;
+      row.innerHTML='<div class="item-name" style="text-align:right;">'+item.n+'</div>'+subHtml;
     } else if(item.floor){
       // 横並び：商品名 | 上入力 | 下入力 | ✕
       const vU = sd[item.n+'_上']||'';
@@ -798,7 +798,7 @@ function openStore(idx){
       });
       subHtml += '<div style="font-size:10px;color:var(--text2);text-align:right;margin-top:2px;">'
         +'合計 <span class="sub-total-val" style="color:var(--accent);">'+(hasAny&&(total+totalZ)>0?(total+totalZ):'—')+'</span></div></div>';
-      row.innerHTML = '<div class="item-name">'+item.n+'</div>'+subHtml;
+      row.innerHTML = '<div class="item-name" style="text-align:right;">'+item.n+'</div>'+subHtml;
     } else {
       const dval = sd[item.n+'_d']||'';
       const zval = sd[item.n+'_z']||'';
@@ -918,7 +918,6 @@ function moveToNextRow(inp){
 
   // sub行の納品欄（sub-inpクラスかつcolzでない）→同じitem内の次のサイズへ縦移動
   if(inp.classList.contains('sub-inp') && !inp.classList.contains('col-z')){
-    // この商品の全sub納品inputを取得
     const itemRow = inp.closest('.item-row');
     if(itemRow){
       const subInputs = Array.from(itemRow.querySelectorAll('.sub-inp:not(.col-z)'));
@@ -928,12 +927,36 @@ function moveToNextRow(inp){
         return;
       }
     }
-    // 最後のサイズ→次のitem-rowへ
     const allRows = Array.from(document.querySelectorAll('#itemsList .item-row'));
     const rowIdx = allRows.indexOf(inp.closest('.item-row'));
     for(var r = rowIdx+1; r < allRows.length; r++){
       const nextInputs = Array.from(allRows[r].querySelectorAll('input'));
       if(nextInputs.length > 0){ nextInputs[0].focus(); return; }
+    }
+    inp.blur();
+    return;
+  }
+
+  // floor+sub行（子供浴衣 上・上済・下・下済）→同じ列で次のサイズへ縦移動
+  if(key.includes('_上') || key.includes('_下') || key.includes('_上済') || key.includes('_下済')){
+    const itemRow = inp.closest('.item-row');
+    if(itemRow){
+      // 同じ列インデックスの入力欄を収集（グリッド内の同列）
+      const allInRow = Array.from(itemRow.querySelectorAll('input'));
+      const colPos = allInRow.indexOf(inp) % 4; // 上・上済・下・下済の4列
+      const sameColInputs = allInRow.filter(function(el, i){ return i % 4 === colPos; });
+      const curPos = sameColInputs.indexOf(inp);
+      if(curPos >= 0 && curPos < sameColInputs.length - 1){
+        sameColInputs[curPos + 1].focus();
+        return;
+      }
+    }
+    // 最後のサイズ→次のitem-rowへ
+    const allRows2 = Array.from(document.querySelectorAll('#itemsList .item-row'));
+    const rowIdx2 = allRows2.indexOf(inp.closest('.item-row'));
+    for(var r2 = rowIdx2+1; r2 < allRows2.length; r2++){
+      const nextInputs2 = Array.from(allRows2[r2].querySelectorAll('input'));
+      if(nextInputs2.length > 0){ nextInputs2[0].focus(); return; }
     }
     inp.blur();
     return;
@@ -1256,15 +1279,11 @@ function buildLoadingData(){
   var mkM=[
     rd(C.東屋,'枕カバー','東屋'),
     rf(C.彩葉,'枕カバー','彩葉'),
-    rf(C.彩葉,'PC','彩葉PC'),
     rf(C.夢月,'枕カバー','夢月'),
-    rf(C.夢月,'PC','夢月PC'),
     rf(C.扇山,'枕カバー','扇山'),
-    rf(C.扇山,'PC','扇山PC'),
-    rd(C.東屋,'PC','東屋PC'),
-    rd(C.亀川,'PC','亀川PC'),
+    rd(C.亀川,'枕カバー','亀川'),
   ];
-  var mkMo=d(C.湯の丘,'枕カバー')+f(C.さくら亭,'枕カバー')+f(C.さくら亭,'PC')+d(C.万天の湯,'枕カバー')+d(C.亀川,'枕カバー')+d(C.亀川,'PC')+d(C.游湯,'枕カバー')+d(C.別府おぐら,'枕カバー M')+d(C.九港福,'枕カバー M');
+  var mkMo=d(C.湯の丘,'枕カバー')+f(C.さくら亭,'枕カバー')+d(C.万天の湯,'枕カバー')+d(C.游湯,'枕カバー')+d(C.別府おぐら,'枕カバー M')+d(C.九港福,'枕カバー M');
   // 重複除去：rowsの値が0のものは表示しない
   var mkMFiltered = mkM.filter(function(r){ return r.v > 0; });
   if(mkMFiltered.reduce(function(a,r){return a+r.v;},0)+mkMo>0) sections.push({label:'枕カバー(PCM)',rows:mkMFiltered,other:mkMo,bundle:20});
@@ -1417,7 +1436,7 @@ function renderLoadingHTML(sections){
       var dispV = sec.bundle ? (r.v ? Math.round(r.v/sec.bundle*10)/10+'束' : '') : (r.v||'');
       var editAttr = r.code && r.key ? ' data-code="'+r.code+'" data-key="'+r.key+'" data-bundle="'+(sec.bundle||1)+'" style="background:#fff;color:#111;padding:6px 8px;font-size:18px;font-weight:900;border:1px solid #ccc;text-align:right;width:70px;white-space:nowrap;cursor:pointer;text-decoration:underline dotted #4f8ef7;"' : ' style="background:#fff;color:#111;padding:6px 8px;font-size:18px;font-weight:900;border:1px solid #ccc;text-align:right;width:70px;white-space:nowrap;"';
       html += '<tr>'
-        +'<td style="background:#fff;color:#111;padding:6px 12px;font-size:16px;font-weight:700;border:1px solid #ccc;text-align:center;">'+r.n+'</td>'
+        +'<td style="background:#fff;color:#111;padding:6px 12px;font-size:16px;font-weight:700;border:1px solid #ccc;text-align:right;">'+r.n+'</td>'
         +'<td class="loading-edit-cell"'+editAttr+'>'+dispV+'</td>'
         +'</tr>';
     });
@@ -1430,7 +1449,7 @@ function renderLoadingHTML(sections){
       sec.inputRows.forEach(function(ir){
         var saved = loadingInputs[ir.key] || '';
         html += '<tr>'
-          +'<td style="background:#fff;color:#111;padding:6px 12px;font-size:13px;font-weight:700;border:1px solid #ccc;text-align:center;">'+ir.n+'</td>'
+          +'<td style="background:#fff;color:#111;padding:6px 12px;font-size:13px;font-weight:700;border:1px solid #ccc;text-align:right;">'+ir.n+'</td>'
           +'<td class="loading-edit-cell" data-lkey="'+ir.key+'" style="background:#fff;color:#111;padding:6px 8px;font-size:18px;font-weight:900;border:1px solid #ccc;text-align:right;width:70px;white-space:nowrap;cursor:pointer;text-decoration:underline dotted #4f8ef7;">'+saved+'</td>'
           +'</tr>';
       });
@@ -1449,7 +1468,7 @@ function renderLoadingHTML(sections){
               ? ' data-code="'+row.code+'" data-key="'+row.key+'" data-bundle="1" style="background:#fff;color:#111;padding:6px 8px;font-size:18px;font-weight:900;border:1px solid #ccc;text-align:right;width:70px;white-space:nowrap;cursor:pointer;text-decoration:underline dotted #4f8ef7;"'
               : ' style="background:#fff;color:#111;padding:6px 8px;font-size:18px;font-weight:900;border:1px solid #ccc;text-align:right;width:70px;"';
             html += '<tr>'
-              +'<td style="background:#fff;color:#111;padding:6px 12px;font-size:13px;font-weight:700;border:1px solid #ccc;text-align:center;">'+row.n+'</td>'
+              +'<td style="background:#fff;color:#111;padding:6px 12px;font-size:13px;font-weight:700;border:1px solid #ccc;text-align:right;">'+row.n+'</td>'
               +'<td class="loading-edit-cell"'+eAttr+'>'+(row.v||'')+'</td>'
               +'</tr>';
           });
@@ -1458,7 +1477,7 @@ function renderLoadingHTML(sections){
           var saved = loadingInputs[ir.key] || '';
           var label = ir.groupLabel ? '<span style="font-size:11px;color:#888;margin-right:4px;">'+ir.groupLabel+'</span>'+ir.n : ir.n;
           html += '<tr>'
-            +'<td style="background:#fff;color:#111;padding:6px 12px;font-size:13px;font-weight:700;border:1px solid #ccc;text-align:center;">'+label+'</td>'
+            +'<td style="background:#fff;color:#111;padding:6px 12px;font-size:13px;font-weight:700;border:1px solid #ccc;text-align:right;">'+label+'</td>'
             +'<td class="loading-edit-cell" data-lkey="'+ir.key+'" style="background:#fff;color:#111;padding:6px 8px;font-size:18px;font-weight:900;border:1px solid #ccc;text-align:right;width:70px;white-space:nowrap;cursor:pointer;text-decoration:underline dotted #4f8ef7;">'+saved+'</td>'
             +'</tr>';
         });
