@@ -962,12 +962,29 @@ function moveToNextRow(inp){
     return;
   }
 
-  // 通常行・floor行は同じ列位置で次の行へ
+  // floor行（上・済・下・済の4列）→同じ列位置で次の行へ
   const curRow = inp.closest('.item-row');
   const rowInputs = Array.from(curRow.querySelectorAll('input'));
   const colIdx = rowInputs.indexOf(inp);
   const allRows = Array.from(document.querySelectorAll('#itemsList .item-row'));
   const rowIdx = allRows.indexOf(curRow);
+
+  // floor行かどうか判定（4列構成 = floor行）
+  if(curRow.classList.contains('floor-row') && rowInputs.length === 4){
+    // 同じ列インデックスで次のfloor行へ
+    for(var r = rowIdx+1; r < allRows.length; r++){
+      const nextRowInputs = Array.from(allRows[r].querySelectorAll('input'));
+      if(nextRowInputs.length === 4 && nextRowInputs.length > colIdx){
+        nextRowInputs[colIdx].focus(); return;
+      } else if(nextRowInputs.length > 0){
+        nextRowInputs[0].focus(); return;
+      }
+    }
+    inp.blur();
+    return;
+  }
+
+  // 通常行は同じ列位置で次の行へ
   for(var r = rowIdx+1; r < allRows.length; r++){
     const nextRowInputs = Array.from(allRows[r].querySelectorAll('input'));
     if(nextRowInputs.length > colIdx){ nextRowInputs[colIdx].focus(); return; }
