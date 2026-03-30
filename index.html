@@ -937,48 +937,36 @@ function moveToNextRow(inp){
     return;
   }
 
-  // floor+sub行（子供浴衣 上・上済・下・下済）→同じ列で次のサイズへ縦移動
-  if(key.includes('_上') || key.includes('_下') || key.includes('_上済') || key.includes('_下済')){
-    const itemRow = inp.closest('.item-row');
-    if(itemRow){
-      // 同じ列インデックスの入力欄を収集（グリッド内の同列）
-      const allInRow = Array.from(itemRow.querySelectorAll('input'));
-      const colPos = allInRow.indexOf(inp) % 4; // 上・上済・下・下済の4列
-      const sameColInputs = allInRow.filter(function(el, i){ return i % 4 === colPos; });
-      const curPos = sameColInputs.indexOf(inp);
-      if(curPos >= 0 && curPos < sameColInputs.length - 1){
-        sameColInputs[curPos + 1].focus();
-        return;
-      }
-    }
-    // 最後のサイズ→次のitem-rowへ
-    const allRows2 = Array.from(document.querySelectorAll('#itemsList .item-row'));
-    const rowIdx2 = allRows2.indexOf(inp.closest('.item-row'));
-    for(var r2 = rowIdx2+1; r2 < allRows2.length; r2++){
-      const nextInputs2 = Array.from(allRows2[r2].querySelectorAll('input'));
-      if(nextInputs2.length > 0){ nextInputs2[0].focus(); return; }
-    }
-    inp.blur();
-    return;
-  }
-
-  // floor行（上・済・下・済の4列）→同じ列位置で次の行へ
   const curRow = inp.closest('.item-row');
   const rowInputs = Array.from(curRow.querySelectorAll('input'));
   const colIdx = rowInputs.indexOf(inp);
   const allRows = Array.from(document.querySelectorAll('#itemsList .item-row'));
   const rowIdx = allRows.indexOf(curRow);
 
-  // floor行かどうか判定（4列構成 = floor行）
-  if(curRow.classList.contains('floor-row') && rowInputs.length === 4){
-    // 同じ列インデックスで次のfloor行へ
+  // floor+sub行（has-subクラス）→同じ列で次のサイズへ縦移動
+  if(curRow.classList.contains('has-sub') && curRow.classList.contains('floor-row')){
+    const colPos = colIdx % 4;
+    const sameColInputs = rowInputs.filter(function(el, i){ return i % 4 === colPos; });
+    const curPos = sameColInputs.indexOf(inp);
+    if(curPos >= 0 && curPos < sameColInputs.length - 1){
+      sameColInputs[curPos + 1].focus();
+      return;
+    }
+    // 最後→次のitem-rowへ
+    for(var r2 = rowIdx+1; r2 < allRows.length; r2++){
+      const ni = Array.from(allRows[r2].querySelectorAll('input'));
+      if(ni.length > 0){ ni[0].focus(); return; }
+    }
+    inp.blur();
+    return;
+  }
+
+  // floor行（上・済・下・済の4列）→同じ列位置で次の行へ
+  if(curRow.classList.contains('floor-row')){
     for(var r = rowIdx+1; r < allRows.length; r++){
       const nextRowInputs = Array.from(allRows[r].querySelectorAll('input'));
-      if(nextRowInputs.length === 4 && nextRowInputs.length > colIdx){
-        nextRowInputs[colIdx].focus(); return;
-      } else if(nextRowInputs.length > 0){
-        nextRowInputs[0].focus(); return;
-      }
+      if(nextRowInputs.length > colIdx){ nextRowInputs[colIdx].focus(); return; }
+      else if(nextRowInputs.length > 0){ nextRowInputs[0].focus(); return; }
     }
     inp.blur();
     return;
