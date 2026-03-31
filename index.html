@@ -1433,7 +1433,7 @@ function renderLoadingHTML(sections){
     const total = sec.rows.reduce(function(a,r){ return a+r.v; },0) + (sec.other||0);
     if(total === 0 && !sec.inputRows && !sec.inputGroups) return;
     html += '<div style="margin-bottom:12px;">';
-    var dispTotal = (sec.inputRows || sec.inputGroups) ? '' : (sec.bundle ? Math.round(total/sec.bundle*10)/10+'束' : total);
+    var dispTotal = (sec.inputRows || sec.inputGroups || sec.label==='湯の丘') ? '' : (sec.bundle ? Math.round(total/sec.bundle*10)/10+'束' : total);
     html += '<div style="background:#1a1d27;padding:8px 12px;border-radius:8px 8px 0 0;display:flex;justify-content:space-between;align-items:center;">'
       +'<span style="font-size:16px;font-weight:900;color:#e8eaf6;flex:1;">'+sec.label+'</span>'
       +(dispTotal!==''?'<span style="font-size:22px;font-weight:900;color:#ffffff;min-width:70px;text-align:right;">'+dispTotal+'</span>':'')
@@ -1539,6 +1539,7 @@ function openLoading(){
   document.getElementById('loadingTitle').textContent=(d.getMonth()+1)+'月'+d.getDate()+'日（'+days2[d.getDay()]+'）積み込み表';
   try {
     document.getElementById('loadingContent').innerHTML = renderLoadingHTML(buildLoadingData());
+    setupLoadingEditEvents();
   } catch(e) {
     document.getElementById('loadingContent').innerHTML = '<div style="color:red;padding:20px;">エラー: '+e.message+'</div>';
     console.error(e);
