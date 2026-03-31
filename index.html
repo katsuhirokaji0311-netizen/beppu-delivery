@@ -1335,21 +1335,16 @@ function buildLoadingData(){
 
   // 17. 子作務衣（湯の丘セクションに統合済み）
 
-  // 19. 湯の丘（浴衣クリーニング・作務衣・子作務衣を一括）
+  // 19. 湯の丘（浴衣クリーニング・作務衣・子作務衣・子供浴衣を一括）
   var yunokiRows=[
+    rd(C.湯の丘,'浴衣 クリーニング','浴衣 クリーニング'),
     rd(C.湯の丘,'作務衣・上','作務衣・上'),
     rd(C.湯の丘,'作務衣・下','作務衣・下'),
     rd(C.湯の丘,'子作務衣 上','子作務衣 上'),
     rd(C.湯の丘,'子作務衣 下','子作務衣 下'),
     rd(C.湯の丘,'子供浴衣','子供浴衣'),
   ].filter(function(r){ return r.v > 0; });
-  sections.push({label:'湯の丘',rows:yunokiRows,other:0,inputRows:[
-    {n:'浴衣 クリーニング',key:'yukuC_湯の丘'},
-    {n:'作務衣クリーニング上',key:'smC_湯の丘上'},
-    {n:'作務衣クリーニング下',key:'smC_湯の丘下'},
-    {n:'子作務衣クリーニング上',key:'kosmC_湯の丘上'},
-    {n:'子作務衣クリーニング下',key:'kosmC_湯の丘下'},
-  ]});
+  sections.push({label:'湯の丘',rows:yunokiRows,other:0});
 
   // 20. クリーニング（別府おぐら）
   sections.push({label:'クリーニング（別府おぐら）',rows:[],other:0,inputRows:[
