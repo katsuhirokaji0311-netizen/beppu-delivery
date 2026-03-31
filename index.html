@@ -1343,8 +1343,8 @@ function buildLoadingData(){
     rd(C.湯の丘,'子作務衣 上','子作務衣 上'),
     rd(C.湯の丘,'子作務衣 下','子作務衣 下'),
     rd(C.湯の丘,'子供浴衣','子供浴衣'),
-  ].filter(function(r){ return r.v > 0; });
-  sections.push({label:'湯の丘',rows:yunokiRows,other:0});
+  ];
+  sections.push({label:'湯の丘',rows:yunokiRows,other:0,alwaysShow:true});
 
   // 20. クリーニング（別府おぐら）
   sections.push({label:'クリーニング（別府おぐら）',rows:[],other:0,inputRows:[
@@ -1430,8 +1430,8 @@ function renderLoadingHTML(sections){
     }
 
     // 通常セクション
-    const total = sec.rows.reduce(function(a,r){ return a+r.v; },0) + (sec.other||0);
-    if(total === 0 && !sec.inputRows && !sec.inputGroups) return;
+    const total = sec.rows.reduce(function(a,r){ return a+(r.v||0); },0) + (sec.other||0);
+    if(total === 0 && !sec.inputRows && !sec.inputGroups && !sec.alwaysShow) return;
     html += '<div style="margin-bottom:12px;">';
     var dispTotal = (sec.inputRows || sec.inputGroups || sec.label==='湯の丘') ? '' : (sec.bundle ? Math.round(total/sec.bundle*10)/10+'束' : total);
     html += '<div style="background:#1a1d27;padding:8px 12px;border-radius:8px 8px 0 0;display:flex;justify-content:space-between;align-items:center;">'
