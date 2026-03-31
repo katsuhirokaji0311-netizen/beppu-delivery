@@ -1312,9 +1312,7 @@ function buildLoadingData(){
   var koL=[koRow(C.東屋,'東屋','L'),koRow(C.彩葉,'彩葉','L'),koRow(C.夢月,'夢月','L'),koRow(C.さくら亭,'さくら亭','L'),koRow(C.万天の湯,'万天の湯','L')];
   var koM=[koRow(C.東屋,'東屋','M'),koRow(C.彩葉,'彩葉','M'),koRow(C.夢月,'夢月','M'),koRow(C.さくら亭,'さくら亭','M'),koRow(C.万天の湯,'万天の湯','M')];
   var koS=[koRow(C.東屋,'東屋','S'),koRow(C.彩葉,'彩葉','S'),koRow(C.夢月,'夢月','S'),koRow(C.さくら亭,'さくら亭','S'),koRow(C.万天の湯,'万天の湯','S')];
-  // 湯の丘の子供浴衣（サイズなし）
-  var koYunoU = d(C.湯の丘,'子供浴衣');
-  if(koYunoU>0){ koL.push(r(C.湯の丘,'子供浴衣_d','湯の丘',koYunoU)); }
+  // 湯の丘の子供浴衣は別セクションで処理
   if(koL.reduce(function(a,r){return a+r.v;},0)>0) sections.push({label:'子供浴衣L',rows:koL,other:0});
   if(koM.reduce(function(a,r){return a+r.v;},0)>0) sections.push({label:'子供浴衣M',rows:koM,other:0});
   if(koS.reduce(function(a,r){return a+r.v;},0)>0) sections.push({label:'子供浴衣S',rows:koS,other:0});
@@ -1335,16 +1333,22 @@ function buildLoadingData(){
     r(C.和み月,'浴衣_小','浴衣 小',     parseInt(getStoreData(C.和み月)['浴衣_小'])||0),
   ];
 
-  // 17. 子作務衣
-  var kosmU=[rd(C.湯の丘,'子作務衣 上','湯の丘')];
-  var kosmD=[rd(C.湯の丘,'子作務衣 下','湯の丘')];
-  if(kosmU[0].v>0) sections.push({label:'子作務衣上',rows:kosmU,other:0});
-  if(kosmD[0].v>0) sections.push({label:'子作務衣下',rows:kosmD,other:0});
+  // 17. 子作務衣（湯の丘セクションに統合済み）
 
-  // 19. クリーニング（湯の丘）
-  sections.push({label:'クリーニング（湯の丘）',rows:[],other:0,inputRows:[
-    {n:'浴衣',key:'yukuC_湯の丘'},{n:'作務衣上',key:'smC_湯の丘上'},{n:'作務衣下',key:'smC_湯の丘下'},
-    {n:'子作務衣上',key:'kosmC_湯の丘上'},{n:'子作務衣下',key:'kosmC_湯の丘下'}
+  // 19. 湯の丘（浴衣クリーニング・作務衣・子作務衣を一括）
+  var yunokiRows=[
+    rd(C.湯の丘,'作務衣・上','作務衣・上'),
+    rd(C.湯の丘,'作務衣・下','作務衣・下'),
+    rd(C.湯の丘,'子作務衣 上','子作務衣 上'),
+    rd(C.湯の丘,'子作務衣 下','子作務衣 下'),
+    rd(C.湯の丘,'子供浴衣','子供浴衣'),
+  ].filter(function(r){ return r.v > 0; });
+  sections.push({label:'湯の丘',rows:yunokiRows,other:0,inputRows:[
+    {n:'浴衣 クリーニング',key:'yukuC_湯の丘'},
+    {n:'作務衣クリーニング上',key:'smC_湯の丘上'},
+    {n:'作務衣クリーニング下',key:'smC_湯の丘下'},
+    {n:'子作務衣クリーニング上',key:'kosmC_湯の丘上'},
+    {n:'子作務衣クリーニング下',key:'kosmC_湯の丘下'},
   ]});
 
   // 20. クリーニング（別府おぐら）
@@ -1378,7 +1382,7 @@ function buildLoadingData(){
   var smRows=[
     {n:'東屋', 通上:d(C.東屋,'作務衣・上'),通下:d(C.東屋,'作務衣・下'),L上:d(C.東屋,'作務衣L・上'),L下:d(C.東屋,'作務衣L・下')},
     {n:'彩葉', 通上:f(C.彩葉,'作務衣・上'),通下:f(C.彩葉,'作務衣・下'),L上:f(C.彩葉,'作務衣L・上'),L下:f(C.彩葉,'作務衣L・下')},
-    {n:'湯の丘', 通上:d(C.湯の丘,'作務衣・上'),通下:d(C.湯の丘,'作務衣・下'),L上:0,L下:0},
+
     {n:'さくら亭', 通上:f(C.さくら亭,'作務衣・上'),通下:f(C.さくら亭,'作務衣・下'),L上:f(C.さくら亭,'作務衣L・上'),L下:f(C.さくら亭,'作務衣L・下')},
     {n:'万天の湯', 通上:d(C.万天の湯,'作務衣・上'),通下:d(C.万天の湯,'作務衣・下'),L上:d(C.万天の湯,'作務衣L・上'),L下:d(C.万天の湯,'作務衣L・下')},
     {n:'夢月', 通上:f(C.夢月,'作務衣・上'),通下:f(C.夢月,'作務衣・下'),L上:f(C.夢月,'作務衣L・上'),L下:f(C.夢月,'作務衣L・下')},
