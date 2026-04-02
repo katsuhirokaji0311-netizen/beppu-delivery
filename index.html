@@ -51,16 +51,16 @@ body{font-family:'Noto Sans JP',-apple-system,sans-serif;background:var(--bg);co
 .items-list{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;display:flex;flex-direction:column;}
 .item-row{display:grid;grid-template-columns:1fr 56px 56px;gap:0px;padding:5px 4px;border-bottom:1px solid rgba(45,50,80,0.4);align-items:center;}
 .item-row.floor-row{grid-template-columns:1fr 46px 46px 46px 46px;gap:0px;}
-.item-name{font-size:17px;font-weight:500;line-height:1.2;text-align:right;}
+.item-name{font-size:17px;font-weight:500;line-height:1.2;text-align:center;}
 .num-input{width:100%;text-align:center;font-size:20px;font-weight:700;border-radius:7px;border:1px solid var(--border);background:var(--surface2);color:#ffffff;padding:5px 2px;outline:none;}
 .num-input:not(.col-z){background:rgba(251,146,60,0.18);border-color:rgba(251,146,60,0.5);color:#ffffff;}
 .num-input:focus{border-color:var(--accent);background:#1a2035;}
 .num-input.has-val-d{background:rgba(251,146,60,0.25);border-color:#fb923c;color:#ffffff;}
-.num-input.has-val-z{background:var(--surface2);border-color:var(--border);color:#4f8ef7;}
-.num-input.col-z{background:var(--surface2);border-color:var(--border);color:#4f8ef7;}
-.num-input.col-z.has-val-z{background:var(--surface2);border-color:var(--border);color:#4f8ef7;}
+.num-input.has-val-z{background:var(--surface2);border-color:var(--border);color:#ffffff;}
+.num-input.col-z{background:var(--surface2);border-color:var(--border);}
+.num-input.col-z.has-val-z{background:var(--surface2);border-color:var(--border);color:#ffffff;}
 .item-row.row-has-val{background:rgba(79,142,247,0.15)!important;border-left:3px solid var(--accent);}
-.item-row:not(.has-sub) .item-name{text-align:right;}
+.item-row:not(.has-sub) .item-name{text-align:center;}
 .item-row.has-sub{display:grid;grid-template-columns:1fr 112px;gap:0px;}
 .sub-wrap{display:flex;flex-direction:column;gap:2px;align-items:flex-end;width:112px;}
 .sub-row{display:flex;align-items:center;gap:4px;}
@@ -111,9 +111,10 @@ body{font-family:'Noto Sans JP',-apple-system,sans-serif;background:var(--bg);co
 <div id="loadingEditDialog" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:9999;align-items:center;justify-content:center;">
   <div style="background:var(--surface);border-radius:16px;padding:24px;margin:20px;width:calc(100%-40px);max-width:320px;">
     <div id="loadingEditLabel" style="font-size:16px;font-weight:900;color:var(--text);margin-bottom:16px;text-align:center;"></div>
-    <input id="loadingEditInput" type="text" inputmode="numeric" pattern="[0-9]*" style="width:100%;text-align:center;font-size:28px;font-weight:900;border:2px solid var(--accent);border-radius:10px;padding:10px;background:var(--surface2);color:#fff;box-sizing:border-box;" onkeydown="if(event.key==='Enter'){saveLoadingEdit();}">
+    <input id="loadingEditInput" type="text" inputmode="numeric" pattern="[0-9]*" style="width:100%;text-align:center;font-size:28px;font-weight:900;border:2px solid var(--accent);border-radius:10px;padding:10px;background:var(--surface2);color:#fff;box-sizing:border-box;">
     <div style="display:flex;gap:10px;margin-top:16px;">
-      <button onclick="closeLoadingEdit()" style="flex:1;padding:12px;border-radius:10px;background:var(--surface2);border:1px solid var(--border);color:var(--text);font-size:15px;font-weight:700;cursor:pointer;">閉じる</button>
+      <button onclick="closeLoadingEdit()" style="flex:1;padding:12px;border-radius:10px;background:var(--surface2);border:1px solid var(--border);color:var(--text);font-size:15px;font-weight:700;cursor:pointer;">キャンセル</button>
+      <button onclick="saveLoadingEdit()" style="flex:1;padding:12px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;color:#fff;font-size:15px;font-weight:700;cursor:pointer;">保存</button>
     </div>
   </div>
 </div>
@@ -129,10 +130,6 @@ body{font-family:'Noto Sans JP',-apple-system,sans-serif;background:var(--bg);co
     </div>
     <div class="badge" id="storeBadge">13店舗</div>
     <div id="todayCount" style="font-size:12px;color:var(--text2);margin-top:6px;"></div>
-    <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:6px;">
-      <span id="syncBadge" style="font-size:11px;color:var(--accent);transition:opacity 0.5s;opacity:0;"></span>
-      <button onclick="loadFromGAS(function(){updateDots(); applyFilter();updateDateDisplay();})" style="font-size:11px;padding:3px 10px;border-radius:8px;border:1px solid var(--border);background:var(--surface2);color:var(--text2);cursor:pointer;">🔄 最新データを取得</button>
-    </div>
     <div id="afternoonCount" style="margin-top:10px;display:flex;gap:16px;justify-content:center;align-items:baseline;"></div>
   </div>
   <div style="display:flex;gap:8px;padding:10px 16px 0;">
@@ -173,7 +170,8 @@ body{font-family:'Noto Sans JP',-apple-system,sans-serif;background:var(--bg);co
 
   <!-- フローティングボタン -->
   <div id="floatBtns" style="position:fixed;top:50%;left:4px;transform:translateY(-50%);display:flex;flex-direction:column;gap:6px;z-index:100;touch-action:none;">
-    <button onclick="document.activeElement.blur();goHome();" style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;color:#fff;font-size:11px;font-weight:700;cursor:pointer;box-shadow:0 3px 8px rgba(0,0,0,0.4);">完了</button>
+    <button onclick="document.activeElement.blur()" style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;color:#fff;font-size:11px;font-weight:700;cursor:pointer;box-shadow:0 3px 8px rgba(0,0,0,0.4);">完了</button>
+    <button onclick="goHome()" style="width:44px;height:44px;border-radius:50%;background:var(--surface2);border:1px solid var(--border);color:var(--text);font-size:20px;cursor:pointer;box-shadow:0 3px 8px rgba(0,0,0,0.4);">🏠</button>
   </div>
 </div>
 
@@ -186,9 +184,6 @@ body{font-family:'Noto Sans JP',-apple-system,sans-serif;background:var(--bg);co
     <button onclick="printLoading()" style="padding:7px 14px;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;color:#fff;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;">🖨 印刷</button>
   </div>
   <div style="flex:1;overflow-y:auto;padding:12px 24px;" id="loadingContent"></div>
-  <div style="padding:12px 16px;border-top:1px solid var(--border);background:var(--surface);flex-shrink:0;">
-    <button onclick="goHome()" style="width:100%;padding:14px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;color:#fff;font-size:15px;font-weight:700;cursor:pointer;">完了</button>
-  </div>
 </div>
 
 <!-- PRINT VIEW -->
@@ -208,86 +203,37 @@ body{font-family:'Noto Sans JP',-apple-system,sans-serif;background:var(--bg);co
 
 const STORES = [
   {name:"東屋", code:"006-00084-00000", icon:"♨",
-   items:[{n:"シーツ183"},{n:"包布 カラー"},{n:"包布 D"},{n:"デユベ 小"},{n:"枕カバー"},{n:"BT"},{n:"作務衣・上"},{n:"作務衣・下"},{n:"作務衣L・上"},{n:"作務衣L・下"},{n:"子供浴衣",sub:["L","M","S"]}]},
+   items:[{n:"シーツ183"},{n:"包布 カラー"},{n:"包布 D"},{n:"デユベ 小"},{n:"PC"},{n:"BT"},{n:"作務衣・上"},{n:"作務衣・下"},{n:"作務衣L・上"},{n:"作務衣L・下"},{n:"子供浴衣",sub:["L","M","S"]}]},
   {name:"彩葉", code:"006-00078-00000", icon:"🍃",
-   items:[{n:"シーツ160",floor:true},{n:"シーツ228",floor:true},{n:"包布 カラー",floor:true},{n:"包布 D",floor:true},{n:"枕カバー",floor:true},{n:"BT",floor:true},{n:"作務衣・上",floor:true},{n:"作務衣・下",floor:true},{n:"作務衣L・上",floor:true},{n:"作務衣L・下",floor:true},{n:"子供浴衣",sub:["L","M","S"],floor:true}]},
+   items:[{n:"シーツ160",floor:true},{n:"シーツ228",floor:true},{n:"包布 カラー",floor:true},{n:"包布 D",floor:true},{n:"PC",floor:true},{n:"BT",floor:true},{n:"作務衣・上",floor:true},{n:"作務衣・下",floor:true},{n:"作務衣L・上",floor:true},{n:"作務衣L・下",floor:true},{n:"子供浴衣",sub:["L","M","S"],floor:true}]},
   {name:"夢月", code:"006-00091-00000", icon:"🌙",
-   items:[{n:"シーツ160",floor:true},{n:"シーツ203",floor:true},{n:"シーツ270",floor:true},{n:"包布 D",floor:true},{n:"包布 カラー",floor:true},{n:"枕カバー",floor:true},{n:"BT",floor:true},{n:"作務衣・上",floor:true},{n:"作務衣・下",floor:true},{n:"作務衣L・上",floor:true},{n:"作務衣L・下",floor:true},{n:"子供浴衣",sub:["L","M","S"],floor:true}]},
+   items:[{n:"シーツ160",floor:true},{n:"シーツ203",floor:true},{n:"シーツ270",floor:true},{n:"包布 D",floor:true},{n:"包布 カラー",floor:true},{n:"PC",floor:true},{n:"BT",floor:true},{n:"作務衣・上",floor:true},{n:"作務衣・下",floor:true},{n:"作務衣L・上",floor:true},{n:"作務衣L・下",floor:true},{n:"子供浴衣",sub:["L","M","S"],floor:true}]},
   {name:"かんなわ荘", code:"006-00083-00000", icon:"🏠",
-   items:[{n:"シーツ160"},{n:"枕カバー S"},{n:"浴衣 中"},{n:"子供浴衣 大"},{n:"子供浴衣 中"}]},
+   items:[{n:"シーツ160"},{n:"枕カバー S"},{n:"浴衣"},{n:"子供浴衣"}]},
   {name:"湯の丘", code:"006-00081-00000", icon:"⛰",
-   items:[{n:"シーツ160"},{n:"シーツ203"},{n:"包布 D"},{n:"PC(L)"},{n:"BT"},{n:"浴衣 クリーニング"},{n:"作務衣・上"},{n:"作務衣・下"},{n:"子作務衣 上"},{n:"子作務衣 下"},{n:"子供浴衣"}]},
+   items:[{n:"シーツ160"},{n:"シーツ203"},{n:"包布 D"},{n:"PC"},{n:"PC(L)"},{n:"BT"},{n:"浴衣 クリーニング"},{n:"作務衣・上"},{n:"作務衣・下"},{n:"子作務衣 上"},{n:"子作務衣 下"},{n:"子供浴衣"}]},
   {name:"別府おぐら", code:"006-00077-00000", icon:"🌸",
    items:[{n:"シーツ160"},{n:"包布 D"},{n:"包布 S"},{n:"枕カバー S"},{n:"枕カバー M"},{n:"BT"},{n:"FT"},{n:"浴衣 クリーニング"},{n:"子供浴衣"}]},
   {name:"九港福", code:"006-00085-00000", icon:"🍀",
-   items:[{n:"シーツ160"},{n:"シーツ183"},{n:"包布 D"},{n:"枕カバー M"},{n:"浴衣",sub:["特大","大","中","小"]},{n:"BT クリーニング"},{n:"枕カバー S"}]},
+   items:[{n:"シーツ160"},{n:"シーツ183"},{n:"包布 D"},{n:"枕カバー M"},{n:"浴衣"},{n:"BT クリーニング"},{n:"枕カバー S"}]},
   {name:"さくら亭", code:"006-00093-00000", icon:"🌺",
-   items:[{n:"シーツ160",floor:true},{n:"シーツ183",floor:true},{n:"シーツ203",floor:true},{n:"シーツ228",floor:true},{n:"包布 D",floor:true},{n:"デユベ 小",floor:true},{n:"枕カバー",floor:true},{n:"BT",floor:true},{n:"作務衣・上",floor:true},{n:"作務衣・下",floor:true},{n:"作務衣L・上",floor:true},{n:"作務衣L・下",floor:true},{n:"子供浴衣",sub:["L","M","S"],floor:true}]},
+   items:[{n:"シーツ160",floor:true},{n:"シーツ183",floor:true},{n:"シーツ203",floor:true},{n:"シーツ228",floor:true},{n:"包布 D",floor:true},{n:"デユベ 小",floor:true},{n:"PC",floor:true},{n:"BT",floor:true},{n:"作務衣・上",floor:true},{n:"作務衣・下",floor:true},{n:"作務衣L・上",floor:true},{n:"作務衣L・下",floor:true},{n:"子供浴衣",sub:["L","M","S"],floor:true}]},
   {name:"万天の湯", code:"006-00092-00000", icon:"💧",
    items:[{n:"シーツ160"},{n:"シーツ228"},{n:"包布 カラー"},{n:"包布 D"},{n:"枕カバー"},{n:"BT"},{n:"作務衣・上"},{n:"作務衣・下"},{n:"作務衣L・上"},{n:"作務衣L・下"},{n:"子供浴衣",sub:["L","M","S"]}]},
   {name:"和み月", code:"006-00090-00000", icon:"🌛",
    items:[{n:"シーツ183"},{n:"シーツ228"},{n:"デユベ 中"},{n:"デユベ 小"},{n:"枕カバー（L）"},{n:"BT"},{n:"FT"},{n:"柄浴衣",sub:["大","中","小"]},{n:"浴衣",sub:["特大","大","中","小"]}]},
   {name:"扇山", code:"006-00082-00000", icon:"🏔",
-   items:[{n:"シーツ203",floor:true},{n:"包布 カラー",floor:true},{n:"枕カバー",floor:true},{n:"BT",floor:true},{n:"作務衣・上",floor:true},{n:"作務衣・下",floor:true},{n:"作務衣L・上",floor:true},{n:"作務衣L・下",floor:true}]},
+   items:[{n:"シーツ203",floor:true},{n:"包布 カラー",floor:true},{n:"PC",floor:true},{n:"BT",floor:true},{n:"作務衣・上",floor:true},{n:"作務衣・下",floor:true},{n:"作務衣L・上",floor:true},{n:"作務衣L・下",floor:true}]},
   {name:"亀川マリーナテラス", code:"006-00089-00000", icon:"⚓",
-   items:[{n:"シーツ160"},{n:"デユベ 小"},{n:"枕カバー"},{n:"BM"}]},
+   items:[{n:"シーツ160"},{n:"デユベ 小"},{n:"PC"},{n:"BM"}]},
   {name:"游湯", code:"006-00092-00001", icon:"🌊",
    items:[{n:"シーツ160"},{n:"包布 D"},{n:"枕カバー"},{n:"浴衣",sub:["大","中","小"]}]},
 ];
 
 // Load saved data
 function toDateKey(d){ return d.toISOString().slice(0,10); }
-
-// Google Apps Script連携
-const GAS_URL = 'https://script.google.com/macros/s/AKfycbyIe4QjB5IhwCXeRgN_GQuIS7DEyqzWRWABjVi9-dE4MuUg5sxX8eIPCRqul98x7JkDUw/exec';
-var _gasSaveTimer = null;
-
-function loadAll(){
-  try{ return JSON.parse(localStorage.getItem('deliveryData2')||'{}'); }catch(e){return{};}
-}
-function saveAll(data){
-  localStorage.setItem('deliveryData2', JSON.stringify(data));
-  // GASにも遅延保存（連続入力時は最後の1回だけ送信）
-  if(_gasSaveTimer) clearTimeout(_gasSaveTimer);
-  _gasSaveTimer = setTimeout(function(){ saveToGAS(data); }, 1500);
-}
-function saveToGAS(data){
-  fetch(GAS_URL, {
-    method:'POST',
-    mode:'no-cors',
-    body: JSON.stringify(data),
-    headers:{'Content-Type':'text/plain'}
-  }).then(function(){
-    showSyncBadge('☁️ 同期完了');
-  }).catch(function(){ showSyncBadge('⚠️ オフライン'); });
-}
-function loadFromGAS(callback){
-  showSyncBadge('☁️ 読み込み中...');
-  fetch(GAS_URL+'?t='+Date.now())
-    .then(function(r){ return r.json(); })
-    .then(function(data){
-      if(data && typeof data === 'object' && Object.keys(data).length > 0){
-        allData = data;
-        localStorage.setItem('deliveryData2', JSON.stringify(allData));
-        showSyncBadge('☁️ 同期完了');
-      } else {
-        showSyncBadge('☁️ データなし');
-      }
-      if(callback) callback();
-    })
-    .catch(function(){
-      showSyncBadge('⚠️ オフライン（ローカルで動作中）');
-      if(callback) callback();
-    });
-}
-function showSyncBadge(msg){
-  var el = document.getElementById('syncBadge');
-  if(!el) return;
-  el.textContent = msg;
-  el.style.opacity = '1';
-  clearTimeout(el._t);
-  el._t = setTimeout(function(){ el.style.opacity='0'; }, 3000);
-}
+function loadAll(){ try{ return JSON.parse(localStorage.getItem('deliveryData2')||'{}'); }catch(e){return{};} }
+function saveAll(data){ localStorage.setItem('deliveryData2', JSON.stringify(data)); }
 function cleanOldData(){
   const cutoff = new Date();
   cutoff.setMonth(cutoff.getMonth() - 1);
@@ -307,31 +253,6 @@ let loadingFrom = 'home';
 let loadingInputs = {};
 let currentDate = new Date();
 currentDate.setHours(0,0,0,0);
-// 起動時：まずlocalStorageで起動し、GASにデータがあれば上書き
-window.addEventListener('load', function(){
-  updateDateDisplay();
-  updateDots(); applyFilter();
-  cleanOldData();
-  // GASからデータ取得（ローカルより新しい場合のみ上書き）
-  fetch(GAS_URL+'?t='+Date.now())
-    .then(function(r){ return r.json(); })
-    .then(function(gasData){
-      if(gasData && typeof gasData === 'object' && Object.keys(gasData).length > 0){
-        // GASにデータがある場合のみ上書き
-        allData = gasData;
-        localStorage.setItem('deliveryData2', JSON.stringify(allData));
-        showSyncBadge('☁️ 同期完了');
-        updateDateDisplay();
-        updateDots(); applyFilter();
-      } else {
-        // GASが空ならlocalStorageのデータをGASに送信
-        saveToGAS(allData);
-      }
-    })
-    .catch(function(){
-      showSyncBadge('⚠️ オフライン（ローカルで動作中）');
-    });
-});
 
 function getDateKey(){ return toDateKey(currentDate); }
 function getStoreData(code){ return (allData[getDateKey()]||{})[code]||{}; }
@@ -401,7 +322,7 @@ function restoreData(){
 }
 
 // 積み込み表編集ダイアログ
-var _editCode = null, _editKey = null, _editLkey = null;
+var _editCode = null, _editKey = null;
 
 function openLoadingEdit(code, key, label, currentVal){
   _editCode = code;
@@ -422,53 +343,6 @@ function closeLoadingEdit(){
 function saveLoadingEdit(){
   var newVal = parseInt(document.getElementById('loadingEditInput').value);
   if(isNaN(newVal) || newVal < 0){ closeLoadingEdit(); return; }
-  // lkeyセル（クリーニング手入力）の場合
-  if(_editLkey){
-    loadingInputs[_editLkey] = String(newVal);
-    // lkeyMapで対応するstore/fieldに保存
-    var lkeyMap2 = {
-      'yukuC_湯の丘':    {code:'006-00081-00000', field:'浴衣 クリーニング_d'},
-      'yukuC_別府おぐら':{code:'006-00077-00000', field:'浴衣 クリーニング_d'},
-      'smC_湯の丘上':    {code:'006-00081-00000', field:'作務衣クリーニング上_d'},
-      'smC_湯の丘下':    {code:'006-00081-00000', field:'作務衣クリーニング下_d'},
-      'kosmC_湯の丘上':  {code:'006-00081-00000', field:'子作務衣クリーニング上_d'},
-      'kosmC_湯の丘下':  {code:'006-00081-00000', field:'子作務衣クリーニング下_d'},
-      'koYuC_おぐら':    {code:'006-00077-00000', field:'子供浴衣クリーニング_d'},
-      'yuC_和み月_柄大': {code:'006-00090-00000', field:'柄浴衣クリーニング大_d'},
-      'yuC_和み月_柄中': {code:'006-00090-00000', field:'柄浴衣クリーニング中_d'},
-      'yuC_和み月_柄小': {code:'006-00090-00000', field:'柄浴衣クリーニング小_d'},
-      'yuC_和み月_特大': {code:'006-00090-00000', field:'浴衣クリーニング特大_d'},
-      'yuC_和み月_大':   {code:'006-00090-00000', field:'浴衣クリーニング大_d'},
-      'yuC_和み月_中':   {code:'006-00090-00000', field:'浴衣クリーニング中_d'},
-      'yuC_和み月_小':   {code:'006-00090-00000', field:'浴衣クリーニング小_d'},
-      'yuC_游湯_大':     {code:'006-00092-00001', field:'浴衣クリーニング大_d'},
-      'yuC_游湯_中':     {code:'006-00092-00001', field:'浴衣クリーニング中_d'},
-      'yuC_游湯_小':     {code:'006-00092-00001', field:'浴衣クリーニング小_d'},
-      'yuC_かんなわ_中': {code:'006-00083-00000', field:'浴衣クリーニング中_d'},
-      'yuC_かんなわ_子大':{code:'006-00083-00000', field:'子供浴衣クリーニング大_d'},
-      'yuC_九港福_大':   {code:'006-00085-00000', field:'浴衣クリーニング大_d'},
-      'yuC_九港福_中':   {code:'006-00085-00000', field:'浴衣クリーニング中_d'},
-      'btC_九港福':      {code:'006-00085-00000', field:'BTクリーニング_d'},
-    };
-    var map = lkeyMap2[_editLkey];
-    if(map){
-      var dk2 = getDateKey();
-      if(!allData[dk2]) allData[dk2]={};
-      if(!allData[dk2][map.code]) allData[dk2][map.code]={};
-      allData[dk2][map.code][map.field] = String(newVal);
-      saveAll(allData);
-    }
-    _editLkey = null;
-    closeLoadingEdit();
-    var _t = document.createElement('div');
-    _t.textContent = '✅ 保存しました';
-    _t.style.cssText = 'position:fixed;top:70px;left:50%;transform:translateX(-50%);background:#22c55e;color:#fff;padding:10px 20px;border-radius:10px;font-size:14px;font-weight:700;z-index:9999;';
-    document.body.appendChild(_t);
-    setTimeout(function(){ _t.remove(); }, 1500);
-    document.getElementById('loadingContent').innerHTML = renderLoadingHTML(buildLoadingData());
-    setupLoadingEditEvents();
-    return;
-  }
   var dk = getDateKey();
   if(!allData[dk]) allData[dk]={};
   if(!allData[dk][_editCode]) allData[dk][_editCode]={};
@@ -492,10 +366,9 @@ function saveLoadingEdit(){
     var baseKey = _editKey.slice(0, -2);
     sd[baseKey+'_d'] = String(newVal);
   } else {
-    // 大・中・小などサブキー（例：浴衣_大）はそのまま保存
     sd[_editKey] = String(newVal);
   }
-  saveAll(allData);
+  localStorage.setItem('deliveryData2', JSON.stringify(allData));
   closeLoadingEdit();
   // 保存完了トースト
   var _t = document.createElement('div');
@@ -507,16 +380,9 @@ function saveLoadingEdit(){
   document.getElementById('loadingContent').innerHTML = renderLoadingHTML(buildLoadingData());
   // イベント再設定
   setupLoadingEditEvents();
-  // 各店舗の個別入力欄にも反映（detailが開いていれば再描画）
-  if(currentIdx !== null && document.getElementById('detail').classList.contains('active')){
-    openStore(currentIdx);
-  }
-  // ホームのドット更新
-  updateDots();
 }
 
 function setupLoadingEditEvents(){
-  // 通常セル（data-code あり）
   document.querySelectorAll('.loading-edit-cell[data-code]').forEach(function(td){
     td.onclick = function(){
       var code = td.dataset.code;
@@ -532,22 +398,6 @@ function setupLoadingEditEvents(){
       }
       var label = td.closest('tr').querySelector('td').textContent;
       openLoadingEdit(code, key, label, currentVal);
-    };
-  });
-  // クリーニング手入力セル（data-lkey あり）
-  document.querySelectorAll('.loading-edit-cell[data-lkey]').forEach(function(td){
-    td.onclick = function(){
-      var lkey = td.dataset.lkey;
-      var currentVal = parseInt(loadingInputs[lkey])||0;
-      var label = td.closest('tr').querySelector('td').textContent;
-      _editLkey = lkey;
-      _editCode = null; _editKey = null;
-      document.getElementById('loadingEditLabel').textContent = label + ' の数を変更';
-      var inp = document.getElementById('loadingEditInput');
-      inp.value = currentVal||'';
-      var dlg = document.getElementById('loadingEditDialog');
-      dlg.style.display = 'flex';
-      setTimeout(function(){ inp.focus(); inp.select(); }, 100);
     };
   });
 }
@@ -728,7 +578,7 @@ function openStore(idx){
   const colHeaders = document.getElementById('colHeaders');
   if(hasFloor){
     colHeaders.className = 'col-headers floor-header';
-    colHeaders.innerHTML = '<div class="col-h">商品名</div><div class="col-h c">上</div><div class="col-h c" style="color:#4f8ef7;">済</div><div class="col-h c">下</div><div class="col-h c" style="color:#4f8ef7;">済</div>';
+    colHeaders.innerHTML = '<div class="col-h">商品名</div><div class="col-h c">上</div><div class="col-h c" style="color:#fb923c;">済</div><div class="col-h c">下</div><div class="col-h c" style="color:#fb923c;">済</div>';
   } else {
     colHeaders.className = 'col-headers';
     colHeaders.innerHTML = '<div class="col-h">商品名</div><div class="col-h c">納品数</div><div class="col-h c">納品済</div>';
@@ -738,30 +588,28 @@ function openStore(idx){
   store.items.forEach(function(item, i){
     const row = document.createElement('div');
     if(item.sub && item.floor){
-      // LMS×上下＋済（縦並び）
+      // LMS×上下（縦並び・列幅をfloor行と同じ46px×2に揃える）
       const hasAnyFS = item.sub.some(function(s){
-        return (sd[item.n+'_'+s+'_上']||'')!==''||(sd[item.n+'_'+s+'_上済']||'')!==''||(sd[item.n+'_'+s+'_下']||'')!==''||(sd[item.n+'_'+s+'_下済']||'')!=='';
+        return (sd[item.n+'_'+s+'_上']||'')!==''||(sd[item.n+'_'+s+'_下']||'')!=='';
       });
       row.className='item-row has-sub '+(i%2===0?'even':'odd')+(hasAnyFS?' row-has-val':'');
       let subHtml='<div class="sub-wrap">'
-        +'<div style="display:grid;grid-template-columns:18px 36px 36px 36px 36px;gap:0px;font-size:10px;color:var(--text2);text-align:center;margin-bottom:2px;">'
-        +'<span></span><span style="color:#fb923c;">上</span><span style="color:#4f8ef7;">済</span><span style="color:#fb923c;">下</span><span style="color:#4f8ef7;">済</span></div>';
+        +'<div style="display:grid;grid-template-columns:18px 46px 46px;gap:0px;font-size:10px;color:var(--text2);text-align:center;margin-bottom:2px;">'
+        +'<span></span><span style="color:#fb923c;">上</span><span style="color:#fb923c;">下</span></div>';
       item.sub.forEach(function(s){
-        const vU=sd[item.n+'_'+s+'_上']||'', vUz=sd[item.n+'_'+s+'_上済']||'', vD=sd[item.n+'_'+s+'_下']||'', vDz=sd[item.n+'_'+s+'_下済']||'';
-        subHtml+='<div style="display:grid;grid-template-columns:18px 36px 36px 36px 36px;gap:0px;align-items:center;">'
+        const vU=sd[item.n+'_'+s+'_上']||'', vD=sd[item.n+'_'+s+'_下']||'';
+        subHtml+='<div style="display:grid;grid-template-columns:18px 46px 46px;gap:0px;align-items:center;">'
           +'<span class="sub-label">'+s+'</span>'
           +'<input class="num-input'+(vU?' has-val-d':'')+'" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="" min="1" enterkeyhint="next" data-key="'+item.n+'_'+s+'_上" value="'+vU+'">'
-          +'<input class="num-input col-z'+(vUz?' has-val-z':'')+'" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="" min="1" enterkeyhint="next" data-key="'+item.n+'_'+s+'_上済" value="'+vUz+'">'
           +'<input class="num-input'+(vD?' has-val-d':'')+'" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="" min="1" enterkeyhint="next" data-key="'+item.n+'_'+s+'_下" value="'+vD+'">'
-          +'<input class="num-input col-z'+(vDz?' has-val-z':'')+'" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="" min="1" enterkeyhint="next" data-key="'+item.n+'_'+s+'_下済" value="'+vDz+'">'
           +'</div>';
       });
       const totalFS=item.sub.reduce(function(a,s){
-        return a+(parseInt(sd[item.n+'_'+s+'_上'])||0)+(parseInt(sd[item.n+'_'+s+'_上済'])||0)+(parseInt(sd[item.n+'_'+s+'_下'])||0)+(parseInt(sd[item.n+'_'+s+'_下済'])||0);
+        return a+(parseInt(sd[item.n+'_'+s+'_上'])||0)+(parseInt(sd[item.n+'_'+s+'_下'])||0);
       },0);
       subHtml+='<div style="font-size:10px;color:var(--text2);text-align:right;margin-top:2px;">'
         +'合計 <span class="sub-total-val" style="color:var(--accent);">'+(hasAnyFS&&totalFS>0?totalFS:'—')+'</span></div></div>';
-      row.innerHTML='<div class="item-name" style="text-align:right;">'+item.n+'</div>'+subHtml;
+      row.innerHTML='<div class="item-name" style="text-align:center;">'+item.n+'</div>'+subHtml;
     } else if(item.floor){
       // 横並び：商品名 | 上入力 | 下入力 | ✕
       const vU = sd[item.n+'_上']||'';
@@ -785,7 +633,7 @@ function openStore(idx){
       const hasAny = vals.some(function(v){ return v!==''; }) || valsZ.some(function(v){ return v!==''; });
       row.className = 'item-row has-sub ' + (i%2===0?'even':'odd') + (hasAny?' row-has-val':'');
       let subHtml = '<div class="sub-wrap"><div style="display:grid;grid-template-columns:18px 47px 47px;gap:0px;font-size:10px;color:var(--text2);text-align:center;margin-bottom:2px;">'
-        +'<span></span><span>納品</span><span style="color:#4f8ef7;">済</span></div>';
+        +'<span></span><span>納品</span><span style="color:#fb923c;">済</span></div>';
       item.sub.forEach(function(s){
         const v = sd[item.n+'_'+s]||'';
         const vz = sd[item.n+'_'+s+'z']||'';
@@ -797,7 +645,7 @@ function openStore(idx){
       });
       subHtml += '<div style="font-size:10px;color:var(--text2);text-align:right;margin-top:2px;">'
         +'合計 <span class="sub-total-val" style="color:var(--accent);">'+(hasAny&&(total+totalZ)>0?(total+totalZ):'—')+'</span></div></div>';
-      row.innerHTML = '<div class="item-name" style="text-align:right;">'+item.n+'</div>'+subHtml;
+      row.innerHTML = '<div class="item-name">'+item.n+'</div>'+subHtml;
     } else {
       const dval = sd[item.n+'_d']||'';
       const zval = sd[item.n+'_z']||'';
@@ -915,46 +763,45 @@ function moveToNextRow(inp){
 
   const key = inp.dataset.key || '';
 
-  // sub行の納品欄（sub-inpクラスかつcolzでない）→同じitem内の次のサイズへ縦移動
-  if(inp.classList.contains('sub-inp') && !inp.classList.contains('col-z')){
-    const itemRow = inp.closest('.item-row');
-    if(itemRow){
-      const subInputs = Array.from(itemRow.querySelectorAll('.sub-inp:not(.col-z)'));
-      const subIdx = subInputs.indexOf(inp);
-      if(subIdx >= 0 && subIdx < subInputs.length - 1){
-        subInputs[subIdx + 1].focus();
-        return;
-      }
+  const itemRow = inp.closest('.item-row');
+  const curRow = itemRow;
+  const allRows = Array.from(document.querySelectorAll('#itemsList .item-row'));
+  const rowIdx = allRows.indexOf(curRow);
+
+  // sub行（東屋・万天など：sub-inpクラス）→納品欄・済欄ともに同列で縦移動
+  if(inp.classList.contains('sub-inp')){
+    const isZ = inp.classList.contains('col-z');
+    // 同じ列（納品か済か）のinputを収集
+    const sameColInputs = Array.from(itemRow.querySelectorAll(
+      isZ ? '.sub-inp.col-z' : '.sub-inp:not(.col-z)'
+    ));
+    const subIdx = sameColInputs.indexOf(inp);
+    if(subIdx >= 0 && subIdx < sameColInputs.length - 1){
+      sameColInputs[subIdx + 1].focus();
+      return;
     }
-    const allRows = Array.from(document.querySelectorAll('#itemsList .item-row'));
-    const rowIdx = allRows.indexOf(inp.closest('.item-row'));
+    // 最後のサイズ→次のitem-rowの同じ列へ
     for(var r = rowIdx+1; r < allRows.length; r++){
-      const nextInputs = Array.from(allRows[r].querySelectorAll('input'));
-      if(nextInputs.length > 0){ nextInputs[0].focus(); return; }
+      const ni = Array.from(allRows[r].querySelectorAll('input'));
+      if(ni.length > 0){ ni[0].focus(); return; }
     }
     inp.blur();
     return;
   }
 
-  const curRow = inp.closest('.item-row');
-  const rowInputs = Array.from(curRow.querySelectorAll('input'));
-  const colIdx = rowInputs.indexOf(inp);
-  const allRows = Array.from(document.querySelectorAll('#itemsList .item-row'));
-  const rowIdx = allRows.indexOf(curRow);
-
-  // floor+sub行（has-subクラス）→同じ列で次のサイズへ縦移動
+  // floor+sub行（彩葉・夢月・さくら亭の子供浴衣）→同じ列で縦移動
   if(curRow.classList.contains('has-sub') && curRow.classList.contains('floor-row')){
-    const colPos = colIdx % 4;
-    const sameColInputs = rowInputs.filter(function(el, i){ return i % 4 === colPos; });
+    const rowInputs2 = Array.from(curRow.querySelectorAll('input'));
+    const colPos = rowInputs2.indexOf(inp) % 4;
+    const sameColInputs = rowInputs2.filter(function(el, i){ return i % 4 === colPos; });
     const curPos = sameColInputs.indexOf(inp);
     if(curPos >= 0 && curPos < sameColInputs.length - 1){
       sameColInputs[curPos + 1].focus();
       return;
     }
-    // 最後→次のitem-rowへ
     for(var r2 = rowIdx+1; r2 < allRows.length; r2++){
-      const ni = Array.from(allRows[r2].querySelectorAll('input'));
-      if(ni.length > 0){ ni[0].focus(); return; }
+      const ni2 = Array.from(allRows[r2].querySelectorAll('input'));
+      if(ni2.length > 0){ ni2[0].focus(); return; }
     }
     inp.blur();
     return;
@@ -962,16 +809,20 @@ function moveToNextRow(inp){
 
   // floor行（上・済・下・済の4列）→同じ列位置で次の行へ
   if(curRow.classList.contains('floor-row')){
-    for(var r = rowIdx+1; r < allRows.length; r++){
-      const nextRowInputs = Array.from(allRows[r].querySelectorAll('input'));
-      if(nextRowInputs.length > colIdx){ nextRowInputs[colIdx].focus(); return; }
-      else if(nextRowInputs.length > 0){ nextRowInputs[0].focus(); return; }
+    const rowInputs3 = Array.from(curRow.querySelectorAll('input'));
+    const colIdx3 = rowInputs3.indexOf(inp);
+    for(var r3 = rowIdx+1; r3 < allRows.length; r3++){
+      const ni3 = Array.from(allRows[r3].querySelectorAll('input'));
+      if(ni3.length > colIdx3){ ni3[colIdx3].focus(); return; }
+      else if(ni3.length > 0){ ni3[0].focus(); return; }
     }
     inp.blur();
     return;
   }
 
-  // 通常行は同じ列位置で次の行へ
+  // 通常行→同じ列位置で次の行へ
+  const rowInputs = Array.from(curRow.querySelectorAll('input'));
+  const colIdx = rowInputs.indexOf(inp);
   for(var r = rowIdx+1; r < allRows.length; r++){
     const nextRowInputs = Array.from(allRows[r].querySelectorAll('input'));
     if(nextRowInputs.length > colIdx){ nextRowInputs[colIdx].focus(); return; }
@@ -1001,7 +852,7 @@ function clearData(){
   const dk = getDateKey();
   if(!allData[dk]) allData[dk] = {};
   allData[dk][store.code] = {};
-  saveAll(allData);
+  localStorage.setItem('deliveryData2', JSON.stringify(allData));
   document.querySelectorAll('#itemsList input').forEach(function(inp){
     inp.value='';
     inp.classList.remove('has-val-d','has-val-z');
@@ -1078,7 +929,7 @@ function saveCurrentInputs(){
     nd[inp.dataset.key] = (inp.value === '0') ? '' : inp.value;
   });
   allData[dk][store.code] = nd;
-  saveAll(allData);
+  localStorage.setItem('deliveryData2', JSON.stringify(allData));
 }
 
 function goHome(){
@@ -1109,10 +960,10 @@ function openPrint(){
       'シーツ160','シーツ203','シーツ270','枕カバー','作務衣・上','作務衣・下','作務衣L・上','作務衣L・下','BT','包布 カラー','包布 D','子供浴衣'
     ],
     '006-00083-00000': [ // かんなわ荘
-      'シーツ160','枕カバー S','浴衣 中','子供浴衣 大','子供浴衣 中'
+      'シーツ160','枕カバー S','浴衣','子供浴衣'
     ],
     '006-00081-00000': [ // 湯の丘
-      'シーツ160','シーツ203','枕カバー','作務衣・上','作務衣・下','子作務衣 上','子作務衣 下','浴衣 クリーニング','BT','包布 D','子供浴衣','PC(L)'
+      'シーツ160','シーツ203','枕カバー','作務衣・上','作務衣・下','子作務衣 上','子作務衣 下','浴衣 クリーニング','BT','包布 D','子供浴衣','PC'
     ],
     '006-00077-00000': [ // 別府おぐら
       'シーツ160','枕カバー S','枕カバー M','浴衣 クリーニング','BT','FT','包布 S','包布 D','子供浴衣'
@@ -1145,8 +996,8 @@ function openPrint(){
     var hasAny = false;
     if(itemObj.sub && itemObj.floor){
       itemObj.sub.forEach(function(s){
-        val += (parseInt(inputs[item+'_'+s+'_上'])||0)+(parseInt(inputs[item+'_'+s+'_上済'])||0)+(parseInt(inputs[item+'_'+s+'_下'])||0)+(parseInt(inputs[item+'_'+s+'_下済'])||0);
-        if(inputs[item+'_'+s+'_上']||inputs[item+'_'+s+'_上済']||inputs[item+'_'+s+'_下']||inputs[item+'_'+s+'_下済']) hasAny=true;
+        val += (parseInt(inputs[item+'_'+s+'_上'])||0)+(parseInt(inputs[item+'_'+s+'_下'])||0);
+        if(inputs[item+'_'+s+'_上']||inputs[item+'_'+s+'_下']) hasAny=true;
       });
     } else if(itemObj.sub){
       itemObj.sub.forEach(function(s){
@@ -1219,7 +1070,7 @@ function buildLoadingData(){
   };
   function d(code,n){ var sd=getStoreData(code); return parseInt(sd[n+'_d'])||0; }
   function f(code,n){ var sd=getStoreData(code); return (parseInt(sd[n+'_上'])||0)+(parseInt(sd[n+'_下'])||0); }
-  function fs(code,item,size){ var sd=getStoreData(code); return (parseInt(sd[item+'_'+size+'_上'])||0)+(parseInt(sd[item+'_'+size+'_下'])||0); } // 済除外（積み込み用）
+  function fs(code,item,size){ var sd=getStoreData(code); return (parseInt(sd[item+'_'+size+'_上'])||0)+(parseInt(sd[item+'_'+size+'_下'])||0); }
   function r(code,key,n,v){ return {n:n, v:v, code:code, key:key}; }
   function rd(code,item,n){ return r(code, item+'_d', n||item, d(code,item)); }
   function rf(code,item,n){ return r(code, item+'_floor', n||item, f(code,item)); }
@@ -1228,7 +1079,7 @@ function buildLoadingData(){
 
   // 1. BT
   var bt=[rd(C.東屋,'BT','東屋'), rd(C.和み月,'BT','和み月'), rf(C.彩葉,'BT','彩葉')];
-  var btOther=d(C.かんなわ荘,'BT')+f(C.夢月,'BT')+d(C.湯の丘,'BT')+f(C.さくら亭,'BT')+d(C.万天の湯,'BT')+f(C.扇山,'BT')+d(C.亀川,'BM');
+  var btOther=d(C.かんなわ荘,'BT')+f(C.夢月,'BT')+d(C.湯の丘,'BT')+f(C.さくら亭,'BT')+d(C.万天の湯,'BT')+d(C.扇山,'BT')+d(C.亀川,'BM');
   if(bt.reduce(function(a,r){return a+r.v;},0)+btOther>0) sections.push({label:'BT',rows:bt,other:btOther});
 
   // 2. おぐらBT
@@ -1239,16 +1090,16 @@ function buildLoadingData(){
   var obt=[rd(C.別府おぐら,'FT','別府おぐら')];
   if(obt[0].v>0) sections.push({label:'おぐらFT',rows:obt,other:0});
 
-  // 4. 枕カバーL（PCL：湯の丘PC・PC(L)、和み月枕カバー（L））
-  var mkL=[rd(C.湯の丘,'PC','湯の丘 PC'), rd(C.湯の丘,'PC(L)','湯の丘 PC(L)'), rd(C.和み月,'枕カバー（L）','和み月')];
-  if(mkL.reduce(function(a,r){return a+r.v;},0)>0) sections.push({label:'枕カバーL(PCL)',rows:mkL,other:0,bundle:20});
+  // 4. 枕カバーL
+  var mkL=[rd(C.湯の丘,'PC','湯の丘PC'), rd(C.湯の丘,'PC(L)','湯の丘PC(L)'), rd(C.和み月,'枕カバー（L）','和み月')];
+  if(mkL.reduce(function(a,r){return a+r.v;},0)>0) sections.push({label:'枕カバーL',rows:mkL,other:0,bundle:20});
 
   // 5. シーツ160
   var s160=[rd(C.別府おぐら,'シーツ160','別府おぐら'), rf(C.彩葉,'シーツ160','彩葉'), rd(C.かんなわ荘,'シーツ160','かんなわ荘')];
   var s160o=d(C.湯の丘,'シーツ160')+f(C.夢月,'シーツ160')+d(C.九港福,'シーツ160')+f(C.さくら亭,'シーツ160')+d(C.万天の湯,'シーツ160')+d(C.亀川,'シーツ160')+d(C.游湯,'シーツ160');
   if(s160.reduce(function(a,r){return a+r.v;},0)+s160o>0) sections.push({label:'シーツ160',rows:s160,other:s160o});
 
-  // 6. 枕カバーS(PCS)：別府おぐら・九港福・かんなわ荘
+  // 6. 枕カバーS(PCS)
   var mkS=[rd(C.別府おぐら,'枕カバー S','別府おぐら'), rd(C.九港福,'枕カバー S','九港福'), rd(C.かんなわ荘,'枕カバー S','かんなわ荘')];
   if(mkS.reduce(function(a,r){return a+r.v;},0)>0) sections.push({label:'枕カバーS(PCS)',rows:mkS,other:0,bundle:20});
 
@@ -1279,18 +1130,10 @@ function buildLoadingData(){
   var s228=[rf(C.彩葉,'シーツ228','彩葉'), rf(C.さくら亭,'シーツ228','さくら亭'), rd(C.万天の湯,'シーツ228','万天の湯'), rd(C.和み月,'シーツ228','和み月')];
   if(s228.reduce(function(a,r){return a+r.v;},0)>0) sections.push({label:'シーツ228',rows:s228,other:0});
 
-  // 13. 枕カバー(PCM)：枕カバー・PC・PC(M)・枕カバーMはすべて同じ商品
-  var mkM=[
-    rd(C.東屋,'枕カバー','東屋'),
-    rf(C.彩葉,'枕カバー','彩葉'),
-    rf(C.夢月,'枕カバー','夢月'),
-    rf(C.扇山,'枕カバー','扇山'),
-    rd(C.亀川,'枕カバー','亀川'),
-  ];
-  var mkMo=d(C.湯の丘,'枕カバー')+f(C.さくら亭,'枕カバー')+d(C.万天の湯,'枕カバー')+d(C.游湯,'枕カバー')+d(C.別府おぐら,'枕カバー M')+d(C.九港福,'枕カバー M');
-  // 重複除去：rowsの値が0のものは表示しない
-  var mkMFiltered = mkM.filter(function(r){ return r.v > 0; });
-  if(mkMFiltered.reduce(function(a,r){return a+r.v;},0)+mkMo>0) sections.push({label:'枕カバー(PCM)',rows:mkMFiltered,other:mkMo,bundle:20});
+  // 13. 枕カバー(PCM)
+  var mkM=[rd(C.東屋,'枕カバー','東屋'), rf(C.彩葉,'枕カバー','彩葉'), rf(C.夢月,'枕カバー','夢月'), rf(C.扇山,'枕カバー','扇山')];
+  var mkMo=d(C.湯の丘,'枕カバー')+f(C.さくら亭,'枕カバー')+d(C.万天の湯,'枕カバー')+d(C.亀川,'枕カバー')+d(C.游湯,'枕カバー')+d(C.別府おぐら,'枕カバー M')+d(C.九港福,'枕カバー M');
+  if(mkM.reduce(function(a,r){return a+r.v;},0)+mkMo>0) sections.push({label:'枕カバー(PCM)',rows:mkM,other:mkMo,bundle:20});
 
   // 14. 包布カラー
   var color=[rd(C.東屋,'包布 カラー','東屋'), rf(C.彩葉,'包布 カラー','彩葉'), rf(C.夢月,'包布 カラー','夢月'), rd(C.万天の湯,'包布 カラー','万天の湯'), rf(C.扇山,'包布 カラー','扇山')];
@@ -1312,78 +1155,51 @@ function buildLoadingData(){
   var koL=[koRow(C.東屋,'東屋','L'),koRow(C.彩葉,'彩葉','L'),koRow(C.夢月,'夢月','L'),koRow(C.さくら亭,'さくら亭','L'),koRow(C.万天の湯,'万天の湯','L')];
   var koM=[koRow(C.東屋,'東屋','M'),koRow(C.彩葉,'彩葉','M'),koRow(C.夢月,'夢月','M'),koRow(C.さくら亭,'さくら亭','M'),koRow(C.万天の湯,'万天の湯','M')];
   var koS=[koRow(C.東屋,'東屋','S'),koRow(C.彩葉,'彩葉','S'),koRow(C.夢月,'夢月','S'),koRow(C.さくら亭,'さくら亭','S'),koRow(C.万天の湯,'万天の湯','S')];
-  // 湯の丘の子供浴衣は別セクションで処理
   if(koL.reduce(function(a,r){return a+r.v;},0)>0) sections.push({label:'子供浴衣L',rows:koL,other:0});
   if(koM.reduce(function(a,r){return a+r.v;},0)>0) sections.push({label:'子供浴衣M',rows:koM,other:0});
   if(koS.reduce(function(a,r){return a+r.v;},0)>0) sections.push({label:'子供浴衣S',rows:koS,other:0});
 
-  // 16. 浴衣（入力画面の数値を各店舗グループのrowsに格納）
-  var yukataKan = d(C.かんなわ荘,'浴衣'); // 後方互換（未使用）
-  var yukataKyu = d(C.九港福,'浴衣');     // 後方互換（未使用）
-  var yukataYuU = parseInt(getStoreData(C.游湯)['浴衣_大'])||0;
-  var yukataYuC = parseInt(getStoreData(C.游湯)['浴衣_中'])||0;
-  var yukataYuS = parseInt(getStoreData(C.游湯)['浴衣_小'])||0;
-  var wYukataRows=[
-    r(C.和み月,'柄浴衣_大','柄浴衣 大', parseInt(getStoreData(C.和み月)['柄浴衣_大'])||0),
-    r(C.和み月,'柄浴衣_中','柄浴衣 中', parseInt(getStoreData(C.和み月)['柄浴衣_中'])||0),
-    r(C.和み月,'柄浴衣_小','柄浴衣 小', parseInt(getStoreData(C.和み月)['柄浴衣_小'])||0),
-    r(C.和み月,'浴衣_特大','浴衣 特大', parseInt(getStoreData(C.和み月)['浴衣_特大'])||0),
-    r(C.和み月,'浴衣_大','浴衣 大',     parseInt(getStoreData(C.和み月)['浴衣_大'])||0),
-    r(C.和み月,'浴衣_中','浴衣 中',     parseInt(getStoreData(C.和み月)['浴衣_中'])||0),
-    r(C.和み月,'浴衣_小','浴衣 小',     parseInt(getStoreData(C.和み月)['浴衣_小'])||0),
+  // 16. 浴衣
+  var yukata=[rd(C.かんなわ荘,'浴衣','かんなわ荘'), rd(C.九港福,'浴衣','九港福'), rd(C.游湯,'浴衣','游湯')];
+  if(yukata.reduce(function(a,r){return a+r.v;},0)>0) sections.push({label:'浴衣',rows:yukata,other:0});
+
+  // 16b. 和み月浴衣（特大・大・中・小）
+  var wYukata=[
+    r(C.和み月,'浴衣_特大','特大', parseInt(getStoreData(C.和み月)['浴衣_特大'])||0),
+    r(C.和み月,'浴衣_大','大',     parseInt(getStoreData(C.和み月)['浴衣_大'])||0),
+    r(C.和み月,'浴衣_中','中',     parseInt(getStoreData(C.和み月)['浴衣_中'])||0),
+    r(C.和み月,'浴衣_小','小',     parseInt(getStoreData(C.和み月)['浴衣_小'])||0),
   ];
+  var wYukataTotal = wYukata.reduce(function(a,r){return a+r.v;},0);
+  if(wYukataTotal>0) sections.push({label:'和み月浴衣', rows:wYukata, other:0});
 
-  // 17. 子作務衣（湯の丘セクションに統合済み）
+  // 17. 子作務衣
+  var kosmU=[rd(C.湯の丘,'子作務衣 上','湯の丘')];
+  var kosmD=[rd(C.湯の丘,'子作務衣 下','湯の丘')];
+  if(kosmU[0].v>0) sections.push({label:'子作務衣上',rows:kosmU,other:0});
+  if(kosmD[0].v>0) sections.push({label:'子作務衣下',rows:kosmD,other:0});
 
-  // 19. 湯の丘（浴衣クリーニング・作務衣・子作務衣・子供浴衣を一括）
-  var yunokiRows=[
-    rd(C.湯の丘,'浴衣 クリーニング','浴衣 クリーニング'),
-    rd(C.湯の丘,'作務衣・上','作務衣・上'),
-    rd(C.湯の丘,'作務衣・下','作務衣・下'),
-    rd(C.湯の丘,'子作務衣 上','子作務衣 上'),
-    rd(C.湯の丘,'子作務衣 下','子作務衣 下'),
-    rd(C.湯の丘,'子供浴衣','子供浴衣'),
-  ];
-  sections.push({label:'湯の丘',rows:yunokiRows,other:0,alwaysShow:true});
-
-  // 20. クリーニング（別府おぐら）
-  sections.push({label:'クリーニング（別府おぐら）',rows:[],other:0,inputRows:[
-    {n:'浴衣',key:'yukuC_別府おぐら'},{n:'子供浴衣',key:'koYuC_おぐら'}
-  ]});
-
-  // 21. 浴衣（入力数値＋クリーニング手入力を店舗ごとに統合）
-  sections.push({label:'浴衣',rows:[],other:0,inputGroups:[
-    {store:'和み月', rows:wYukataRows, items:[]},
-    {store:'游湯', rows:[
-      r(C.游湯,'浴衣_大','大',yukataYuU),
-      r(C.游湯,'浴衣_中','中',yukataYuC),
-      r(C.游湯,'浴衣_小','小',yukataYuS),
-    ], items:[]},
-    {store:'かんなわ荘', rows:[
-      r(C.かんなわ荘,'浴衣 中_d','浴衣 中', parseInt(getStoreData(C.かんなわ荘)['浴衣 中_d'])||0),
-      r(C.かんなわ荘,'子供浴衣 大_d','子供浴衣 大', parseInt(getStoreData(C.かんなわ荘)['子供浴衣 大_d'])||0),
-      r(C.かんなわ荘,'子供浴衣 中_d','子供浴衣 中', parseInt(getStoreData(C.かんなわ荘)['子供浴衣 中_d'])||0),
-    ], items:[]},
-    {store:'九港福', rows:[
-      r(C.九港福,'浴衣_特大','浴衣 特大', parseInt(getStoreData(C.九港福)['浴衣_特大'])||0),
-      r(C.九港福,'浴衣_大','浴衣 大',   parseInt(getStoreData(C.九港福)['浴衣_大'])||0),
-      r(C.九港福,'浴衣_中','浴衣 中',   parseInt(getStoreData(C.九港福)['浴衣_中'])||0),
-      r(C.九港福,'浴衣_小','浴衣 小',   parseInt(getStoreData(C.九港福)['浴衣_小'])||0),
-      r(C.九港福,'BT クリーニング_d','BT クリーニング', parseInt(getStoreData(C.九港福)['BT クリーニング_d'])||0),
-    ], items:[]},
-  ]});
-
-  // 22. 作務衣（一番下）
+  // 18. 作務衣
   var smRows=[
     {n:'東屋', 通上:d(C.東屋,'作務衣・上'),通下:d(C.東屋,'作務衣・下'),L上:d(C.東屋,'作務衣L・上'),L下:d(C.東屋,'作務衣L・下')},
     {n:'彩葉', 通上:f(C.彩葉,'作務衣・上'),通下:f(C.彩葉,'作務衣・下'),L上:f(C.彩葉,'作務衣L・上'),L下:f(C.彩葉,'作務衣L・下')},
-
     {n:'さくら亭', 通上:f(C.さくら亭,'作務衣・上'),通下:f(C.さくら亭,'作務衣・下'),L上:f(C.さくら亭,'作務衣L・上'),L下:f(C.さくら亭,'作務衣L・下')},
     {n:'万天の湯', 通上:d(C.万天の湯,'作務衣・上'),通下:d(C.万天の湯,'作務衣・下'),L上:d(C.万天の湯,'作務衣L・上'),L下:d(C.万天の湯,'作務衣L・下')},
     {n:'夢月', 通上:f(C.夢月,'作務衣・上'),通下:f(C.夢月,'作務衣・下'),L上:f(C.夢月,'作務衣L・上'),L下:f(C.夢月,'作務衣L・下')},
     {n:'扇山', 通上:f(C.扇山,'作務衣・上'),通下:f(C.扇山,'作務衣・下'),L上:f(C.扇山,'作務衣L・上'),L下:f(C.扇山,'作務衣L・下')}
   ];
   if(smRows.some(function(r){return r.通上||r.通下||r.L上||r.L下;})) sections.push({label:'作務衣',type:'sakumoi',rows:smRows});
+
+  // 19. クリーニング（湯の丘）
+  sections.push({label:'クリーニング（湯の丘）',rows:[],other:0,inputRows:[
+    {n:'浴衣',key:'yukuC_湯の丘'},{n:'作務衣上',key:'smC_湯の丘上'},{n:'作務衣下',key:'smC_湯の丘下'},
+    {n:'子作務衣上',key:'kosmC_湯の丘上'},{n:'子作務衣下',key:'kosmC_湯の丘下'}
+  ]});
+
+  // 20. クリーニング（別府おぐら）
+  sections.push({label:'クリーニング（別府おぐら）',rows:[],other:0,inputRows:[
+    {n:'浴衣',key:'yukuC_別府おぐら'},{n:'子供浴衣',key:'koYuC_おぐら'}
+  ]});
 
   return sections;
 }
@@ -1430,17 +1246,18 @@ function renderLoadingHTML(sections){
     }
 
     // 通常セクション
-    const total = sec.rows.reduce(function(a,r){ return a+(r.v||0); },0) + (sec.other||0);
-    if(total === 0 && !sec.inputRows && !sec.inputGroups && !sec.alwaysShow) return;
+    const total = sec.rows.reduce(function(a,r){ return a+r.v; },0) + (sec.other||0);
+    if(total === 0 && !sec.inputRows) return;
     html += '<div style="margin-bottom:12px;">';
-    var dispTotal = (sec.inputRows || sec.inputGroups || sec.label==='湯の丘') ? '' : (sec.bundle ? Math.round(total/sec.bundle*10)/10+'束' : total);
+    var dispTotal = sec.inputRows ? '' : (sec.bundle ? Math.round(total/sec.bundle*10)/10+'束' : total);
     html += '<div style="background:#1a1d27;padding:8px 12px;border-radius:8px 8px 0 0;display:flex;justify-content:space-between;align-items:center;">'
       +'<span style="font-size:16px;font-weight:900;color:#e8eaf6;flex:1;">'+sec.label+'</span>'
       +(dispTotal!==''?'<span style="font-size:22px;font-weight:900;color:#ffffff;min-width:70px;text-align:right;">'+dispTotal+'</span>':'')
       +'</div>';
     html += '<table style="width:100%;border-collapse:collapse;">';
     sec.rows.forEach(function(r){
-      var dispV = sec.bundle ? (r.v ? Math.round(r.v/sec.bundle*10)/10+'束' : '') : (r.v||'');
+      if(!r.v && !r.editable) return;
+      var dispV = sec.bundle ? Math.round(r.v/sec.bundle*10)/10+'束' : r.v;
       var editAttr = r.code && r.key ? ' data-code="'+r.code+'" data-key="'+r.key+'" data-bundle="'+(sec.bundle||1)+'" style="background:#fff;color:#111;padding:6px 8px;font-size:18px;font-weight:900;border:1px solid #ccc;text-align:right;width:70px;white-space:nowrap;cursor:pointer;text-decoration:underline dotted #4f8ef7;"' : ' style="background:#fff;color:#111;padding:6px 8px;font-size:18px;font-weight:900;border:1px solid #ccc;text-align:right;width:70px;white-space:nowrap;"';
       html += '<tr>'
         +'<td style="background:#fff;color:#111;padding:6px 12px;font-size:16px;font-weight:700;border:1px solid #ccc;text-align:right;">'+r.n+'</td>'
@@ -1451,46 +1268,19 @@ function renderLoadingHTML(sections){
       html += '<tr><td style="background:#f5f5f5;color:#666;padding:5px 12px;font-size:12px;border:1px solid #ccc;">残り後積み</td>'
         +'<td style="background:#f5f5f5;color:#666;padding:5px 8px;font-size:12px;border:1px solid #ccc;text-align:center;"></td></tr>';
     }
-    // クリーニング入力（inputRows）：タップで編集ダイアログを開く
+    // 浴衣クリーニングは入力欄を追加
     if(sec.inputRows){
       sec.inputRows.forEach(function(ir){
-        var saved = loadingInputs[ir.key] || '';
+        var saved = loadingInputs[ir.key]||'';
         html += '<tr>'
-          +'<td style="background:#fff;color:#111;padding:6px 12px;font-size:13px;font-weight:700;border:1px solid #ccc;text-align:right;">'+ir.n+'</td>'
-          +'<td class="loading-edit-cell" data-lkey="'+ir.key+'" style="background:#fff;color:#111;padding:6px 8px;font-size:18px;font-weight:900;border:1px solid #ccc;text-align:right;width:70px;white-space:nowrap;cursor:pointer;text-decoration:underline dotted #4f8ef7;">'+saved+'</td>'
+          +'<td style="background:#fff;color:#111;padding:6px 12px;font-size:13px;font-weight:700;border:1px solid #ccc;">'+ir.n+'</td>'
+          +'<td style="background:#fff;padding:4px;border:1px solid #ccc;text-align:center;">'
+          +'<input type="text" inputmode="numeric" pattern="[0-9]*" data-lkey="'+ir.key+'" value="'+saved+'" style="width:60px;text-align:center;font-size:15px;font-weight:700;border:1px solid #ccc;border-radius:6px;padding:3px;">'
+          +'</td>'
           +'</tr>';
       });
     }
     html += '</table></div>';
-    // 店舗グループ形式（inputGroups）：店舗ごとに独立したボックスで描画
-    if(sec.inputGroups){
-      sec.inputGroups.forEach(function(grp){
-        html += '<div style="margin-bottom:12px;">';
-        html += '<div style="background:#1a1d27;padding:8px 12px;border-radius:8px 8px 0 0;font-size:16px;font-weight:900;color:#e8eaf6;">'+grp.store+'</div>';
-        html += '<table style="width:100%;border-collapse:collapse;">';
-        // 入力画面の数値を先に表示（編集可能）
-        if(grp.rows){
-          grp.rows.forEach(function(row){
-            var eAttr = row.code && row.key
-              ? ' data-code="'+row.code+'" data-key="'+row.key+'" data-bundle="1" style="background:#fff;color:#111;padding:6px 8px;font-size:18px;font-weight:900;border:1px solid #ccc;text-align:right;width:70px;white-space:nowrap;cursor:pointer;text-decoration:underline dotted #4f8ef7;"'
-              : ' style="background:#fff;color:#111;padding:6px 8px;font-size:18px;font-weight:900;border:1px solid #ccc;text-align:right;width:70px;"';
-            html += '<tr>'
-              +'<td style="background:#fff;color:#111;padding:6px 12px;font-size:13px;font-weight:700;border:1px solid #ccc;text-align:right;">'+row.n+'</td>'
-              +'<td class="loading-edit-cell"'+eAttr+'>'+(row.v||'')+'</td>'
-              +'</tr>';
-          });
-        }
-        grp.items.forEach(function(ir){
-          var saved = loadingInputs[ir.key] || '';
-          var label = ir.groupLabel ? '<span style="font-size:11px;color:#888;margin-right:4px;">'+ir.groupLabel+'</span>'+ir.n : ir.n;
-          html += '<tr>'
-            +'<td style="background:#fff;color:#111;padding:6px 12px;font-size:13px;font-weight:700;border:1px solid #ccc;text-align:right;">'+label+'</td>'
-            +'<td class="loading-edit-cell" data-lkey="'+ir.key+'" style="background:#fff;color:#111;padding:6px 8px;font-size:18px;font-weight:900;border:1px solid #ccc;text-align:right;width:70px;white-space:nowrap;cursor:pointer;text-decoration:underline dotted #4f8ef7;">'+saved+'</td>'
-            +'</tr>';
-        });
-        html += '</table></div>';
-      });
-    }
   });
 
   if(!html) html = '<div style="text-align:center;color:#8892b0;margin-top:40px;font-size:14px;">入力データがありません</div>';
@@ -1508,7 +1298,7 @@ function openLoading(){
       nd[inp.dataset.key]=(inp.value==='0')?'':inp.value;
     });
     allData[dk][store.code]=nd;
-    saveAll(allData);
+    localStorage.setItem('deliveryData2',JSON.stringify(allData));
   }
   loadingFrom = document.getElementById('detail').classList.contains('active')?'detail':'home';
   const days2=['日','月','火','水','木','金','土'];
@@ -1521,25 +1311,9 @@ function openLoading(){
   loadingInputs['kosmC_湯の丘上'] = (getStoreData('006-00081-00000')['子作務衣クリーニング上_d']||'');
   loadingInputs['kosmC_湯の丘下'] = (getStoreData('006-00081-00000')['子作務衣クリーニング下_d']||'');
   loadingInputs['koYuC_おぐら'] = (getStoreData('006-00077-00000')['子供浴衣クリーニング_d']||'');
-  loadingInputs['yuC_和み月_柄大']  = (getStoreData('006-00090-00000')['柄浴衣クリーニング大_d']||'');
-  loadingInputs['yuC_和み月_柄中']  = (getStoreData('006-00090-00000')['柄浴衣クリーニング中_d']||'');
-  loadingInputs['yuC_和み月_柄小']  = (getStoreData('006-00090-00000')['柄浴衣クリーニング小_d']||'');
-  loadingInputs['yuC_和み月_特大']  = (getStoreData('006-00090-00000')['浴衣クリーニング特大_d']||'');
-  loadingInputs['yuC_和み月_大']    = (getStoreData('006-00090-00000')['浴衣クリーニング大_d']||'');
-  loadingInputs['yuC_和み月_中']    = (getStoreData('006-00090-00000')['浴衣クリーニング中_d']||'');
-  loadingInputs['yuC_和み月_小']    = (getStoreData('006-00090-00000')['浴衣クリーニング小_d']||'');
-  loadingInputs['yuC_游湯_大']      = (getStoreData('006-00092-00001')['浴衣クリーニング大_d']||'');
-  loadingInputs['yuC_游湯_中']      = (getStoreData('006-00092-00001')['浴衣クリーニング中_d']||'');
-  loadingInputs['yuC_游湯_小']      = (getStoreData('006-00092-00001')['浴衣クリーニング小_d']||'');
-  loadingInputs['yuC_かんなわ_中']  = (getStoreData('006-00083-00000')['浴衣クリーニング中_d']||'');
-  loadingInputs['yuC_かんなわ_子大']= (getStoreData('006-00083-00000')['子供浴衣クリーニング大_d']||'');
-  loadingInputs['yuC_九港福_大']    = (getStoreData('006-00085-00000')['浴衣クリーニング大_d']||'');
-  loadingInputs['yuC_九港福_中']    = (getStoreData('006-00085-00000')['浴衣クリーニング中_d']||'');
-  loadingInputs['btC_九港福']       = (getStoreData('006-00085-00000')['BTクリーニング_d']||'');
   document.getElementById('loadingTitle').textContent=(d.getMonth()+1)+'月'+d.getDate()+'日（'+days2[d.getDay()]+'）積み込み表';
   try {
     document.getElementById('loadingContent').innerHTML = renderLoadingHTML(buildLoadingData());
-    setupLoadingEditEvents();
   } catch(e) {
     document.getElementById('loadingContent').innerHTML = '<div style="color:red;padding:20px;">エラー: '+e.message+'</div>';
     console.error(e);
@@ -1553,21 +1327,6 @@ function openLoading(){
     'kosmC_湯の丘上':  {code:'006-00081-00000', field:'子作務衣クリーニング上_d'},
     'kosmC_湯の丘下':  {code:'006-00081-00000', field:'子作務衣クリーニング下_d'},
     'koYuC_おぐら':    {code:'006-00077-00000', field:'子供浴衣クリーニング_d'},
-    'yuC_和み月_柄大': {code:'006-00090-00000', field:'柄浴衣クリーニング大_d'},
-    'yuC_和み月_柄中': {code:'006-00090-00000', field:'柄浴衣クリーニング中_d'},
-    'yuC_和み月_柄小': {code:'006-00090-00000', field:'柄浴衣クリーニング小_d'},
-    'yuC_和み月_特大': {code:'006-00090-00000', field:'浴衣クリーニング特大_d'},
-    'yuC_和み月_大':   {code:'006-00090-00000', field:'浴衣クリーニング大_d'},
-    'yuC_和み月_中':   {code:'006-00090-00000', field:'浴衣クリーニング中_d'},
-    'yuC_和み月_小':   {code:'006-00090-00000', field:'浴衣クリーニング小_d'},
-    'yuC_游湯_大':     {code:'006-00092-00001', field:'浴衣クリーニング大_d'},
-    'yuC_游湯_中':     {code:'006-00092-00001', field:'浴衣クリーニング中_d'},
-    'yuC_游湯_小':     {code:'006-00092-00001', field:'浴衣クリーニング小_d'},
-    'yuC_かんなわ_中': {code:'006-00083-00000', field:'浴衣クリーニング中_d'},
-    'yuC_かんなわ_子大':{code:'006-00083-00000', field:'子供浴衣クリーニング大_d'},
-    'yuC_九港福_大':   {code:'006-00085-00000', field:'浴衣クリーニング大_d'},
-    'yuC_九港福_中':   {code:'006-00085-00000', field:'浴衣クリーニング中_d'},
-    'btC_九港福':      {code:'006-00085-00000', field:'BTクリーニング_d'},
   };
   setupLoadingEditEvents();
 
@@ -1580,7 +1339,7 @@ function openLoading(){
         if(!allData[dk]) allData[dk]={};
         if(!allData[dk][map.code]) allData[dk][map.code]={};
         allData[dk][map.code][map.field] = inp.value;
-        saveAll(allData);
+        localStorage.setItem('deliveryData2', JSON.stringify(allData));
       }
     });
   });
@@ -1669,7 +1428,7 @@ function showTicket(){
     '006-00078-00000': ['シーツ160','シーツ228','枕カバー','作務衣・上','作務衣・下','作務衣L・上','作務衣L・下','BT','包布 カラー','包布 D','子供浴衣'],
     '006-00091-00000': ['シーツ160','シーツ203','シーツ270','枕カバー','作務衣・上','作務衣・下','作務衣L・上','作務衣L・下','BT','包布 カラー','包布 D','子供浴衣'],
     '006-00083-00000': ['シーツ160','枕カバー S','浴衣','子供浴衣'],
-    '006-00081-00000': ['シーツ160','シーツ203','枕カバー','作務衣・上','作務衣・下','子作務衣 上','子作務衣 下','浴衣 クリーニング','BT','包布 D','子供浴衣','PC(L)'],
+    '006-00081-00000': ['シーツ160','シーツ203','枕カバー','作務衣・上','作務衣・下','子作務衣 上','子作務衣 下','浴衣 クリーニング','BT','包布 D','子供浴衣','PC'],
     '006-00077-00000': ['シーツ160','枕カバー S','枕カバー M','浴衣 クリーニング','BT','FT','包布 S','包布 D','子供浴衣'],
     '006-00085-00000': ['シーツ160','シーツ183','枕カバー S','枕カバー M','浴衣','BT クリーニング','包布 D'],
     '006-00093-00000': ['シーツ160','シーツ183','シーツ203','シーツ228','枕カバー','作務衣・上','作務衣・下','作務衣L・上','作務衣L・下','BT','包布 D','デユベ 小','子供浴衣'],
@@ -1685,8 +1444,8 @@ function showTicket(){
     var val = 0, hasAny = false;
     if(itemObj.sub && itemObj.floor){
       itemObj.sub.forEach(function(s){
-        val += (parseInt(sd[itemName+'_'+s+'_上'])||0)+(parseInt(sd[itemName+'_'+s+'_上済'])||0)+(parseInt(sd[itemName+'_'+s+'_下'])||0)+(parseInt(sd[itemName+'_'+s+'_下済'])||0);
-        if(sd[itemName+'_'+s+'_上']||sd[itemName+'_'+s+'_上済']||sd[itemName+'_'+s+'_下']||sd[itemName+'_'+s+'_下済']) hasAny=true;
+        val += (parseInt(sd[itemName+'_'+s+'_上'])||0)+(parseInt(sd[itemName+'_'+s+'_下'])||0);
+        if(sd[itemName+'_'+s+'_上']||sd[itemName+'_'+s+'_下']) hasAny=true;
       });
     } else if(itemObj.sub){
       itemObj.sub.forEach(function(s){
